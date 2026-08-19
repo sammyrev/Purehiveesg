@@ -1,0 +1,25 @@
+:root {
+  color-scheme: light;
+  background: #f8f6f4;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/bricolage-grotesque-medium.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 500;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #f8f6f4;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+}

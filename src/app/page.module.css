@@ -1,0 +1,644 @@
+.home {
+  min-height: 100svh;
+  background: #f8f6f4;
+}
+
+.header {
+  position: relative;
+  z-index: 10;
+  height: 100px;
+  overflow: hidden;
+  background: rgb(248 246 244 / 79%);
+  backdrop-filter: blur(20px);
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 308px;
+  width: 100%;
+  height: 100%;
+  padding: 24px 154px 24px 146px;
+}
+
+.logo,
+.menu,
+.createAccount {
+  flex: 0 0 auto;
+}
+
+.logo {
+  display: block;
+  width: 170.915px;
+  height: 31.971px;
+}
+
+.logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  color: #0e1036;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: 34px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.createAccount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 9px 21px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #ffcf99 24.576%, #997c5c 204.24%);
+  color: #775e43;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16.5px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: 24px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.createAccount img {
+  display: block;
+  width: 11.457px;
+  height: 11.457px;
+}
+
+.hero {
+  position: relative;
+  height: 1152px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffffff 14.453%, #d0deff 126.17%);
+}
+
+.torus,
+.visualStage {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.torus {
+  z-index: 0;
+}
+
+.torusBase,
+.torusSpec {
+  position: absolute;
+  top: 91px;
+  left: -743px;
+  width: 1083px;
+  height: 1134px;
+  object-fit: cover;
+}
+
+.torusColor {
+  position: absolute;
+  top: -79.36px;
+  left: -956.61px;
+  width: 1510.219px;
+  height: 1389.73px;
+  border-radius: 1783.125px;
+  background: linear-gradient(124.404deg, #407bff 10.803%, #92c5ff 87.34%);
+  mask-image: url("/assets/hero/torus-mask.png");
+  mask-repeat: no-repeat;
+  mask-position: 213.609px 170.357px;
+  mask-size: 1083px 1134px;
+}
+
+.torusSpec {
+  mix-blend-mode: screen;
+}
+
+.heroCopy {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+}
+
+.heroTitle {
+  position: absolute;
+  top: 100px;
+  left: calc(54.167% - 36.5px);
+  width: max-content;
+  margin: 0;
+  transform: translateX(-50%);
+  color: #120048;
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 70px;
+  font-weight: 500;
+  font-variation-settings: "opsz" 14, "wdth" 100;
+  letter-spacing: -2.1px;
+  line-height: 61px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.heroTitle span {
+  display: block;
+}
+
+.heroTitle em,
+.gradientText {
+  background: linear-gradient(90deg, #407bff 0%, #264a99 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-style: normal;
+}
+
+.heroDescription {
+  position: absolute;
+  top: 331px;
+  left: 50%;
+  margin: 0;
+  transform: translateX(-50%);
+  color: #120048;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.heroActions {
+  position: absolute;
+  top: 434px;
+  left: calc(50% - 0.4px);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  transform: translateX(-50%);
+}
+
+.primaryAction,
+.secondaryAction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 58.894px;
+  padding: 12px 24px;
+  border-radius: 24px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.72px;
+  line-height: 34.894px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.primaryAction {
+  gap: 8px;
+  background: linear-gradient(180deg, #ffcf99 24.576%, #997c5c 204.24%);
+  color: #775e43;
+}
+
+.primaryAction img {
+  display: block;
+  width: 16.079px;
+  height: 16.079px;
+}
+
+.secondaryAction {
+  border: 1px solid #d9d9d9;
+  color: #120048;
+}
+
+.visualStage {
+  z-index: 2;
+}
+
+.leftConnector,
+.rightConnector {
+  position: absolute;
+  width: 337.5px;
+  height: 239.087px;
+}
+
+.leftConnector {
+  top: 553.41px;
+  left: calc(8.333% + 98.5px);
+  transform: rotate(180deg) scaleY(-1);
+}
+
+.rightConnector {
+  top: 540.41px;
+  left: calc(58.333% + 44px);
+}
+
+.profileBadge {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 102px;
+  height: 102px;
+}
+
+.profileRing {
+  position: absolute;
+  inset: -0.39%;
+  width: 100%;
+  height: 100%;
+}
+
+.profileImage {
+  position: absolute;
+  top: 5.47%;
+  right: 6.25%;
+  bottom: 6.25%;
+  left: 5.47%;
+  width: 88.28%;
+  height: 88.28%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.founderBadge {
+  top: 510px;
+  left: 144px;
+}
+
+.teamBadge {
+  top: 482px;
+  left: calc(83.333% - 58px);
+  transform: rotate(180deg) scaleY(-1);
+}
+
+.visualCard {
+  position: absolute;
+  width: 998px;
+}
+
+.visualCard > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.visualCard > span {
+  position: absolute;
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  font-variation-settings: "opsz" 14, "wdth" 100;
+  letter-spacing: -0.48px;
+  line-height: normal;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.auditCard {
+  top: 644px;
+  left: calc(8.333% + 101px);
+  height: 466px;
+}
+
+.auditCard > span {
+  top: 14px;
+  left: 148px;
+  color: #9eb9f7;
+}
+
+.evidenceCard {
+  top: 687px;
+  left: calc(8.333% + 101px);
+  height: 471px;
+}
+
+.evidenceCard > span {
+  top: 16px;
+  left: 275px;
+  color: #c59f76;
+}
+
+.liveCard {
+  top: 724px;
+  left: calc(8.333% + 101px);
+  height: 471px;
+}
+
+.liveCardContent {
+  position: absolute;
+  top: 19px;
+  left: 95px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.liveLabel {
+  color: #c1d4ff;
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  font-variation-settings: "opsz" 14, "wdth" 100;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.activeStatus {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 8px;
+  height: 37.908px;
+  padding: 0 20px 0 11px;
+  border-radius: 20.964px;
+  background: #89ffef;
+  color: #179180;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 17.47px;
+  font-weight: 400;
+  letter-spacing: -0.524px;
+  line-height: 37.908px;
+  white-space: nowrap;
+}
+
+.activeStatus img {
+  display: block;
+  width: 20.964px;
+  height: 20.964px;
+}
+
+.hexagons {
+  position: absolute;
+  top: 921px;
+  left: calc(25% + 107px);
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 501px;
+}
+
+.hexagons img {
+  width: 78px;
+  height: 77px;
+}
+
+.hexagons .filledHexagon {
+  width: 100px;
+  height: 99px;
+}
+
+.visualCaption {
+  position: absolute;
+  top: 1064px;
+  left: calc(25% + 107px);
+  width: 501px;
+  margin: 0;
+  color: #dfe9ff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.primaryAction:focus-visible,
+.secondaryAction:focus-visible {
+  outline: 2px solid #407bff;
+  outline-offset: 3px;
+}
+
+.menuItem:focus-visible,
+.createAccount:focus-visible,
+.logo:focus-visible {
+  outline: 2px solid #407bff;
+  outline-offset: 3px;
+}
+
+@media (min-width: 861px) {
+  .hero {
+    height: calc(100svh - 100px);
+  }
+
+  .heroTitle {
+    top: 42px;
+    font-size: 60px;
+    letter-spacing: -1.8px;
+    line-height: 53px;
+  }
+
+  .heroDescription {
+    top: 230px;
+    font-size: 19px;
+    letter-spacing: -0.57px;
+  }
+
+  .heroActions {
+    top: 300px;
+    gap: 20px;
+  }
+
+  .primaryAction,
+  .secondaryAction {
+    min-height: 53px;
+    padding: 10px 21px;
+    font-size: 20px;
+    letter-spacing: -0.6px;
+    line-height: 29px;
+  }
+
+  .primaryAction img {
+    width: 14px;
+    height: 14px;
+  }
+
+  .visualStage {
+    top: 100px;
+    transform: scale(0.54);
+    transform-origin: top center;
+  }
+}
+
+@media (min-width: 861px) and (max-height: 800px) {
+  .heroTitle {
+    top: 30px;
+    font-size: 54px;
+    letter-spacing: -1.62px;
+    line-height: 48px;
+  }
+
+  .heroDescription {
+    top: 200px;
+    font-size: 18px;
+    letter-spacing: -0.54px;
+  }
+
+  .heroActions {
+    top: 270px;
+    gap: 16px;
+  }
+
+  .primaryAction,
+  .secondaryAction {
+    min-height: 48px;
+    padding: 9px 18px;
+    font-size: 18px;
+    letter-spacing: -0.54px;
+    line-height: 27px;
+  }
+
+  .primaryAction img {
+    width: 13px;
+    height: 13px;
+  }
+
+  .visualStage {
+    top: 95px;
+    transform: scale(0.43);
+  }
+}
+
+@media (max-width: 1280px) {
+  .navigation {
+    gap: clamp(32px, 14vw, 180px);
+    padding-right: 48px;
+    padding-left: 48px;
+  }
+}
+
+@media (max-width: 860px) {
+  .header {
+    height: auto;
+    min-height: 121px;
+  }
+
+  .navigation {
+    flex-wrap: wrap;
+    gap: 4px 28px;
+    justify-content: space-between;
+    padding: 24px;
+  }
+
+  .menu {
+    order: 3;
+    width: 100%;
+  }
+
+  .menuItem {
+    padding: 0 8px;
+    line-height: 36px;
+  }
+
+  .hero {
+    height: 920px;
+  }
+
+  .heroTitle {
+    top: 72px;
+    left: 50%;
+    width: min(92vw, 700px);
+    font-size: clamp(42px, 7.5vw, 62px);
+    line-height: 0.9;
+    white-space: normal;
+  }
+
+  .heroDescription {
+    top: 295px;
+    width: min(88vw, 620px);
+    font-size: clamp(18px, 2.8vw, 24px);
+    white-space: normal;
+  }
+
+  .heroActions {
+    top: 405px;
+  }
+
+  .primaryAction,
+  .secondaryAction {
+    font-size: 19px;
+  }
+
+  .visualStage {
+    transform: scale(0.68);
+    transform-origin: top center;
+  }
+}
+
+@media (max-width: 520px) {
+  .navigation {
+    padding: 20px;
+  }
+
+  .logo {
+    width: 137px;
+    height: auto;
+  }
+
+  .createAccount {
+    padding: 10px 16px;
+    font-size: 15px;
+  }
+
+  .hero {
+    height: 760px;
+  }
+
+  .heroTitle {
+    top: 48px;
+    font-size: 40px;
+  }
+
+  .heroDescription {
+    top: 244px;
+    font-size: 17px;
+  }
+
+  .heroActions {
+    top: 348px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .primaryAction,
+  .secondaryAction {
+    min-height: 48px;
+    padding: 7px 18px;
+    font-size: 17px;
+    line-height: 1.35;
+  }
+
+  .visualStage {
+    top: 96px;
+    transform: scale(0.4);
+    transform-origin: top center;
+  }
+
+  .torus {
+    transform: scale(0.72);
+    transform-origin: top left;
+  }
+}
