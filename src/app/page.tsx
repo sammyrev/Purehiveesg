@@ -46,7 +46,12 @@ export default function Home() {
       </header>
 
       <section className={styles.hero} aria-labelledby="hero-title">
-        <div className={styles.torus} aria-hidden="true">
+        <div className={`${styles.torus} ${styles.leftTorus}`} aria-hidden="true">
+          <img className={styles.torusBase} src="/assets/hero/torus-base.png" alt="" />
+          <div className={styles.torusColor} />
+          <img className={styles.torusSpec} src="/assets/hero/torus-spec.png" alt="" />
+        </div>
+        <div className={`${styles.torus} ${styles.topRightTorus}`} aria-hidden="true">
           <img className={styles.torusBase} src="/assets/hero/torus-base.png" alt="" />
           <div className={styles.torusColor} />
           <img className={styles.torusSpec} src="/assets/hero/torus-spec.png" alt="" />

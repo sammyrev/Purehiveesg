@@ -107,6 +107,26 @@
   z-index: 0;
 }
 
+.leftTorus {
+  transform: scale(0.68);
+  transform-origin: top left;
+}
+
+.topRightTorus {
+  display: none;
+}
+
+.topRightTorus .torusBase,
+.topRightTorus .torusSpec {
+  left: auto;
+  right: -743px;
+}
+
+.topRightTorus .torusColor {
+  left: auto;
+  right: -956.61px;
+}
+
 .torusBase,
 .torusSpec {
   position: absolute;
@@ -442,6 +462,13 @@
 @media (min-width: 861px) {
   .hero {
     height: calc(100svh - 100px);
+  }
+
+  .topRightTorus {
+    display: block;
+    z-index: 1;
+    transform: scale(0.26);
+    transform-origin: top right;
   }
 
   .heroTitle {
