@@ -338,7 +338,7 @@
 
 .auditCard {
   top: 644px;
-  left: calc(8.333% + 101px);
+  left: calc(50% - 499px);
   height: 466px;
 }
 
@@ -350,7 +350,7 @@
 
 .evidenceCard {
   top: 687px;
-  left: calc(8.333% + 101px);
+  left: calc(50% - 499px);
   height: 471px;
 }
 
@@ -362,7 +362,7 @@
 
 .liveCard {
   top: 724px;
-  left: calc(8.333% + 101px);
+  left: calc(50% - 499px);
   height: 471px;
 }
 
@@ -414,7 +414,7 @@
 .hexagons {
   position: absolute;
   top: 921px;
-  left: calc(25% + 107px);
+  left: calc(50% - 250.5px);
   display: flex;
   align-items: center;
   gap: 11px;
@@ -434,7 +434,7 @@
 .visualCaption {
   position: absolute;
   top: 1064px;
-  left: calc(25% + 107px);
+  left: calc(50% - 250.5px);
   width: 501px;
   margin: 0;
   color: #dfe9ff;
@@ -667,5 +667,2650 @@
   .torus {
     transform: scale(0.72);
     transform-origin: top left;
+  }
+}
+
+/* Pressure section from the second Figma frame. The desktop layout keeps the
+   exported frame coordinates while the responsive rules below let the cards
+   flow naturally on narrower screens. */
+.pressureSection {
+  position: relative;
+  min-height: 1392px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffffff 27.155%, #d0deff 126.17%);
+  color: #120048;
+}
+
+.pressureIntro {
+  position: relative;
+  z-index: 1;
+  height: 1px;
+}
+
+.pressureTitle {
+  position: absolute;
+  top: 196px;
+  left: calc(20.833333% - 156px);
+  width: max-content;
+  margin: 0;
+  color: #120048;
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 48px;
+  font-weight: 500;
+  font-variation-settings: "opsz" 14, "wdth" 100;
+  letter-spacing: -1.44px;
+  line-height: 45px;
+}
+
+.pressureTitle span {
+  color: #407bff;
+}
+
+.pressureDescription {
+  position: absolute;
+  top: 217px;
+  left: calc(79.166667% - 309px);
+  width: max-content;
+  margin: 0;
+  color: #120048;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: -0.72px;
+  line-height: normal;
+}
+
+.pressureTopGrid,
+.pressureBottomGrid {
+  position: absolute;
+  left: 50%;
+  display: grid;
+  grid-template-columns: 364px 399.808px 364px;
+  gap: 35px;
+  width: 1197.808px;
+  transform: translateX(-50%);
+}
+
+.pressureTopGrid {
+  top: 407.47px;
+}
+
+.pressureBottomGrid {
+  top: 920px;
+}
+
+.pressureCard {
+  position: relative;
+  width: 364px;
+  height: 441px;
+  overflow: hidden;
+  border: 1px solid #ffffff;
+  border-radius: 24px;
+}
+
+.pressureCardBlue {
+  background: #c2d5ff;
+}
+
+.pressureCardPeach {
+  background: #fbcc97;
+}
+
+.pressureNumber {
+  position: absolute;
+  top: 27px;
+  left: 32px;
+  color: rgb(64 123 255 / 41%);
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 128px;
+  font-weight: 500;
+  font-variation-settings: "opsz" 14, "wdth" 100;
+  letter-spacing: -3.84px;
+  line-height: 1;
+}
+
+.pressureCardPeach .pressureNumber {
+  color: rgb(171 137 100 / 41%);
+}
+
+.pressureCardCopy {
+  position: absolute;
+  top: 237px;
+  left: 32px;
+  color: #120048;
+}
+
+.pressureCardCopy h3 {
+  margin: 0;
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 36px;
+  font-weight: 500;
+  font-variation-settings: "opsz" 14, "wdth" 100;
+  letter-spacing: -1.08px;
+  line-height: 1.05;
+}
+
+.pressureCardCopy p {
+  margin: 26px 0 0;
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: -0.6px;
+  line-height: 1.1;
+}
+
+.pressureTopGrid .pressureCardCopy {
+  top: 193px;
+}
+
+.pressureTopGrid .pressureCardCopy p {
+  margin-top: 26px;
+}
+
+.pressureBottomGrid .pressureCard:last-child .pressureCardCopy {
+  top: 231px;
+  left: 34px;
+}
+
+.pressureBottomGrid .pressureCard:last-child .pressureCardCopy p {
+  margin-top: 28px;
+}
+
+.pressurePhotoWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 399.808px;
+  height: 470.058px;
+}
+
+.pressurePhotoFrame {
+  position: relative;
+  width: 364px;
+  height: 441px;
+  overflow: hidden;
+  border: 3px solid #ffffff;
+  border-radius: 16px;
+  background: #407bff;
+}
+
+.pressureTopGrid .pressurePhotoFrame {
+  transform: rotate(4.83deg);
+}
+
+.pressureBottomGrid .pressurePhotoWrap {
+  align-items: flex-start;
+}
+
+.pressurePhotoFrame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .pressureSection {
+    min-height: 0;
+    padding: 110px 24px 96px;
+  }
+
+  .pressureIntro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 40px;
+    height: auto;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .pressureTitle,
+  .pressureDescription {
+    position: static;
+    width: auto;
+  }
+
+  .pressureTitle {
+    font-size: clamp(34px, 5vw, 48px);
+    line-height: 0.95;
+  }
+
+  .pressureDescription {
+    align-self: center;
+    font-size: clamp(18px, 2.5vw, 24px);
+  }
+
+  .pressureTopGrid,
+  .pressureBottomGrid {
+    position: static;
+    grid-template-columns: repeat(2, minmax(0, 364px));
+    justify-content: center;
+    width: 100%;
+    margin: 80px auto 0;
+    transform: none;
+  }
+
+  .pressureBottomGrid {
+    margin-top: 24px;
+  }
+
+  .pressurePhotoWrap {
+    width: 100%;
+    max-width: 399.808px;
+    height: 470.058px;
+  }
+
+  .pressureCard {
+    width: 100%;
+    max-width: 364px;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 680px) {
+  .pressureSection {
+    padding: 80px 20px 72px;
+  }
+
+  .pressureIntro {
+    display: block;
+    max-width: 364px;
+  }
+
+  .pressureTitle {
+    font-size: clamp(34px, 10vw, 46px);
+  }
+
+  .pressureDescription {
+    margin-top: 24px;
+    font-size: 18px;
+  }
+
+  .pressureTopGrid,
+  .pressureBottomGrid {
+    grid-template-columns: minmax(0, 364px);
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .pressureBottomGrid {
+    margin-top: 24px;
+  }
+
+  .pressurePhotoWrap {
+    width: 100%;
+    height: auto;
+    min-height: 441px;
+  }
+
+  .pressurePhotoFrame {
+    width: 100%;
+    height: min(441px, 118vw);
+  }
+}
+
+.phaseSection {
+  position: relative;
+  height: 1284px;
+  overflow: hidden;
+  background: linear-gradient(179.904deg, #729efe 14.528%, #407bff 100.17%);
+  color: #120048;
+}
+
+.phaseTorus {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+}
+
+.phaseTorusBase,
+.phaseTorusSpec {
+  position: absolute;
+  top: -786px;
+  left: 543px;
+  width: 933px;
+  height: 1098.687px;
+  object-fit: cover;
+}
+
+.phaseTorusColor {
+  position: absolute;
+  top: -951.05px;
+  left: 358.98px;
+  width: 1301.047px;
+  height: 1346.453px;
+  border-radius: 1783.125px;
+  background: linear-gradient(124.404deg, #407bff 39.137%, #ffcf99 87.34%);
+  mask-image: url("/assets/phases/phase-global-color.png");
+  mask-repeat: no-repeat;
+  mask-position: 184.023px 165.051px;
+  mask-size: 933px 1098.688px;
+}
+
+.phaseTorusSpec {
+  mix-blend-mode: screen;
+}
+
+.phaseSpecGlow {
+  position: absolute;
+  z-index: 0;
+  top: 956px;
+  left: 440px;
+  width: 769.333px;
+  height: 732px;
+  object-fit: cover;
+  opacity: 0.6;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.phaseTitle {
+  position: absolute;
+  z-index: 3;
+  top: 175px;
+  left: calc(50% - 581px);
+  margin: 0;
+  color: #ffffff;
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 64px;
+  font-weight: 500;
+  font-variation-settings: "opsz" 14, "wdth" 100;
+  letter-spacing: -1.92px;
+  line-height: 60px;
+  white-space: nowrap;
+}
+
+.phaseTitle span {
+  display: block;
+}
+
+.phaseSubtitle {
+  position: absolute;
+  z-index: 3;
+  top: 319px;
+  left: calc(50% - 572px);
+  margin: 0;
+  color: #120048;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.phaseAction {
+  position: absolute;
+  z-index: 3;
+  top: 378px;
+  left: 148px;
+}
+
+.phaseTimeline {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  pointer-events: none;
+}
+
+.phaseLine {
+  position: absolute;
+  object-fit: fill;
+}
+
+.phaseLineOne {
+  top: 505px;
+  left: 147.5px;
+  width: 1061px;
+  height: 368.547px;
+}
+
+.phaseLineTwo {
+  top: 532px;
+  left: 148px;
+  width: 1061px;
+  height: 368.547px;
+}
+
+.phasePoint {
+  position: absolute;
+  width: 66px;
+  height: 66px;
+}
+
+.phasePoint img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.phasePointOne {
+  top: 831px;
+  left: 258px;
+}
+
+.phasePointTwo {
+  top: 623px;
+  left: 661px;
+}
+
+.phasePointThree {
+  top: 478px;
+  left: 1079px;
+}
+
+.phaseNumber {
+  position: absolute;
+  color: rgb(203 214 239 / 40%);
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 128px;
+  font-weight: 500;
+  font-variation-settings: "opsz" 14, "wdth" 100;
+  letter-spacing: -3.84px;
+  line-height: 1.1;
+}
+
+.phaseNumberOne {
+  top: 689px;
+  left: 230px;
+  color: #cbd6ef;
+}
+
+.phaseNumberTwo {
+  top: 473px;
+  left: 614px;
+}
+
+.phaseNumberThree {
+  top: 337px;
+  left: 1024px;
+}
+
+.phaseStepCopy {
+  position: absolute;
+  color: #ffffff;
+}
+
+.phaseStepCopy h3 {
+  margin: 0;
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 36px;
+  font-weight: 500;
+  font-variation-settings: "opsz" 14, "wdth" 100;
+  letter-spacing: -1.08px;
+  line-height: 1.1;
+}
+
+.phaseStepCopy p {
+  margin: 26px 0 0;
+  color: #120048;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: -0.6px;
+  line-height: 1.1;
+}
+
+.phaseStepOne {
+  top: 926px;
+  left: 212px;
+}
+
+.phaseStepOne p {
+  margin-top: 26px;
+}
+
+.phaseStepTwo {
+  top: 725px;
+  left: 614px;
+}
+
+.phaseStepTwo p {
+  margin-top: 26px;
+}
+
+.phaseStepThree {
+  top: 572px;
+  left: 1029px;
+}
+
+.phaseStepThree p {
+  margin-top: 26px;
+}
+
+.phaseFuture {
+  position: absolute;
+  z-index: 3;
+  top: 898px;
+  left: 1029px;
+  width: 321px;
+  height: 295px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: rgb(255 255 255 / 80%);
+}
+
+.phaseFutureHeading {
+  position: absolute;
+  top: 28px;
+  left: 22px;
+  display: flex;
+  align-items: center;
+  width: 268px;
+  height: 58px;
+  padding-left: 27px;
+  border-radius: 8px;
+  background: #ffcf99;
+  color: #120048;
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 500;
+  font-variation-settings: "opsz" 14, "wdth" 100;
+  letter-spacing: -0.96px;
+  line-height: 1.21;
+  white-space: nowrap;
+}
+
+.phaseFuture ul {
+  position: absolute;
+  top: 111px;
+  left: 22px;
+  margin: 0;
+  padding-left: 30px;
+  color: #120048;
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+  line-height: 1.55;
+}
+
+.phaseFuture p {
+  position: absolute;
+  top: 229px;
+  left: 38px;
+  margin: 0;
+  color: #986326;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: -0.48px;
+  line-height: 1.21;
+  white-space: nowrap;
+}
+
+@media (max-width: 860px) {
+  .phaseSection {
+    height: auto;
+    min-height: 1320px;
+    padding: 84px 20px 72px;
+  }
+
+  .phaseTorus {
+    opacity: 0.8;
+    transform: scale(0.62);
+    transform-origin: top right;
+  }
+
+  .phaseSpecGlow {
+    top: 820px;
+    left: 15%;
+    width: 70%;
+    height: auto;
+  }
+
+  .phaseTitle,
+  .phaseSubtitle,
+  .phaseAction {
+    position: relative;
+    top: auto;
+    left: auto;
+  }
+
+  .phaseTitle {
+    max-width: 650px;
+    margin: 0 auto;
+    font-size: clamp(42px, 8vw, 64px);
+    line-height: 0.95;
+    white-space: normal;
+  }
+
+  .phaseSubtitle {
+    display: block;
+    max-width: 650px;
+    margin: 24px auto 0;
+    font-size: clamp(18px, 3vw, 24px);
+    white-space: normal;
+  }
+
+  .phaseAction {
+    width: max-content;
+    margin: 28px auto 0;
+  }
+
+  .phaseTimeline {
+    position: relative;
+    inset: auto;
+    width: min(100%, 650px);
+    height: 760px;
+    margin: 62px auto 0;
+  }
+
+  .phaseLineOne,
+  .phaseLineTwo {
+    top: 170px;
+    left: 2%;
+    width: 96%;
+    height: auto;
+  }
+
+  .phaseLineTwo {
+    top: 184px;
+  }
+
+  .phasePoint {
+    width: 50px;
+    height: 50px;
+  }
+
+  .phasePointOne { top: 420px; left: 7%; }
+  .phasePointTwo { top: 260px; left: 46%; }
+  .phasePointThree { top: 145px; left: 86%; }
+
+  .phaseNumber {
+    font-size: clamp(78px, 14vw, 112px);
+    letter-spacing: -3px;
+  }
+
+  .phaseNumberOne { top: 300px; left: 4%; }
+  .phaseNumberTwo { top: 125px; left: 41%; }
+  .phaseNumberThree { top: 22px; left: 76%; }
+
+  .phaseStepCopy h3 {
+    font-size: clamp(26px, 4.8vw, 36px);
+  }
+
+  .phaseStepCopy p {
+    font-size: clamp(16px, 2.7vw, 20px);
+  }
+
+  .phaseStepOne { top: 490px; left: 0; }
+  .phaseStepTwo { top: 312px; left: 40%; }
+  .phaseStepThree { top: 195px; left: 72%; }
+
+  .phaseFuture {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: min(100%, 321px);
+    margin: 28px auto 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .phaseSection {
+    min-height: 1580px;
+    padding-inline: 20px;
+  }
+
+  .phaseTitle {
+    font-size: 42px;
+  }
+
+  .phaseTimeline {
+    height: 1080px;
+    margin-top: 58px;
+  }
+
+  .phaseLineOne,
+  .phaseLineTwo {
+    top: 210px;
+    left: -8%;
+    width: 116%;
+  }
+
+  .phaseLineTwo { top: 226px; }
+
+  .phasePointOne { top: 532px; left: 8%; }
+  .phasePointTwo { top: 370px; left: 43%; }
+  .phasePointThree { top: 230px; left: 80%; }
+
+  .phaseNumberOne { top: 404px; left: 3%; }
+  .phaseNumberTwo { top: 235px; left: 34%; }
+  .phaseNumberThree { top: 94px; left: 68%; }
+
+  .phaseStepOne { top: 600px; left: 5%; }
+  .phaseStepTwo { top: 438px; left: 34%; }
+  .phaseStepThree { top: 296px; left: 63%; }
+
+  .phaseStepCopy h3 {
+    font-size: 25px;
+  }
+
+  .phaseStepCopy p {
+    font-size: 15px;
+  }
+
+  .phaseStepOne p,
+  .phaseStepTwo p,
+  .phaseStepThree p {
+    margin-top: 14px;
+  }
+}
+
+.audienceSection {
+  position: relative;
+  height: 1669px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffffff 27.155%, #d0deff 126.17%);
+  color: #120048;
+}
+
+.audienceTorus {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+}
+
+.audienceTorusBase,
+.audienceTorusSpec {
+  position: absolute;
+  object-fit: cover;
+  transform: rotate(1.6deg);
+  transform-origin: center;
+}
+
+.audienceTorusRight .audienceTorusBase,
+.audienceTorusRight .audienceTorusSpec {
+  top: -275.1px;
+  left: calc(75% + 27.62px);
+  width: 1083px;
+  height: 1134px;
+}
+
+.audienceTorusLeft .audienceTorusBase,
+.audienceTorusLeft .audienceTorusSpec {
+  top: 228.885px;
+  left: -604.258px;
+  width: 1083px;
+  height: 1214.136px;
+}
+
+.audienceTorusColor {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.audienceTorusColor::before {
+  display: block;
+  width: 1510.219px;
+  height: 1389.73px;
+  border-radius: 1783.125px;
+  background: linear-gradient(124.404deg, #407bff 10.803%, #92c5ff 87.34%);
+  content: "";
+  transform: rotate(1.6deg);
+  transform-origin: center;
+}
+
+.audienceTorusRight .audienceTorusColor {
+  top: -466.26px;
+  left: calc(58.33% + 36.09px);
+  width: 1548.441px;
+  height: 1431.364px;
+}
+
+.audienceTorusRight .audienceTorusColor::before {
+  mask-image: url("/assets/audience/audience-global-color-right.png");
+  mask-repeat: no-repeat;
+  mask-position: 215.905px 176.258px;
+  mask-size: 1114.25px 1163.801px;
+}
+
+.audienceTorusLeft .audienceTorusColor {
+  top: 25.71px;
+  left: -837.07px;
+  width: 1551.183px;
+  height: 1529.533px;
+}
+
+.audienceTorusLeft .audienceTorusColor::before {
+  height: 1487.938px;
+  mask-image: url("/assets/audience/audience-global-color-left.png");
+  mask-repeat: no-repeat;
+  mask-position: 216.077px 188.291px;
+  mask-size: 1116.484px 1243.906px;
+}
+
+.audienceTorusSpec {
+  mix-blend-mode: screen;
+}
+
+.audienceTitle {
+  position: absolute;
+  z-index: 3;
+  top: 204px;
+  left: calc(29.17% - 276px);
+  margin: 0;
+  color: #120048;
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 48px;
+  font-weight: 500;
+  font-variation-settings: "opsz" 14, "wdth" 100;
+  letter-spacing: -1.44px;
+  line-height: 48px;
+  white-space: nowrap;
+}
+
+.audienceTitle span {
+  display: block;
+}
+
+.audienceFeature {
+  position: absolute;
+  z-index: 1;
+  top: 370px;
+  left: 144px;
+  display: block;
+  width: 1152px;
+  height: 669px;
+  border-radius: 24px;
+  object-fit: cover;
+}
+
+.audienceAction {
+  position: absolute;
+  z-index: 3;
+  top: 214px;
+  left: calc(66.67% - 21px);
+}
+
+.audienceBand {
+  position: absolute;
+  z-index: 4;
+  top: 1118px;
+  left: 0;
+  width: 100%;
+  height: 551px;
+  background: rgb(255 255 255 / 10%);
+}
+
+.designedForCard,
+.notBuiltCard {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.designedForCard {
+  top: 81px;
+  left: 144px;
+  width: 732px;
+  height: 363px;
+  background: #ffffff;
+}
+
+.designedForCard h3,
+.notBuiltCard h3 {
+  position: absolute;
+  margin: 0;
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  font-variation-settings: "opsz" 14, "wdth" 100;
+  letter-spacing: -0.72px;
+  line-height: 48px;
+  white-space: nowrap;
+}
+
+.designedForCard h3 {
+  top: 46px;
+  left: 60px;
+  color: #120048;
+}
+
+.designedForColumns {
+  position: absolute;
+  top: 104px;
+  left: 48px;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.audiencePillColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.audiencePillColumn:first-child {
+  width: 321.04px;
+}
+
+.audiencePillColumn:last-child {
+  width: 310.04px;
+}
+
+.audiencePill {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  min-width: 100%;
+  height: 54px;
+  padding: 0 18.68px;
+  border-radius: 28.02px;
+  background: rgb(64 123 255 / 20%);
+  color: #1c3672;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16.317px;
+  font-weight: 400;
+  letter-spacing: -0.4895px;
+  line-height: 35.406px;
+  white-space: nowrap;
+}
+
+.audiencePill img {
+  display: block;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  margin-right: 9.34px;
+  object-fit: contain;
+}
+
+.audiencePill:first-child img {
+  width: 22px;
+  margin-right: 15px;
+}
+
+.notBuiltCard {
+  top: 78px;
+  left: 903px;
+  width: 393px;
+  height: 366px;
+  background: #0e1036;
+  color: #ffffff;
+}
+
+.notBuiltCard h3 {
+  top: 48px;
+  left: 52px;
+  color: #ffffff;
+}
+
+.notBuiltCard ul {
+  position: absolute;
+  top: 96px;
+  left: 52px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 310px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.notBuiltCard li {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  min-height: 35.406px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16.317px;
+  font-weight: 400;
+  letter-spacing: -0.4895px;
+  line-height: 18px;
+}
+
+.notBuiltCard li:first-child {
+  align-items: center;
+  line-height: 35.406px;
+}
+
+.notBuiltCard li img {
+  display: block;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+}
+
+@media (max-width: 1024px) {
+  .audienceSection {
+    height: auto;
+    min-height: 1500px;
+    padding: 104px 24px 80px;
+  }
+
+  .audienceTorus {
+    opacity: 0.55;
+    transform: scale(0.7);
+    transform-origin: top right;
+  }
+
+  .audienceTorusLeft {
+    display: none;
+  }
+
+  .audienceTitle,
+  .audienceFeature,
+  .audienceAction,
+  .audienceBand {
+    position: relative;
+    top: auto;
+    left: auto;
+  }
+
+  .audienceTitle {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: clamp(38px, 5.5vw, 48px);
+    line-height: 1;
+    white-space: normal;
+  }
+
+  .audienceFeature {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1152 / 669;
+    margin: 64px auto 0;
+  }
+
+  .audienceAction {
+    width: max-content;
+    margin: 28px auto 0;
+  }
+
+  .audienceBand {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 24px;
+    width: 100%;
+    height: auto;
+    margin-top: 80px;
+    padding: 40px 0;
+  }
+
+  .designedForCard,
+  .notBuiltCard {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    min-height: 363px;
+  }
+
+  .designedForCard h3,
+  .notBuiltCard h3 {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin: 38px 0 0 40px;
+  }
+
+  .designedForColumns {
+    position: relative;
+    top: auto;
+    left: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 32px 32px;
+  }
+
+  .audiencePillColumn,
+  .audiencePillColumn:first-child,
+  .audiencePillColumn:last-child {
+    width: 100%;
+  }
+
+  .notBuiltCard ul {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: auto;
+    margin: 20px 40px 40px;
+  }
+}
+
+@media (max-width: 680px) {
+  .audienceSection {
+    min-height: 1700px;
+    padding: 80px 20px 64px;
+  }
+
+  .audienceTorus {
+    display: none;
+  }
+
+  .audienceTitle {
+    font-size: 40px;
+  }
+
+  .audienceFeature {
+    aspect-ratio: 1.15;
+    margin-top: 48px;
+  }
+
+  .audienceBand {
+    grid-template-columns: 1fr;
+    margin-top: 64px;
+  }
+}
+
+.partnersSection {
+  position: relative;
+  height: 959px;
+  overflow: hidden;
+  background: #0e1036;
+  color: #ffffff;
+}
+
+.partnersSpec {
+  position: absolute;
+  z-index: 0;
+  width: 769.333px;
+  height: 732px;
+  object-fit: cover;
+  opacity: 0.18;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.partnersSpecLeft {
+  top: 678px;
+  left: -107px;
+}
+
+.partnersSpecRight {
+  top: -211px;
+  left: 1172px;
+}
+
+.partnersTitle {
+  position: absolute;
+  z-index: 2;
+  top: 185px;
+  left: calc(50% - 574px);
+  margin: 0;
+  color: #ffffff;
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 64px;
+  font-weight: 500;
+  font-variation-settings: "opsz" 14, "wdth" 100;
+  letter-spacing: -1.92px;
+  line-height: 60px;
+  white-space: nowrap;
+}
+
+.partnersTitle span {
+  display: block;
+}
+
+.partnersTitle em {
+  color: #407bff;
+  font-style: normal;
+}
+
+.partnersSubtitle {
+  position: absolute;
+  z-index: 2;
+  top: 339px;
+  left: calc(50% - 574px);
+  margin: 0;
+  color: #ffffff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: -0.72px;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.partnersAction {
+  position: absolute;
+  z-index: 2;
+  top: 421px;
+  left: 142px;
+}
+
+.pricingTable {
+  position: absolute;
+  z-index: 2;
+  top: 524px;
+  left: 142px;
+  display: flex;
+  flex-direction: column;
+  width: 496px;
+}
+
+.pricingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 81px;
+  border-bottom: 1px solid #407bff;
+  color: #ffffff;
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  font-variation-settings: "opsz" 14, "wdth" 100;
+  letter-spacing: -0.72px;
+  line-height: 60px;
+}
+
+.pricingRow > span {
+  padding-left: 10px;
+}
+
+.pricingRow strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 106px;
+  min-height: 34px;
+  padding: 0 24px;
+  border-radius: 18px;
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.pricingTbc {
+  background: #fde9d3;
+  color: #65513b;
+}
+
+.pricingNone {
+  background: #d82b18;
+  color: #ffffff;
+}
+
+.pricingEarly {
+  background: #13f8c0;
+  color: #054f3d;
+}
+
+.pricingDirect {
+  background: #ffb246;
+  color: #ffffff;
+}
+
+.partnersPhotoFrame {
+  position: absolute;
+  z-index: 2;
+  top: 185px;
+  left: 831px;
+  width: 456px;
+  height: 662px;
+  overflow: hidden;
+  border: 3px solid #aac3f9;
+  border-radius: 24px;
+}
+
+.partnersPhotoFrame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .partnersSection {
+    height: auto;
+    min-height: 1100px;
+    padding: 100px 24px 80px;
+  }
+
+  .partnersSpec {
+    transform: scale(0.7);
+    transform-origin: top right;
+  }
+
+  .partnersSpecLeft {
+    display: none;
+  }
+
+  .partnersTitle,
+  .partnersSubtitle,
+  .partnersAction,
+  .pricingTable,
+  .partnersPhotoFrame {
+    position: relative;
+    top: auto;
+    left: auto;
+  }
+
+  .partnersTitle {
+    max-width: 760px;
+    margin: 0 auto;
+    font-size: clamp(42px, 7vw, 64px);
+    line-height: 0.95;
+    white-space: normal;
+  }
+
+  .partnersSubtitle {
+    max-width: 760px;
+    margin: 28px auto 0;
+    font-size: clamp(18px, 3vw, 24px);
+    white-space: normal;
+  }
+
+  .partnersAction {
+    width: max-content;
+    margin: 32px auto 0;
+  }
+
+  .pricingTable {
+    width: min(100%, 560px);
+    margin: 52px auto 0;
+  }
+
+  .partnersPhotoFrame {
+    width: min(100%, 456px);
+    height: auto;
+    aspect-ratio: 456 / 662;
+    margin: 56px auto 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .partnersSection {
+    min-height: 1200px;
+    padding: 76px 20px 64px;
+  }
+
+  .partnersSpec {
+    display: none;
+  }
+
+  .partnersTitle {
+    font-size: 42px;
+  }
+
+  .partnersSubtitle {
+    font-size: 18px;
+  }
+
+  .pricingTable {
+    margin-top: 44px;
+  }
+
+  .pricingRow {
+    min-height: 72px;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .pricingRow > span {
+    padding-left: 0;
+  }
+
+  .pricingRow strong {
+    min-width: 94px;
+    padding: 0 12px;
+    font-size: 17px;
+  }
+
+  .partnersPhotoFrame {
+    margin-top: 44px;
+  }
+}
+
+.waitlistSection {
+  position: relative;
+  height: 1486px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffffff 27.155%, #d0deff 126.17%);
+  color: #120048;
+}
+
+.waitlistTorus {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+}
+
+.waitlistTorusBase,
+.waitlistTorusSpec {
+  position: absolute;
+  top: -307px;
+  left: calc(75% + 12px);
+  width: 1083px;
+  height: 1134px;
+  object-fit: cover;
+  transform: rotate(1.6deg);
+  transform-origin: center;
+}
+
+.waitlistTorusSpec {
+  mix-blend-mode: screen;
+}
+
+.waitlistTorusColor {
+  position: absolute;
+  top: -483.26px;
+  left: calc(58.33% + 36.09px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1548.441px;
+  height: 1431.364px;
+}
+
+.waitlistTorusColor::before {
+  display: block;
+  width: 1510.219px;
+  height: 1389.73px;
+  border-radius: 1783.125px;
+  background: linear-gradient(124.404deg, #407bff 10.803%, #92c5ff 87.34%);
+  content: "";
+  mask-image: url("/assets/waitlist/waitlist-global-color.png");
+  mask-repeat: no-repeat;
+  mask-position: 215.905px 176.258px;
+  mask-size: 1114.25px 1163.801px;
+  transform: rotate(1.6deg);
+  transform-origin: center;
+}
+
+.waitlistCopy {
+  position: absolute;
+  z-index: 2;
+  top: 248px;
+  left: 144px;
+}
+
+.waitlistCopy h2 {
+  margin: 0;
+  color: #120048;
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 48px;
+  font-weight: 500;
+  font-variation-settings: "opsz" 14, "wdth" 100;
+  letter-spacing: -1.44px;
+  line-height: 48px;
+}
+
+.waitlistCopy > p {
+  margin: 34px 0 0;
+  color: #120048;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: -0.72px;
+  line-height: 24px;
+}
+
+.waitlistBenefits {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 35px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.waitlistBenefits li {
+  display: flex;
+  align-items: center;
+  gap: 21px;
+  height: 49px;
+  color: #0e1036;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.54px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.waitlistCheck {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 29px;
+  align-items: center;
+  justify-content: center;
+  width: 29px;
+  height: 29px;
+  background: url("/assets/waitlist/waitlist-check-bg.svg") center / contain no-repeat;
+}
+
+.waitlistCheck img {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
+
+.waitlistFormCard {
+  position: absolute;
+  z-index: 2;
+  top: 218px;
+  left: calc(41.67% + 74px);
+  display: flex;
+  flex-direction: column;
+  width: 622px;
+  height: 1090px;
+  margin: 0;
+  padding: 36px 30px 40px;
+  border-radius: 30px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgb(64 123 255 / 10%);
+  box-sizing: border-box;
+}
+
+.waitlistFields {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.waitlistField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #3a3839;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 29px;
+}
+
+.waitlistInputWrap {
+  display: flex;
+  position: relative;
+  align-items: center;
+  width: 100%;
+  height: 77px;
+  border: 1.48px solid #d9d7d7;
+  border-radius: 11.84px;
+  box-sizing: border-box;
+}
+
+.waitlistInputWrap > img {
+  display: block;
+  flex: 0 0 23.8px;
+  width: 23.8px;
+  height: 23.8px;
+  margin-left: 36px;
+  object-fit: contain;
+}
+
+.waitlistInputWrap input,
+.waitlistInputWrap select {
+  min-width: 0;
+  height: 100%;
+  flex: 1 1 auto;
+  margin: 0;
+  padding: 0 20px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #3a3839;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: -0.66px;
+  line-height: 28px;
+}
+
+.waitlistInputWrap input::placeholder,
+.waitlistInputWrap select:invalid {
+  color: #bfbdbd;
+  opacity: 1;
+}
+
+.waitlistInputWrap select {
+  appearance: none;
+  cursor: pointer;
+}
+
+.waitlistSelectArrow {
+  flex: 0 0 23.68px !important;
+  width: 23.68px !important;
+  height: 23.68px !important;
+  margin: 0 36px 0 0 !important;
+}
+
+.waitlistSubmit {
+  display: flex;
+  flex: 0 0 59px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 59px;
+  margin: 89px 0 0;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #ffcf99 24.576%, #997c5c 204.24%);
+  color: #775e43;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.72px;
+  line-height: 35px;
+  cursor: pointer;
+}
+
+.waitlistSubmit img {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 1024px) {
+  .waitlistSection {
+    height: auto;
+    min-height: 1486px;
+    padding: 100px 24px 80px;
+    box-sizing: border-box;
+  }
+
+  .waitlistTorus {
+    opacity: 0.58;
+    transform: scale(0.65);
+    transform-origin: top right;
+  }
+
+  .waitlistCopy,
+  .waitlistFormCard {
+    position: relative;
+    top: auto;
+    left: auto;
+  }
+
+  .waitlistCopy {
+    width: min(100%, 622px);
+    margin: 0 auto;
+  }
+
+  .waitlistCopy h2 {
+    font-size: clamp(40px, 7vw, 48px);
+  }
+
+  .waitlistCopy > p {
+    font-size: clamp(18px, 3vw, 24px);
+  }
+
+  .waitlistFormCard {
+    width: min(100%, 622px);
+    height: auto;
+    min-height: 1090px;
+    margin: 64px auto 0;
+  }
+}
+
+@media (max-width: 680px) {
+  .waitlistSection {
+    min-height: 1300px;
+    padding: 76px 20px 64px;
+  }
+
+  .waitlistTorus {
+    display: none;
+  }
+
+  .waitlistCopy,
+  .waitlistFormCard {
+    width: 100%;
+  }
+
+  .waitlistCopy h2 {
+    font-size: 40px;
+    line-height: 42px;
+  }
+
+  .waitlistCopy > p {
+    margin-top: 24px;
+    font-size: 18px;
+    line-height: 21px;
+    white-space: normal;
+  }
+
+  .waitlistBenefits {
+    margin-top: 26px;
+  }
+
+  .waitlistBenefits li {
+    gap: 14px;
+    font-size: 16px;
+  }
+
+  .waitlistFormCard {
+    min-height: 0;
+    margin-top: 44px;
+    padding: 28px 20px 28px;
+    border-radius: 24px;
+  }
+
+  .waitlistFields {
+    gap: 24px;
+  }
+
+  .waitlistField {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .waitlistInputWrap {
+    height: 66px;
+  }
+
+  .waitlistInputWrap > img {
+    margin-left: 20px;
+  }
+
+  .waitlistInputWrap input,
+  .waitlistInputWrap select {
+    padding: 0 12px;
+    font-size: 18px;
+  }
+
+  .waitlistSelectArrow {
+    margin-right: 20px !important;
+  }
+
+  .waitlistSubmit {
+    margin-top: 44px;
+    font-size: 20px;
+  }
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 150px;
+  height: 100px;
+  padding: 10px 154px 10px 146px;
+  background: #0e1036;
+  box-sizing: border-box;
+}
+
+.footerLogo {
+  display: block;
+  flex: 0 0 170.915px;
+  width: 170.915px;
+  height: 31.971px;
+}
+
+.footerLogo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.footerNavigation {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 0 0 auto;
+}
+
+.footerNavigation a,
+.footerCopyright {
+  color: #ffffff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  line-height: 40px;
+  white-space: nowrap;
+}
+
+.footerNavigation a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  text-decoration: none;
+}
+
+.footerNavigation a:hover,
+.footerNavigation a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.footerCopyright {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 4px 10px;
+}
+
+@media (max-width: 1180px) {
+  .footer {
+    gap: 48px;
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+}
+
+@media (max-width: 900px) {
+  .footer {
+    height: auto;
+    min-height: 100px;
+    flex-wrap: wrap;
+    gap: 12px 32px;
+    padding: 32px 24px;
+  }
+
+  .footerCopyright {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 680px) {
+  .footer {
+    flex-direction: column;
+    gap: 14px;
+    padding: 32px 20px;
+  }
+
+  .footerNavigation {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2px 8px;
+  }
+
+  .footerNavigation a,
+  .footerCopyright {
+    font-size: 14px;
+    line-height: 26px;
+  }
+
+  .footerCopyright {
+    width: auto;
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+/* Keep the pressure layout in its three-column composition on laptop widths,
+   scaling the Figma desktop coordinates down with the viewport. */
+@media (min-width: 681px) and (max-width: 1024px) {
+  .pressureSection {
+    min-height: 106.5vw;
+    padding: 0;
+  }
+
+  .pressureIntro {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    display: block;
+    height: 0;
+  }
+
+  .pressureTitle,
+  .pressureDescription {
+    position: absolute;
+    width: max-content;
+  }
+
+  .pressureTitle {
+    top: 14.3vw;
+    left: 10.2vw;
+    font-size: 3.33vw;
+    letter-spacing: -0.1vw;
+    line-height: 3.12vw;
+  }
+
+  .pressureDescription {
+    top: 15.3vw;
+    left: 57.8vw;
+    font-size: 1.67vw;
+    letter-spacing: -0.05vw;
+    line-height: 1.25;
+  }
+
+  .pressureTopGrid,
+  .pressureBottomGrid {
+    position: absolute;
+    top: 29.5vw;
+    display: grid;
+    grid-template-columns: 25.1vw 27.8vw 25.1vw;
+    gap: 2.4vw;
+    width: 82.8vw;
+    margin: 0;
+    transform: translateX(-50%);
+  }
+
+  .pressureBottomGrid {
+    top: 64.1vw;
+  }
+
+  .pressureCard {
+    width: 25.1vw;
+    height: 30.5vw;
+    border-radius: 1.7vw;
+  }
+
+  .pressureNumber {
+    top: 2.7vw;
+    left: 3.2vw;
+    font-size: 8.8vw;
+    letter-spacing: -0.26vw;
+  }
+
+  .pressureCardCopy {
+    top: 16.4vw;
+    left: 3.2vw;
+  }
+
+  .pressureTopGrid .pressureCardCopy {
+    top: 13.8vw;
+  }
+
+  .pressureBottomGrid .pressureCard:last-child .pressureCardCopy {
+    top: 16.9vw;
+    left: 3.4vw;
+  }
+
+  .pressureCardCopy h3 {
+    font-size: 2.5vw;
+    letter-spacing: -0.075vw;
+  }
+
+  .pressureCardCopy p {
+    margin-top: 1.8vw;
+    font-size: 1.4vw;
+    letter-spacing: -0.04vw;
+  }
+
+  .pressureTopGrid .pressureCardCopy p {
+    margin-top: 1.8vw;
+  }
+
+  .pressureBottomGrid .pressureCard:last-child .pressureCardCopy p {
+    margin-top: 1.9vw;
+  }
+
+  .pressurePhotoWrap {
+    width: 27.8vw;
+    height: 32.6vw;
+  }
+
+  .pressurePhotoFrame {
+    width: 25.1vw;
+    height: 30.5vw;
+    border-width: 0.2vw;
+    border-radius: 1.1vw;
+  }
+}
+
+/* The phase artwork is exported at a 1440px-wide Figma frame. Scale the
+   complete composition on laptop widths so the timeline, copy, controls and
+   future-phases card keep their proportions without overwhelming the screen. */
+@media (min-width: 861px) and (max-width: 1024px) {
+  .phaseSection {
+    height: 89.1667vw;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .phaseTorusBase,
+  .phaseTorusSpec {
+    top: -54.5833vw;
+    left: 37.7083vw;
+    width: 64.7917vw;
+    height: 76.2977vw;
+  }
+
+  .phaseTorusColor {
+    top: -66.0451vw;
+    left: 24.9292vw;
+    width: 90.3505vw;
+    height: 93.5037vw;
+    border-radius: 123.8281vw;
+    mask-position: 12.7794vw 11.4626vw;
+    mask-size: 64.7917vw 76.2978vw;
+  }
+
+  .phaseSpecGlow {
+    top: 66.3889vw;
+    left: 30.5556vw;
+    width: 53.4259vw;
+    height: 50.8333vw;
+  }
+
+  .phaseTitle {
+    top: 12.1528vw;
+    left: calc(50% - 40.3472vw);
+    font-size: 4.4444vw;
+    letter-spacing: -0.1333vw;
+    line-height: 4.1667vw;
+  }
+
+  .phaseSubtitle {
+    top: 22.1528vw;
+    left: calc(50% - 39.7222vw);
+    font-size: 1.6667vw;
+    letter-spacing: -0.05vw;
+  }
+
+  .phaseAction {
+    top: 26.25vw;
+    left: 10.2778vw;
+    min-height: 4.0900vw;
+    padding: 0.8333vw 1.6667vw;
+    gap: 0.5556vw;
+    border-radius: 1.6667vw;
+    font-size: 1.6667vw;
+    letter-spacing: -0.05vw;
+    line-height: 2.4232vw;
+  }
+
+  .phaseAction img {
+    width: 1.1166vw;
+    height: 1.1166vw;
+  }
+
+  .phaseLineOne {
+    top: 35.0694vw;
+    left: 10.2431vw;
+    width: 73.6806vw;
+    height: 25.5935vw;
+  }
+
+  .phaseLineTwo {
+    top: 36.9444vw;
+    left: 10.2778vw;
+    width: 73.6806vw;
+    height: 25.5935vw;
+  }
+
+  .phasePoint {
+    width: 4.5833vw;
+    height: 4.5833vw;
+  }
+
+  .phasePointOne {
+    top: 57.7083vw;
+    left: 17.9167vw;
+  }
+
+  .phasePointTwo {
+    top: 43.2639vw;
+    left: 45.9028vw;
+  }
+
+  .phasePointThree {
+    top: 33.1944vw;
+    left: 74.9306vw;
+  }
+
+  .phaseNumber {
+    font-size: 8.8889vw;
+    letter-spacing: -0.2667vw;
+  }
+
+  .phaseNumberOne {
+    top: 47.8472vw;
+    left: 15.9722vw;
+  }
+
+  .phaseNumberTwo {
+    top: 32.8472vw;
+    left: 42.6389vw;
+  }
+
+  .phaseNumberThree {
+    top: 23.4028vw;
+    left: 71.1111vw;
+  }
+
+  .phaseStepCopy h3 {
+    font-size: 2.5vw;
+    letter-spacing: -0.075vw;
+  }
+
+  .phaseStepCopy p {
+    margin-top: 1.8056vw;
+    font-size: 1.3889vw;
+    letter-spacing: -0.0417vw;
+  }
+
+  .phaseStepOne {
+    top: 64.3056vw;
+    left: 14.7222vw;
+  }
+
+  .phaseStepTwo {
+    top: 50.3472vw;
+    left: 42.6389vw;
+  }
+
+  .phaseStepThree {
+    top: 39.7222vw;
+    left: 71.4583vw;
+  }
+
+  .phaseFuture {
+    top: 62.3611vw;
+    left: 71.4583vw;
+    width: 22.2917vw;
+    height: 20.4861vw;
+    border-radius: 1.1111vw;
+  }
+
+  .phaseFutureHeading {
+    top: 1.9444vw;
+    left: 1.5278vw;
+    width: 18.6111vw;
+    height: 4.0278vw;
+    padding-left: 1.8750vw;
+    border-radius: 0.5556vw;
+    font-size: 2.2222vw;
+    letter-spacing: -0.0667vw;
+  }
+
+  .phaseFuture ul {
+    top: 7.7083vw;
+    left: 1.5278vw;
+    padding-left: 2.0833vw;
+    font-size: 1.3889vw;
+    letter-spacing: -0.0417vw;
+  }
+
+  .phaseFuture p {
+    top: 15.9028vw;
+    left: 2.6389vw;
+    font-size: 1.1111vw;
+    letter-spacing: -0.0333vw;
+  }
+}
+
+/* Keep the audience section tied to the 1440px Figma frame while scaling the
+   complete composition down for laptop widths. */
+@media (min-width: 861px) and (max-width: 1024px) {
+  .audienceSection {
+    height: 115.9028vw;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .audienceTorusLeft {
+    display: block;
+  }
+
+  .audienceTorusRight .audienceTorusBase,
+  .audienceTorusRight .audienceTorusSpec {
+    top: -19.1042vw;
+    left: calc(75% + 1.9181vw);
+    width: 75.2083vw;
+    height: 78.7500vw;
+  }
+
+  .audienceTorusLeft .audienceTorusBase,
+  .audienceTorusLeft .audienceTorusSpec {
+    top: 15.8948vw;
+    left: -41.9624vw;
+    width: 75.2083vw;
+    height: 84.3150vw;
+  }
+
+  .audienceTorusRight .audienceTorusColor {
+    top: -32.3792vw;
+    left: calc(58.33% + 2.5063vw);
+    width: 107.5306vw;
+    height: 99.4003vw;
+  }
+
+  .audienceTorusRight .audienceTorusColor::before {
+    width: 104.8763vw;
+    height: 96.5090vw;
+    border-radius: 123.8281vw;
+    mask-position: 14.9934vw 12.2390vw;
+    mask-size: 77.3785vw 80.8195vw;
+  }
+
+  .audienceTorusLeft .audienceTorusColor {
+    top: 1.7854vw;
+    left: -58.1299vw;
+    width: 107.7210vw;
+    height: 106.2176vw;
+  }
+
+  .audienceTorusLeft .audienceTorusColor::before {
+    width: 104.8763vw;
+    height: 103.3290vw;
+    border-radius: 123.8281vw;
+    mask-position: 15.0053vw 13.0758vw;
+    mask-size: 77.5336vw 86.3824vw;
+  }
+
+  .audienceTitle {
+    position: absolute;
+    top: 14.1667vw;
+    left: calc(29.17% - 19.1667vw);
+    max-width: none;
+    margin: 0;
+    font-size: 3.3333vw;
+    letter-spacing: -0.1000vw;
+    line-height: 3.3333vw;
+    white-space: nowrap;
+  }
+
+  .audienceFeature {
+    position: absolute;
+    top: 25.6944vw;
+    left: 10vw;
+    width: 80vw;
+    height: 46.4583vw;
+    margin: 0;
+    border-radius: 1.6667vw;
+  }
+
+  .audienceAction {
+    position: absolute;
+    top: 14.8611vw;
+    left: calc(66.67% - 1.4583vw);
+    width: max-content;
+    margin: 0;
+    min-height: 4.0900vw;
+    padding: 0.8333vw 1.6667vw;
+    gap: 0.5556vw;
+    border-radius: 1.6667vw;
+    font-size: 1.6667vw;
+    letter-spacing: -0.0500vw;
+    line-height: 2.4232vw;
+  }
+
+  .audienceAction img {
+    width: 1.1166vw;
+    height: 1.1166vw;
+  }
+
+  .audienceBand {
+    position: absolute;
+    top: 77.6389vw;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 38.2639vw;
+    margin: 0;
+    padding: 0;
+  }
+
+  .designedForCard,
+  .notBuiltCard {
+    position: absolute;
+    min-height: 0;
+    border-radius: 1.6667vw;
+  }
+
+  .designedForCard {
+    top: 5.6250vw;
+    left: 10vw;
+    width: 50.8333vw;
+    height: 25.2083vw;
+  }
+
+  .notBuiltCard {
+    top: 5.4167vw;
+    left: 62.7083vw;
+    width: 27.2917vw;
+    height: 25.4167vw;
+  }
+
+  .designedForCard h3,
+  .notBuiltCard h3 {
+    position: absolute;
+    margin: 0;
+    font-size: 1.6667vw;
+    letter-spacing: -0.0500vw;
+    line-height: 3.3333vw;
+  }
+
+  .designedForCard h3 {
+    top: 3.1944vw;
+    left: 4.1667vw;
+  }
+
+  .notBuiltCard h3 {
+    top: 3.3333vw;
+    left: 3.6111vw;
+  }
+
+  .designedForColumns {
+    position: absolute;
+    top: 7.2222vw;
+    left: 3.3333vw;
+    display: flex;
+    flex-direction: row;
+    gap: 1.0417vw;
+    margin: 0;
+  }
+
+  .audiencePillColumn:first-child {
+    width: 22.2944vw;
+  }
+
+  .audiencePillColumn:last-child {
+    width: 21.5306vw;
+  }
+
+  .audiencePillColumn {
+    gap: 0.8333vw;
+  }
+
+  .audiencePill {
+    height: 3.7500vw;
+    padding: 0 1.2972vw;
+    border-radius: 1.9458vw;
+    font-size: 1.1331vw;
+    letter-spacing: -0.0340vw;
+    line-height: 2.4588vw;
+  }
+
+  .audiencePill img {
+    flex-basis: 1.9444vw;
+    width: 1.9444vw;
+    height: 1.9444vw;
+    margin-right: 0.6486vw;
+  }
+
+  .audiencePill:first-child img {
+    width: 1.5278vw;
+    margin-right: 1.0417vw;
+  }
+
+  .notBuiltCard ul {
+    position: absolute;
+    top: 6.6667vw;
+    left: 3.6111vw;
+    width: 21.5278vw;
+    margin: 0;
+    padding: 0;
+    gap: 0.3472vw;
+  }
+
+  .notBuiltCard li {
+    gap: 0.4861vw;
+    min-height: 2.4588vw;
+    font-size: 1.1331vw;
+    letter-spacing: -0.0340vw;
+    line-height: 1.2500vw;
+  }
+
+  .notBuiltCard li:first-child {
+    line-height: 2.4588vw;
+  }
+
+  .notBuiltCard li img {
+    flex-basis: 1.9444vw;
+    width: 1.9444vw;
+    height: 1.9444vw;
+  }
+}
+
+/* Scale the founding-partners frame from its 1440px Figma coordinates on
+   laptops, including the pricing rows and team image. */
+@media (min-width: 861px) and (max-width: 1024px) {
+  .partnersSection {
+    height: 66.5972vw;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .partnersSpec {
+    width: 53.4259vw;
+    height: 50.8333vw;
+  }
+
+  .partnersSpecLeft {
+    top: 47.0833vw;
+    left: -7.4306vw;
+  }
+
+  .partnersSpecRight {
+    top: -14.6528vw;
+    left: 81.3889vw;
+  }
+
+  .partnersTitle {
+    position: absolute;
+    top: 12.8472vw;
+    left: calc(50% - 39.8611vw);
+    max-width: none;
+    margin: 0;
+    font-size: 4.4444vw;
+    letter-spacing: -0.1333vw;
+    line-height: 4.1667vw;
+    white-space: nowrap;
+  }
+
+  .partnersSubtitle {
+    position: absolute;
+    top: 23.5417vw;
+    left: calc(50% - 39.8611vw);
+    max-width: none;
+    margin: 0;
+    font-size: 1.6667vw;
+    letter-spacing: -0.0500vw;
+    line-height: normal;
+    white-space: nowrap;
+  }
+
+  .partnersAction {
+    position: absolute;
+    top: 29.2361vw;
+    left: 9.8611vw;
+    width: max-content;
+    margin: 0;
+    min-height: 4.0900vw;
+    padding: 0.8333vw 1.6667vw;
+    gap: 0.5556vw;
+    border-radius: 1.6667vw;
+    font-size: 1.6667vw;
+    letter-spacing: -0.0500vw;
+    line-height: 2.4232vw;
+  }
+
+  .partnersAction img {
+    width: 1.1166vw;
+    height: 1.1166vw;
+  }
+
+  .pricingTable {
+    position: absolute;
+    top: 36.3889vw;
+    left: 9.8611vw;
+    width: 34.4444vw;
+    margin: 0;
+  }
+
+  .pricingRow {
+    min-height: 5.6250vw;
+    font-size: 1.6667vw;
+    letter-spacing: -0.0500vw;
+    line-height: 4.1667vw;
+  }
+
+  .pricingRow > span {
+    padding-left: 0.6944vw;
+  }
+
+  .pricingRow strong {
+    min-width: 7.3611vw;
+    min-height: 2.3611vw;
+    padding: 0 1.6667vw;
+    border-radius: 1.2500vw;
+    font-size: 1.3889vw;
+    letter-spacing: -0.0417vw;
+    line-height: 1.6667vw;
+  }
+
+  .partnersPhotoFrame {
+    position: absolute;
+    top: 12.8472vw;
+    left: 57.7083vw;
+    width: 31.6667vw;
+    height: 45.9722vw;
+    margin: 0;
+    border-width: 0.2083vw;
+    border-radius: 1.6667vw;
+  }
+}
+
+/* Scale the waitlist frame from the 1440px Figma canvas for standard laptops.
+   The desktop layout stays two-column while every control scales with the
+   viewport so the form remains comfortably within the section. */
+@media (min-width: 861px) and (max-width: 1024px) {
+  .waitlistSection {
+    height: 103.1944vw;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .waitlistTorusBase,
+  .waitlistTorusSpec {
+    top: -21.3194vw;
+    left: calc(75% + 0.8333vw);
+    width: 75.2083vw;
+    height: 78.7500vw;
+  }
+
+  .waitlistTorusColor {
+    top: -33.5597vw;
+    left: calc(58.33% + 2.5063vw);
+    width: 107.5306vw;
+    height: 99.4003vw;
+  }
+
+  .waitlistTorusColor::before {
+    width: 104.8763vw;
+    height: 96.5090vw;
+    border-radius: 123.8281vw;
+    mask-position: 14.9934vw 12.2390vw;
+    mask-size: 77.3785vw 80.8195vw;
+  }
+
+  .waitlistCopy {
+    position: absolute;
+    top: 17.2222vw;
+    left: 10vw;
+    width: auto;
+    margin: 0;
+  }
+
+  .waitlistCopy h2 {
+    font-size: 3.3333vw;
+    letter-spacing: -0.1000vw;
+    line-height: 3.3333vw;
+  }
+
+  .waitlistCopy > p {
+    margin-top: 2.3611vw;
+    font-size: 1.6667vw;
+    letter-spacing: -0.0500vw;
+    line-height: 1.6667vw;
+  }
+
+  .waitlistBenefits {
+    gap: 0;
+    margin-top: 2.4306vw;
+  }
+
+  .waitlistBenefits li {
+    gap: 1.4583vw;
+    height: 3.4028vw;
+    font-size: 1.2500vw;
+    letter-spacing: -0.0375vw;
+    line-height: 1.3889vw;
+  }
+
+  .waitlistCheck {
+    flex-basis: 2.0139vw;
+    width: 2.0139vw;
+    height: 2.0139vw;
+  }
+
+  .waitlistCheck img {
+    width: 0.9722vw;
+    height: 0.9722vw;
+  }
+
+  .waitlistFormCard {
+    position: absolute;
+    top: 15.1389vw;
+    left: calc(41.67% + 5.1389vw);
+    width: 43.1944vw;
+    height: 75.6944vw;
+    min-height: 0;
+    margin: 0;
+    padding: 2.5000vw 2.0833vw 2.7778vw;
+    border-radius: 2.0833vw;
+  }
+
+  .waitlistFields {
+    gap: 2.4306vw;
+  }
+
+  .waitlistField {
+    gap: 0.5556vw;
+    font-size: 1.6667vw;
+    line-height: 2.0139vw;
+  }
+
+  .waitlistInputWrap {
+    height: 5.3472vw;
+    border-width: 0.1028vw;
+    border-radius: 0.8222vw;
+  }
+
+  .waitlistInputWrap > img {
+    flex-basis: 1.6528vw;
+    width: 1.6528vw;
+    height: 1.6528vw;
+    margin-left: 2.5000vw;
+  }
+
+  .waitlistInputWrap input,
+  .waitlistInputWrap select {
+    padding: 0 1.3889vw;
+    font-size: 1.5278vw;
+    letter-spacing: -0.0458vw;
+    line-height: 1.9444vw;
+  }
+
+  .waitlistSelectArrow {
+    flex-basis: 1.6444vw !important;
+    width: 1.6444vw !important;
+    height: 1.6444vw !important;
+    margin: 0 2.5000vw 0 0 !important;
+  }
+
+  .waitlistSubmit {
+    flex-basis: 4.0972vw;
+    height: 4.0972vw;
+    margin-top: 6.1806vw;
+    padding: 0.8333vw 1.3889vw;
+    border-radius: 1.6667vw;
+    gap: 0.5556vw;
+    font-size: 1.6667vw;
+    letter-spacing: -0.0500vw;
+    line-height: 2.4306vw;
+  }
+
+  .waitlistSubmit img {
+    width: 1.1111vw;
+    height: 1.1111vw;
   }
 }
