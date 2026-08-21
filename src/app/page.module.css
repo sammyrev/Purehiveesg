@@ -714,7 +714,7 @@
    flow naturally on narrower screens. */
 .pressureSection {
   position: relative;
-  min-height: 1392px;
+  min-height: 1354px;
   overflow: hidden;
   background: linear-gradient(180deg, #ffffff 27.155%, #d0deff 126.17%);
   color: #120048;
@@ -728,7 +728,7 @@
 
 .pressureTitle {
   position: absolute;
-  top: 196px;
+  top: 80px;
   left: calc(20.833333% - 156px);
   width: max-content;
   margin: 0;
@@ -747,7 +747,7 @@
 
 .pressureDescription {
   position: absolute;
-  top: 217px;
+  top: 101px;
   left: calc(79.166667% - 309px);
   width: max-content;
   margin: 0;
@@ -771,11 +771,11 @@
 }
 
 .pressureTopGrid {
-  top: 407.47px;
+  top: 291.47px;
 }
 
 .pressureBottomGrid {
-  top: 920px;
+  top: 804px;
 }
 
 .pressureCard {
@@ -892,7 +892,7 @@
 @media (max-width: 1024px) {
   .pressureSection {
     min-height: 0;
-    padding: 110px 24px 96px;
+    padding: 72px 24px;
   }
 
   .pressureIntro {
@@ -949,7 +949,7 @@
 
 @media (max-width: 680px) {
   .pressureSection {
-    padding: 80px 20px 72px;
+    padding: 64px 20px;
   }
 
   .pressureIntro {
@@ -991,7 +991,7 @@
 
 .phaseSection {
   position: relative;
-  height: 1284px;
+  height: 1178px;
   overflow: hidden;
   background: linear-gradient(179.904deg, #729efe 14.528%, #407bff 100.17%);
   color: #120048;
@@ -1035,7 +1035,7 @@
 .phaseSpecGlow {
   position: absolute;
   z-index: 0;
-  top: 956px;
+  top: 861px;
   left: 440px;
   width: 769.333px;
   height: 732px;
@@ -1048,7 +1048,7 @@
 .phaseTitle {
   position: absolute;
   z-index: 3;
-  top: 175px;
+  top: 80px;
   left: calc(50% - 581px);
   margin: 0;
   color: #ffffff;
@@ -1068,7 +1068,7 @@
 .phaseSubtitle {
   position: absolute;
   z-index: 3;
-  top: 319px;
+  top: 224px;
   left: calc(50% - 572px);
   margin: 0;
   color: #120048;
@@ -1083,7 +1083,7 @@
 .phaseAction {
   position: absolute;
   z-index: 3;
-  top: 378px;
+  top: 283px;
   left: 148px;
 }
 
@@ -1100,14 +1100,14 @@
 }
 
 .phaseLineOne {
-  top: 505px;
+  top: 410px;
   left: 147.5px;
   width: 1061px;
   height: 368.547px;
 }
 
 .phaseLineTwo {
-  top: 532px;
+  top: 437px;
   left: 148px;
   width: 1061px;
   height: 368.547px;
@@ -1126,17 +1126,17 @@
 }
 
 .phasePointOne {
-  top: 831px;
+  top: 736px;
   left: 258px;
 }
 
 .phasePointTwo {
-  top: 623px;
+  top: 528px;
   left: 661px;
 }
 
 .phasePointThree {
-  top: 478px;
+  top: 383px;
   left: 1079px;
 }
 
@@ -1152,18 +1152,18 @@
 }
 
 .phaseNumberOne {
-  top: 689px;
+  top: 594px;
   left: 230px;
   color: #cbd6ef;
 }
 
 .phaseNumberTwo {
-  top: 473px;
+  top: 378px;
   left: 614px;
 }
 
 .phaseNumberThree {
-  top: 337px;
+  top: 242px;
   left: 1024px;
 }
 
@@ -1193,7 +1193,7 @@
 }
 
 .phaseStepOne {
-  top: 926px;
+  top: 831px;
   left: 212px;
 }
 
@@ -1202,7 +1202,7 @@
 }
 
 .phaseStepTwo {
-  top: 725px;
+  top: 630px;
   left: 614px;
 }
 
@@ -1211,7 +1211,7 @@
 }
 
 .phaseStepThree {
-  top: 572px;
+  top: 477px;
   left: 1029px;
 }
 
@@ -1222,7 +1222,7 @@
 .phaseFuture {
   position: absolute;
   z-index: 3;
-  top: 898px;
+  top: 803px;
   left: 1029px;
   width: 321px;
   height: 295px;
@@ -1283,8 +1283,8 @@
 @media (max-width: 860px) {
   .phaseSection {
     height: auto;
-    min-height: 1320px;
-    padding: 84px 20px 72px;
+    min-height: 0;
+    padding: 72px 20px;
   }
 
   .phaseTorus {
@@ -1390,8 +1390,8 @@
 
 @media (max-width: 560px) {
   .phaseSection {
-    min-height: 1580px;
-    padding-inline: 20px;
+    min-height: 0;
+    padding: 64px 20px;
   }
 
   .phaseTitle {
@@ -1441,7 +1441,7 @@
 
 .audienceSection {
   position: relative;
-  height: 1669px;
+  height: 1422px;
   overflow: hidden;
   background: linear-gradient(180deg, #ffffff 27.155%, #d0deff 126.17%);
   color: #120048;
@@ -1451,6 +1451,7 @@
   position: absolute;
   z-index: 0;
   inset: 0;
+  opacity: 0.4;
   pointer-events: none;
 }
 
@@ -1533,8 +1534,8 @@
 .audienceTitle {
   position: absolute;
   z-index: 3;
-  top: 204px;
-  left: calc(29.17% - 276px);
+  top: 80px;
+  left: calc(50% - 576px);
   margin: 0;
   color: #120048;
   font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1553,8 +1554,8 @@
 .audienceFeature {
   position: absolute;
   z-index: 1;
-  top: 370px;
-  left: 144px;
+  top: 246px;
+  left: calc(50% - 576px);
   display: block;
   width: 1152px;
   height: 669px;
@@ -1565,93 +1566,96 @@
 .audienceAction {
   position: absolute;
   z-index: 3;
-  top: 214px;
-  left: calc(66.67% - 21px);
+  top: 90px;
+  left: calc(50% + 234px);
 }
 
 .audienceBand {
   position: absolute;
   z-index: 4;
-  top: 1118px;
+  top: 994px;
   left: 0;
   width: 100%;
-  height: 551px;
+  height: 428px;
   background: rgb(255 255 255 / 10%);
 }
 
 .designedForCard,
 .notBuiltCard {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
   overflow: hidden;
   border-radius: 24px;
 }
 
 .designedForCard {
-  top: 81px;
-  left: 144px;
+  top: 48px;
+  left: calc(50% - 576px);
   width: 732px;
-  height: 363px;
+  height: 300px;
+  padding: 28px 40px;
   background: #ffffff;
 }
 
 .designedForCard h3,
 .notBuiltCard h3 {
-  position: absolute;
-  margin: 0;
+  position: static;
+  margin: 0 0 14px;
   font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 24px;
   font-weight: 500;
   font-variation-settings: "opsz" 14, "wdth" 100;
   letter-spacing: -0.72px;
-  line-height: 48px;
+  line-height: 1.2;
   white-space: nowrap;
 }
 
 .designedForCard h3 {
-  top: 46px;
-  left: 60px;
   color: #120048;
 }
 
 .designedForColumns {
-  position: absolute;
-  top: 104px;
-  left: 48px;
+  position: static;
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
+  justify-content: center;
   gap: 15px;
+  width: 100%;
 }
 
 .audiencePillColumn {
   display: flex;
+  flex: 1 1 0;
   flex-direction: column;
   gap: 12px;
+  min-width: 0;
 }
 
-.audiencePillColumn:first-child {
-  width: 321.04px;
-}
-
+.audiencePillColumn:first-child,
 .audiencePillColumn:last-child {
-  width: 310.04px;
+  width: auto;
 }
 
 .audiencePill {
   display: flex;
   align-items: center;
-  width: max-content;
-  min-width: 100%;
+  width: 100%;
+  min-width: 0;
   height: 54px;
-  padding: 0 18.68px;
-  border-radius: 28.02px;
+  padding: 0 18px;
+  border-radius: 28px;
   background: rgb(64 123 255 / 20%);
   color: #1c3672;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16.317px;
+  font-size: 16px;
   font-weight: 400;
-  letter-spacing: -0.4895px;
-  line-height: 35.406px;
+  letter-spacing: -0.48px;
+  line-height: 1.2;
   white-space: nowrap;
+  box-sizing: border-box;
 }
 
 .audiencePill img {
@@ -1659,38 +1663,43 @@
   flex: 0 0 28px;
   width: 28px;
   height: 28px;
-  margin-right: 9.34px;
+  margin-right: 10px;
   object-fit: contain;
 }
 
 .audiencePill:first-child img {
   width: 22px;
-  margin-right: 15px;
+  margin-right: 12px;
+}
+
+.audiencePill span {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .notBuiltCard {
-  top: 78px;
-  left: 903px;
+  top: 48px;
+  left: calc(50% + 183px);
   width: 393px;
-  height: 366px;
+  height: 300px;
+  padding: 28px 36px;
   background: #0e1036;
   color: #ffffff;
 }
 
 .notBuiltCard h3 {
-  top: 48px;
-  left: 52px;
   color: #ffffff;
 }
 
 .notBuiltCard ul {
-  position: absolute;
-  top: 96px;
-  left: 52px;
+  position: static;
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  width: 310px;
+  justify-content: space-between;
+  flex: 1 1 auto;
+  gap: 12px;
+  width: 100%;
+  height: auto;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1698,19 +1707,19 @@
 
 .notBuiltCard li {
   display: flex;
-  align-items: flex-start;
-  gap: 7px;
-  min-height: 35.406px;
+  align-items: center;
+  gap: 10px;
+  min-height: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16.317px;
+  font-size: 16px;
   font-weight: 400;
-  letter-spacing: -0.4895px;
-  line-height: 18px;
+  letter-spacing: -0.48px;
+  line-height: 1.3;
 }
 
 .notBuiltCard li:first-child {
   align-items: center;
-  line-height: 35.406px;
+  line-height: 1.3;
 }
 
 .notBuiltCard li img {
@@ -1723,13 +1732,13 @@
 @media (max-width: 1024px) {
   .audienceSection {
     height: auto;
-    min-height: 1500px;
-    padding: 104px 24px 80px;
+    min-height: 0;
+    padding: 72px 24px;
   }
 
   .audienceTorus {
-    opacity: 0.55;
-    transform: scale(0.7);
+    opacity: 0.32;
+    transform: scale(0.65);
     transform-origin: top right;
   }
 
@@ -1772,8 +1781,8 @@
     gap: 24px;
     width: 100%;
     height: auto;
-    margin-top: 80px;
-    padding: 40px 0;
+    margin-top: 64px;
+    padding: 0;
   }
 
   .designedForCard,
@@ -1783,25 +1792,18 @@
     left: auto;
     width: 100%;
     height: auto;
-    min-height: 363px;
+    min-height: 0;
+    padding: 28px 32px;
   }
 
   .designedForCard h3,
   .notBuiltCard h3 {
-    position: relative;
-    top: auto;
-    left: auto;
-    margin: 38px 0 0 40px;
+    margin: 0 0 14px;
   }
 
   .designedForColumns {
-    position: relative;
-    top: auto;
-    left: auto;
-    display: flex;
     flex-direction: column;
     gap: 12px;
-    margin: 20px 32px 32px;
   }
 
   .audiencePillColumn,
@@ -1811,18 +1813,16 @@
   }
 
   .notBuiltCard ul {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: auto;
-    margin: 20px 40px 40px;
+    width: 100%;
+    height: auto;
+    flex: 0 0 auto;
   }
 }
 
 @media (max-width: 680px) {
   .audienceSection {
-    min-height: 1700px;
-    padding: 80px 20px 64px;
+    min-height: 0;
+    padding: 64px 20px;
   }
 
   .audienceTorus {
@@ -1846,7 +1846,7 @@
 
 .partnersSection {
   position: relative;
-  height: 959px;
+  height: 822px;
   overflow: hidden;
   background: #0e1036;
   color: #ffffff;
@@ -1864,7 +1864,7 @@
 }
 
 .partnersSpecLeft {
-  top: 678px;
+  top: 573px;
   left: -107px;
 }
 
@@ -1876,8 +1876,8 @@
 .partnersTitle {
   position: absolute;
   z-index: 2;
-  top: 185px;
-  left: calc(50% - 574px);
+  top: 80px;
+  left: calc(50% - 578px);
   margin: 0;
   color: #ffffff;
   font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1901,8 +1901,8 @@
 .partnersSubtitle {
   position: absolute;
   z-index: 2;
-  top: 339px;
-  left: calc(50% - 574px);
+  top: 234px;
+  left: calc(50% - 578px);
   margin: 0;
   color: #ffffff;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1916,15 +1916,15 @@
 .partnersAction {
   position: absolute;
   z-index: 2;
-  top: 421px;
-  left: 142px;
+  top: 316px;
+  left: calc(50% - 578px);
 }
 
 .pricingTable {
   position: absolute;
   z-index: 2;
-  top: 524px;
-  left: 142px;
+  top: 419px;
+  left: calc(50% - 578px);
   display: flex;
   flex-direction: column;
   width: 496px;
@@ -1934,7 +1934,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 81px;
+  min-height: 56px;
   border-bottom: 1px solid #407bff;
   color: #ffffff;
   font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1942,7 +1942,7 @@
   font-weight: 500;
   font-variation-settings: "opsz" 14, "wdth" 100;
   letter-spacing: -0.72px;
-  line-height: 60px;
+  line-height: 40px;
 }
 
 .pricingRow > span {
@@ -1988,8 +1988,8 @@
 .partnersPhotoFrame {
   position: absolute;
   z-index: 2;
-  top: 185px;
-  left: 831px;
+  top: 80px;
+  left: calc(50% + 111px);
   width: 456px;
   height: 662px;
   overflow: hidden;
@@ -2007,8 +2007,8 @@
 @media (max-width: 1024px) {
   .partnersSection {
     height: auto;
-    min-height: 1100px;
-    padding: 100px 24px 80px;
+    min-height: 0;
+    padding: 72px 24px;
   }
 
   .partnersSpec {
@@ -2065,8 +2065,8 @@
 
 @media (max-width: 560px) {
   .partnersSection {
-    min-height: 1200px;
-    padding: 76px 20px 64px;
+    min-height: 0;
+    padding: 64px 20px;
   }
 
   .partnersSpec {
@@ -2108,7 +2108,8 @@
 
 .waitlistSection {
   position: relative;
-  height: 1486px;
+  /* Form top 218 + height 930 + matching bottom inset */
+  height: 1366px;
   overflow: hidden;
   background: linear-gradient(180deg, #ffffff 27.155%, #d0deff 126.17%);
   color: #120048;
@@ -2118,6 +2119,9 @@
   position: absolute;
   z-index: 0;
   inset: 0;
+  opacity: 0.32;
+  transform: scale(0.72);
+  transform-origin: top right;
   pointer-events: none;
 }
 
@@ -2239,9 +2243,9 @@
   display: flex;
   flex-direction: column;
   width: 622px;
-  height: 1090px;
+  height: 930px;
   margin: 0;
-  padding: 36px 30px 40px;
+  padding: 24px 30px 28px;
   border-radius: 30px;
   background: #ffffff;
   box-shadow: 0 4px 12px rgb(64 123 255 / 10%);
@@ -2251,13 +2255,13 @@
 .waitlistFields {
   display: flex;
   flex-direction: column;
-  gap: 35px;
+  gap: 18px;
 }
 
 .waitlistField {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   color: #3a3839;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 24px;
@@ -2329,7 +2333,7 @@
   gap: 8px;
   width: 100%;
   height: 59px;
-  margin: 89px 0 0;
+  margin: 36px 0 0;
   padding: 12px 20px;
   border: 0;
   border-radius: 24px;
@@ -2352,14 +2356,14 @@
 @media (max-width: 1024px) {
   .waitlistSection {
     height: auto;
-    min-height: 1486px;
-    padding: 100px 24px 80px;
+    min-height: 0;
+    padding: 100px 24px 100px;
     box-sizing: border-box;
   }
 
   .waitlistTorus {
-    opacity: 0.58;
-    transform: scale(0.65);
+    opacity: 0.28;
+    transform: scale(0.52);
     transform-origin: top right;
   }
 
@@ -2386,15 +2390,15 @@
   .waitlistFormCard {
     width: min(100%, 622px);
     height: auto;
-    min-height: 1090px;
+    min-height: 0;
     margin: 64px auto 0;
   }
 }
 
 @media (max-width: 680px) {
   .waitlistSection {
-    min-height: 1300px;
-    padding: 76px 20px 64px;
+    min-height: 0;
+    padding: 76px 20px 76px;
   }
 
   .waitlistTorus {
@@ -2430,12 +2434,12 @@
   .waitlistFormCard {
     min-height: 0;
     margin-top: 44px;
-    padding: 28px 20px 28px;
+    padding: 20px 20px 22px;
     border-radius: 24px;
   }
 
   .waitlistFields {
-    gap: 24px;
+    gap: 16px;
   }
 
   .waitlistField {
@@ -2462,7 +2466,7 @@
   }
 
   .waitlistSubmit {
-    margin-top: 44px;
+    margin-top: 28px;
     font-size: 20px;
   }
 }
@@ -2582,7 +2586,7 @@
    scaling the Figma desktop coordinates down with the viewport. */
 @media (min-width: 681px) and (max-width: 1024px) {
   .pressureSection {
-    min-height: 106.5vw;
+    min-height: 94.4vw;
     padding: 0;
   }
 
@@ -2603,7 +2607,7 @@
   }
 
   .pressureTitle {
-    top: 14.3vw;
+    top: 6vw;
     left: 10.2vw;
     font-size: 3.33vw;
     letter-spacing: -0.1vw;
@@ -2611,7 +2615,7 @@
   }
 
   .pressureDescription {
-    top: 15.3vw;
+    top: 7vw;
     left: 57.8vw;
     font-size: 1.67vw;
     letter-spacing: -0.05vw;
@@ -2621,7 +2625,7 @@
   .pressureTopGrid,
   .pressureBottomGrid {
     position: absolute;
-    top: 29.5vw;
+    top: 21.2vw;
     display: grid;
     grid-template-columns: 25.1vw 27.8vw 25.1vw;
     gap: 2.4vw;
@@ -2631,7 +2635,7 @@
   }
 
   .pressureBottomGrid {
-    top: 64.1vw;
+    top: 55.8vw;
   }
 
   .pressureCard {
@@ -2698,7 +2702,7 @@
    future-phases card keep their proportions without overwhelming the screen. */
 @media (min-width: 861px) and (max-width: 1024px) {
   .phaseSection {
-    height: 89.1667vw;
+    height: 82.7vw;
     min-height: 0;
     padding: 0;
   }
@@ -2722,14 +2726,14 @@
   }
 
   .phaseSpecGlow {
-    top: 66.3889vw;
+    top: 60.2361vw;
     left: 30.5556vw;
     width: 53.4259vw;
     height: 50.8333vw;
   }
 
   .phaseTitle {
-    top: 12.1528vw;
+    top: 6vw;
     left: calc(50% - 40.3472vw);
     font-size: 4.4444vw;
     letter-spacing: -0.1333vw;
@@ -2737,14 +2741,14 @@
   }
 
   .phaseSubtitle {
-    top: 22.1528vw;
+    top: 16vw;
     left: calc(50% - 39.7222vw);
     font-size: 1.6667vw;
     letter-spacing: -0.05vw;
   }
 
   .phaseAction {
-    top: 26.25vw;
+    top: 20.0972vw;
     left: 10.2778vw;
     min-height: 4.0900vw;
     padding: 0.8333vw 1.6667vw;
@@ -2761,14 +2765,14 @@
   }
 
   .phaseLineOne {
-    top: 35.0694vw;
+    top: 28.9166vw;
     left: 10.2431vw;
     width: 73.6806vw;
     height: 25.5935vw;
   }
 
   .phaseLineTwo {
-    top: 36.9444vw;
+    top: 30.7916vw;
     left: 10.2778vw;
     width: 73.6806vw;
     height: 25.5935vw;
@@ -2780,17 +2784,17 @@
   }
 
   .phasePointOne {
-    top: 57.7083vw;
+    top: 51.5555vw;
     left: 17.9167vw;
   }
 
   .phasePointTwo {
-    top: 43.2639vw;
+    top: 37.1111vw;
     left: 45.9028vw;
   }
 
   .phasePointThree {
-    top: 33.1944vw;
+    top: 27.0416vw;
     left: 74.9306vw;
   }
 
@@ -2800,17 +2804,17 @@
   }
 
   .phaseNumberOne {
-    top: 47.8472vw;
+    top: 41.6944vw;
     left: 15.9722vw;
   }
 
   .phaseNumberTwo {
-    top: 32.8472vw;
+    top: 26.6944vw;
     left: 42.6389vw;
   }
 
   .phaseNumberThree {
-    top: 23.4028vw;
+    top: 17.25vw;
     left: 71.1111vw;
   }
 
@@ -2826,22 +2830,22 @@
   }
 
   .phaseStepOne {
-    top: 64.3056vw;
+    top: 58.1528vw;
     left: 14.7222vw;
   }
 
   .phaseStepTwo {
-    top: 50.3472vw;
+    top: 44.1944vw;
     left: 42.6389vw;
   }
 
   .phaseStepThree {
-    top: 39.7222vw;
+    top: 33.5694vw;
     left: 71.4583vw;
   }
 
   .phaseFuture {
-    top: 62.3611vw;
+    top: 56.2083vw;
     left: 71.4583vw;
     width: 22.2917vw;
     height: 20.4861vw;
@@ -2879,7 +2883,7 @@
    complete composition down for laptop widths. */
 @media (min-width: 861px) and (max-width: 1024px) {
   .audienceSection {
-    height: 115.9028vw;
+    height: 99vw;
     min-height: 0;
     padding: 0;
   }
@@ -2936,8 +2940,8 @@
 
   .audienceTitle {
     position: absolute;
-    top: 14.1667vw;
-    left: calc(29.17% - 19.1667vw);
+    top: 6vw;
+    left: calc(50% - 40vw);
     max-width: none;
     margin: 0;
     font-size: 3.3333vw;
@@ -2948,8 +2952,8 @@
 
   .audienceFeature {
     position: absolute;
-    top: 25.6944vw;
-    left: 10vw;
+    top: 17.5vw;
+    left: calc(50% - 40vw);
     width: 80vw;
     height: 46.4583vw;
     margin: 0;
@@ -2958,8 +2962,8 @@
 
   .audienceAction {
     position: absolute;
-    top: 14.8611vw;
-    left: calc(66.67% - 1.4583vw);
+    top: 6.7vw;
+    left: calc(50% + 16vw);
     width: max-content;
     margin: 0;
     min-height: 4.0900vw;
@@ -2978,11 +2982,11 @@
 
   .audienceBand {
     position: absolute;
-    top: 77.6389vw;
+    top: 69vw;
     left: 0;
     display: block;
     width: 100%;
-    height: 38.2639vw;
+    height: 30vw;
     margin: 0;
     padding: 0;
   }
@@ -2990,59 +2994,51 @@
   .designedForCard,
   .notBuiltCard {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     min-height: 0;
     border-radius: 1.6667vw;
+    box-sizing: border-box;
   }
 
   .designedForCard {
-    top: 5.6250vw;
-    left: 10vw;
+    top: 3.3vw;
+    left: calc(50% - 40vw);
     width: 50.8333vw;
-    height: 25.2083vw;
+    height: 20.8vw;
+    padding: 1.9vw 2.8vw;
   }
 
   .notBuiltCard {
-    top: 5.4167vw;
-    left: 62.7083vw;
+    top: 3.3vw;
+    left: calc(50% + 12.7vw);
     width: 27.2917vw;
-    height: 25.4167vw;
+    height: 20.8vw;
+    padding: 1.9vw 2.5vw;
   }
 
   .designedForCard h3,
   .notBuiltCard h3 {
-    position: absolute;
-    margin: 0;
+    position: static;
+    margin: 0 0 1vw;
     font-size: 1.6667vw;
     letter-spacing: -0.0500vw;
-    line-height: 3.3333vw;
-  }
-
-  .designedForCard h3 {
-    top: 3.1944vw;
-    left: 4.1667vw;
-  }
-
-  .notBuiltCard h3 {
-    top: 3.3333vw;
-    left: 3.6111vw;
+    line-height: 1.2;
   }
 
   .designedForColumns {
-    position: absolute;
-    top: 7.2222vw;
-    left: 3.3333vw;
+    position: static;
     display: flex;
     flex-direction: row;
     gap: 1.0417vw;
+    width: 100%;
     margin: 0;
   }
 
-  .audiencePillColumn:first-child {
-    width: 22.2944vw;
-  }
-
+  .audiencePillColumn:first-child,
   .audiencePillColumn:last-child {
-    width: 21.5306vw;
+    width: auto;
   }
 
   .audiencePillColumn {
@@ -3050,52 +3046,51 @@
   }
 
   .audiencePill {
-    height: 3.7500vw;
-    padding: 0 1.2972vw;
-    border-radius: 1.9458vw;
-    font-size: 1.1331vw;
-    letter-spacing: -0.0340vw;
-    line-height: 2.4588vw;
+    height: 3.75vw;
+    padding: 0 1.3vw;
+    border-radius: 1.95vw;
+    font-size: 1.13vw;
+    letter-spacing: -0.034vw;
+    line-height: 1.2;
   }
 
   .audiencePill img {
-    flex-basis: 1.9444vw;
-    width: 1.9444vw;
-    height: 1.9444vw;
-    margin-right: 0.6486vw;
+    flex-basis: 1.94vw;
+    width: 1.94vw;
+    height: 1.94vw;
+    margin-right: 0.65vw;
   }
 
   .audiencePill:first-child img {
-    width: 1.5278vw;
-    margin-right: 1.0417vw;
+    width: 1.53vw;
+    margin-right: 0.85vw;
   }
 
   .notBuiltCard ul {
-    position: absolute;
-    top: 6.6667vw;
-    left: 3.6111vw;
-    width: 21.5278vw;
+    position: static;
+    width: 100%;
+    height: auto;
     margin: 0;
     padding: 0;
-    gap: 0.3472vw;
+    gap: 0.8vw;
   }
 
   .notBuiltCard li {
-    gap: 0.4861vw;
-    min-height: 2.4588vw;
-    font-size: 1.1331vw;
-    letter-spacing: -0.0340vw;
-    line-height: 1.2500vw;
+    gap: 0.7vw;
+    min-height: 0;
+    font-size: 1.13vw;
+    letter-spacing: -0.034vw;
+    line-height: 1.3;
   }
 
   .notBuiltCard li:first-child {
-    line-height: 2.4588vw;
+    line-height: 1.3;
   }
 
   .notBuiltCard li img {
-    flex-basis: 1.9444vw;
-    width: 1.9444vw;
-    height: 1.9444vw;
+    flex-basis: 1.94vw;
+    width: 1.94vw;
+    height: 1.94vw;
   }
 }
 
@@ -3103,7 +3098,7 @@
    laptops, including the pricing rows and team image. */
 @media (min-width: 861px) and (max-width: 1024px) {
   .partnersSection {
-    height: 66.5972vw;
+    height: 58vw;
     min-height: 0;
     padding: 0;
   }
@@ -3114,7 +3109,7 @@
   }
 
   .partnersSpecLeft {
-    top: 47.0833vw;
+    top: 40vw;
     left: -7.4306vw;
   }
 
@@ -3125,8 +3120,8 @@
 
   .partnersTitle {
     position: absolute;
-    top: 12.8472vw;
-    left: calc(50% - 39.8611vw);
+    top: 6vw;
+    left: calc(50% - 39.757vw);
     max-width: none;
     margin: 0;
     font-size: 4.4444vw;
@@ -3137,8 +3132,8 @@
 
   .partnersSubtitle {
     position: absolute;
-    top: 23.5417vw;
-    left: calc(50% - 39.8611vw);
+    top: 16.7vw;
+    left: calc(50% - 39.757vw);
     max-width: none;
     margin: 0;
     font-size: 1.6667vw;
@@ -3149,8 +3144,8 @@
 
   .partnersAction {
     position: absolute;
-    top: 29.2361vw;
-    left: 9.8611vw;
+    top: 22.4vw;
+    left: calc(50% - 39.757vw);
     width: max-content;
     margin: 0;
     min-height: 4.0900vw;
@@ -3169,17 +3164,17 @@
 
   .pricingTable {
     position: absolute;
-    top: 36.3889vw;
-    left: 9.8611vw;
+    top: 29.5vw;
+    left: calc(50% - 39.757vw);
     width: 34.4444vw;
     margin: 0;
   }
 
   .pricingRow {
-    min-height: 5.6250vw;
+    min-height: 3.9vw;
     font-size: 1.6667vw;
     letter-spacing: -0.0500vw;
-    line-height: 4.1667vw;
+    line-height: 2.8vw;
   }
 
   .pricingRow > span {
@@ -3198,8 +3193,8 @@
 
   .partnersPhotoFrame {
     position: absolute;
-    top: 12.8472vw;
-    left: 57.7083vw;
+    top: 6vw;
+    left: calc(50% + 7.99vw);
     width: 31.6667vw;
     height: 45.9722vw;
     margin: 0;
@@ -3213,9 +3208,16 @@
    viewport so the form remains comfortably within the section. */
 @media (min-width: 861px) and (max-width: 1024px) {
   .waitlistSection {
-    height: 103.1944vw;
+    /* Form top 15.14vw + ~content + matching bottom */
+    height: 82vw;
     min-height: 0;
     padding: 0;
+  }
+
+  .waitlistTorus {
+    opacity: 0.28;
+    transform: scale(0.58);
+    transform-origin: top right;
   }
 
   .waitlistTorusBase,
@@ -3291,19 +3293,19 @@
     top: 15.1389vw;
     left: calc(41.67% + 5.1389vw);
     width: 43.1944vw;
-    height: 75.6944vw;
+    height: auto;
     min-height: 0;
     margin: 0;
-    padding: 2.5000vw 2.0833vw 2.7778vw;
+    padding: 1.8vw 2.0833vw 2vw;
     border-radius: 2.0833vw;
   }
 
   .waitlistFields {
-    gap: 2.4306vw;
+    gap: 1.4vw;
   }
 
   .waitlistField {
-    gap: 0.5556vw;
+    gap: 0.4vw;
     font-size: 1.6667vw;
     line-height: 2.0139vw;
   }
@@ -3339,7 +3341,7 @@
   .waitlistSubmit {
     flex-basis: 4.0972vw;
     height: 4.0972vw;
-    margin-top: 6.1806vw;
+    margin-top: 2.5vw;
     padding: 0.8333vw 1.3889vw;
     border-radius: 1.6667vw;
     gap: 0.5556vw;
@@ -3359,11 +3361,11 @@
    giving the copy, cards, and photography a little more breathing room. */
 @media (min-width: 1025px) and (max-width: 1600px) {
   .pressureSection {
-    min-height: 1183.2px;
+    min-height: 1148px;
   }
 
   .pressureTitle {
-    top: 166.6px;
+    top: 68px;
     left: calc(50% - 489.6px);
     font-size: 40.8px;
     letter-spacing: -1.224px;
@@ -3371,7 +3373,7 @@
   }
 
   .pressureDescription {
-    top: 184.45px;
+    top: 85.85px;
     left: calc(50% + 94.35px);
     font-size: 20.4px;
     letter-spacing: -0.612px;
@@ -3385,11 +3387,11 @@
   }
 
   .pressureTopGrid {
-    top: 346.35px;
+    top: 247.75px;
   }
 
   .pressureBottomGrid {
-    top: 782px;
+    top: 683.4px;
   }
 
   .pressureCard {
@@ -3456,7 +3458,7 @@
    same center-origin proportion so the composition stays balanced. */
 @media (min-width: 1025px) and (max-width: 1600px) {
   .phaseSection {
-    height: 1091.4px;
+    height: 1001px;
     min-height: 0;
     padding: 0;
   }
@@ -3484,7 +3486,7 @@
   }
 
   .phaseSpecGlow {
-    top: 812.6px;
+    top: 731.85px;
     left: calc(50% - 268.6px);
     width: 653.933px;
     height: 622.2px;
@@ -3492,7 +3494,7 @@
   }
 
   .phaseTitle {
-    top: 148.75px;
+    top: 68px;
     left: calc(50% - 493.85px);
     font-size: 40.8px;
     letter-spacing: -1.224px;
@@ -3500,14 +3502,14 @@
   }
 
   .phaseSubtitle {
-    top: 271.15px;
+    top: 190.4px;
     left: calc(50% - 486.2px);
     font-size: 20.4px;
     letter-spacing: -0.612px;
   }
 
   .phaseAction {
-    top: 321.3px;
+    top: 240.55px;
     left: calc(50% - 516.8px);
     min-height: 50.06px;
     padding: 10.2px 20.4px;
@@ -3524,14 +3526,14 @@
   }
 
   .phaseLineOne {
-    top: 429.25px;
+    top: 348.5px;
     left: calc(50% - 517.225px);
     width: 901.85px;
     height: 313.265px;
   }
 
   .phaseLineTwo {
-    top: 452.2px;
+    top: 371.45px;
     left: calc(50% - 516.8px);
     width: 901.85px;
     height: 313.265px;
@@ -3544,17 +3546,17 @@
   }
 
   .phasePointOne {
-    top: 706.35px;
+    top: 625.6px;
     left: calc(50% - 423.3px);
   }
 
   .phasePointTwo {
-    top: 529.55px;
+    top: 448.8px;
     left: calc(50% - 80.75px);
   }
 
   .phasePointThree {
-    top: 406.3px;
+    top: 325.55px;
     left: calc(50% + 274.55px);
   }
 
@@ -3564,17 +3566,17 @@
   }
 
   .phaseNumberOne {
-    top: 585.65px;
+    top: 504.9px;
     left: calc(50% - 446.1px);
   }
 
   .phaseNumberTwo {
-    top: 402.05px;
+    top: 321.3px;
     left: calc(50% - 120.7px);
   }
 
   .phaseNumberThree {
-    top: 286.45px;
+    top: 205.7px;
     left: calc(50% + 227.8px);
   }
 
@@ -3590,22 +3592,22 @@
   }
 
   .phaseStepOne {
-    top: 787.1px;
+    top: 706.35px;
     left: calc(50% - 461.8px);
   }
 
   .phaseStepTwo {
-    top: 616.25px;
+    top: 535.5px;
     left: calc(50% - 120.7px);
   }
 
   .phaseStepThree {
-    top: 486.2px;
+    top: 405.45px;
     left: calc(50% + 231.05px);
   }
 
   .phaseFuture {
-    top: 763.3px;
+    top: 682.55px;
     left: calc(50% + 231.05px);
     width: 272.85px;
     height: 250.75px;
@@ -3642,13 +3644,20 @@
 /* Match the audience section to the reduced pressure typography on standard
    laptop widths while keeping the team image and CTA compact and centered. */
 @media (min-width: 1025px) and (max-width: 1600px) {
+  .audienceSection {
+    height: 1209px;
+  }
+
   .audienceTitle {
+    top: 68px;
+    left: calc(50% - 489.6px);
     font-size: 40.8px;
     letter-spacing: -1.224px;
     line-height: 40.8px;
   }
 
   .audienceFeature {
+    top: 209px;
     left: calc(50% - 489.6px);
     width: 979.2px;
     height: 568.65px;
@@ -3656,6 +3665,8 @@
   }
 
   .audienceAction {
+    top: 76.5px;
+    left: calc(50% + 198.9px);
     min-height: 50.06px;
     padding: 10.2px 20.4px;
     gap: 6.8px;
@@ -3669,29 +3680,105 @@
     width: 13.667px;
     height: 13.667px;
   }
+
+  .audienceBand {
+    top: 845px;
+    height: 364px;
+  }
+
+  .designedForCard {
+    top: 40.8px;
+    left: calc(50% - 489.6px);
+    width: 622.2px;
+    height: 255px;
+    padding: 24px 34px;
+  }
+
+  .notBuiltCard {
+    top: 40.8px;
+    left: calc(50% + 155.55px);
+    width: 334.05px;
+    height: 255px;
+    padding: 24px 30px;
+  }
+
+  .designedForCard h3,
+  .notBuiltCard h3 {
+    margin: 0 0 12px;
+    font-size: 20.4px;
+    letter-spacing: -0.612px;
+  }
+
+  .designedForColumns {
+    gap: 12.75px;
+  }
+
+  .audiencePill {
+    height: 45.9px;
+    padding: 0 15px;
+    border-radius: 23.8px;
+    font-size: 13.6px;
+    letter-spacing: -0.408px;
+  }
+
+  .audiencePill img {
+    flex-basis: 23.8px;
+    width: 23.8px;
+    height: 23.8px;
+    margin-right: 8.5px;
+  }
+
+  .audiencePill:first-child img {
+    width: 18.7px;
+    margin-right: 10px;
+  }
+
+  .audiencePillColumn {
+    gap: 10px;
+  }
+
+  .notBuiltCard ul {
+    gap: 10px;
+  }
+
+  .notBuiltCard li {
+    gap: 8.5px;
+    font-size: 13.6px;
+    letter-spacing: -0.408px;
+  }
+
+  .notBuiltCard li img {
+    flex-basis: 23.8px;
+    width: 23.8px;
+    height: 23.8px;
+  }
 }
 
 /* Keep the founding-partners section on the same reduced desktop scale as
    the pressure and audience sections. */
 @media (min-width: 1025px) and (max-width: 1600px) {
+  .partnersSection {
+    height: 699px;
+  }
+
   .partnersTitle {
-    top: 157.25px;
-    left: 120.7px;
+    top: 68px;
+    left: calc(50% - 486.625px);
     font-size: 40.8px;
     letter-spacing: -1.224px;
     line-height: 38.25px;
   }
 
   .partnersSubtitle {
-    top: 288.15px;
-    left: 120.7px;
+    top: 198.9px;
+    left: calc(50% - 486.625px);
     font-size: 20.4px;
     letter-spacing: -0.612px;
   }
 
   .partnersAction {
-    top: 357.85px;
-    left: 120.7px;
+    top: 268.6px;
+    left: calc(50% - 486.625px);
     min-height: 50.06px;
     padding: 10.2px 20.4px;
     gap: 6.8px;
@@ -3707,16 +3794,16 @@
   }
 
   .pricingTable {
-    top: 445.4px;
-    left: 120.7px;
+    top: 356.15px;
+    left: calc(50% - 486.625px);
     width: 421.6px;
   }
 
   .pricingRow {
-    min-height: 68.85px;
+    min-height: 47.6px;
     font-size: 20.4px;
     letter-spacing: -0.612px;
-    line-height: 51px;
+    line-height: 34px;
   }
 
   .pricingRow > span {
@@ -3734,8 +3821,8 @@
   }
 
   .partnersPhotoFrame {
-    top: 157.25px;
-    left: 706.35px;
+    top: 68px;
+    left: calc(50% + 99.025px);
     width: 387.6px;
     height: 562.7px;
     border-width: 2.55px;
@@ -3749,12 +3836,15 @@
    interaction comfortably visible without overwhelming the layout. */
 @media (min-width: 1025px) and (max-width: 1600px) {
   .waitlistSection {
-    height: 1263.1px;
+    /* Match top inset (130px) below the form card */
+    height: 900px;
     min-height: 0;
   }
 
   .waitlistTorus {
-    opacity: 0.55;
+    opacity: 0.28;
+    transform: scale(0.58);
+    transform-origin: top right;
   }
 
   .waitlistTorusBase,
@@ -3825,17 +3915,18 @@
     top: 130px;
     left: calc(50% + 4px);
     width: 466.5px;
-    height: 760px;
-    padding: 20px 22.5px 22px;
+    height: auto;
+    min-height: 0;
+    padding: 16px 22.5px 18px;
     border-radius: 22.5px;
   }
 
   .waitlistFields {
-    gap: 19px;
+    gap: 12px;
   }
 
   .waitlistField {
-    gap: 5px;
+    gap: 4px;
     font-size: 18px;
     line-height: 21.75px;
   }
@@ -3871,7 +3962,7 @@
   .waitlistSubmit {
     flex-basis: 44.25px;
     height: 44.25px;
-    margin-top: 46px;
+    margin-top: 24px;
     padding: 9px 15px;
     border-radius: 18px;
     gap: 6px;
