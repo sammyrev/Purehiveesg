@@ -2108,9 +2108,10 @@
 
 .waitlistSection {
   position: relative;
-  /* Form top 218 + height 930 + matching bottom inset */
-  height: 1366px;
+  height: auto;
   overflow: hidden;
+  padding: 218px 0;
+  box-sizing: border-box;
   background: linear-gradient(180deg, #ffffff 27.155%, #d0deff 126.17%);
   color: #120048;
 }
@@ -2236,15 +2237,13 @@
 }
 
 .waitlistFormCard {
-  position: absolute;
+  position: relative;
   z-index: 2;
-  top: 218px;
-  left: calc(41.67% + 74px);
   display: flex;
   flex-direction: column;
   width: 622px;
   height: 930px;
-  margin: 0;
+  margin: 0 0 0 calc(41.67% + 74px);
   padding: 24px 30px 28px;
   border-radius: 30px;
   background: #ffffff;
@@ -3208,10 +3207,9 @@
    viewport so the form remains comfortably within the section. */
 @media (min-width: 861px) and (max-width: 1024px) {
   .waitlistSection {
-    /* Form top 15.14vw + ~content + matching bottom */
-    height: 82vw;
+    height: auto;
     min-height: 0;
-    padding: 0;
+    padding: 15.1389vw 0;
   }
 
   .waitlistTorus {
@@ -3289,13 +3287,13 @@
   }
 
   .waitlistFormCard {
-    position: absolute;
-    top: 15.1389vw;
-    left: calc(41.67% + 5.1389vw);
+    position: relative;
+    top: auto;
+    left: auto;
     width: 43.1944vw;
     height: auto;
     min-height: 0;
-    margin: 0;
+    margin: 0 0 0 calc(41.67% + 5.1389vw);
     padding: 1.8vw 2.0833vw 2vw;
     border-radius: 2.0833vw;
   }
@@ -3836,9 +3834,9 @@
    interaction comfortably visible without overwhelming the layout. */
 @media (min-width: 1025px) and (max-width: 1600px) {
   .waitlistSection {
-    /* Match top inset (130px) below the form card */
-    height: 900px;
+    height: auto;
     min-height: 0;
+    padding: 130px 0;
   }
 
   .waitlistTorus {
@@ -3912,11 +3910,12 @@
   }
 
   .waitlistFormCard {
-    top: 130px;
-    left: calc(50% + 4px);
+    top: auto;
+    left: auto;
     width: 466.5px;
     height: auto;
     min-height: 0;
+    margin: 0 0 0 calc(50% + 4px);
     padding: 16px 22.5px 18px;
     border-radius: 22.5px;
   }
