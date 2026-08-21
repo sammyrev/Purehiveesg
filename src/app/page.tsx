@@ -1,5 +1,8 @@
 /* eslint-disable @next/next/no-img-element -- Exact Figma exports retain their intrinsic SVG and raster layering. */
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 
 const navigationItems = [
@@ -8,9 +11,33 @@ const navigationItems = [
   { label: "Programme", href: "#programme" },
 ];
 
-const outlineHexagons = [1, 2, 3, 4];
+const heroHexagons = [1, 2, 3, 4, 5];
+const hexagonStepMs = 850;
 
 export default function Home() {
+  const [activeHexagons, setActiveHexagons] = useState(1);
+  const [motionEnabled, setMotionEnabled] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateMotionPreference = () => setMotionEnabled(!mediaQuery.matches);
+
+    updateMotionPreference();
+    mediaQuery.addEventListener("change", updateMotionPreference);
+
+    return () => mediaQuery.removeEventListener("change", updateMotionPreference);
+  }, []);
+
+  useEffect(() => {
+    if (!motionEnabled) return;
+
+    const interval = window.setInterval(() => {
+      setActiveHexagons((current) => (current >= heroHexagons.length ? 0 : current + 1));
+    }, hexagonStepMs);
+
+    return () => window.clearInterval(interval);
+  }, [motionEnabled]);
+
   return (
     <main className={styles.home}>
       <header className={styles.header}>
@@ -115,9 +142,15 @@ export default function Home() {
           </div>
 
           <div className={styles.hexagons}>
-            <img className={styles.filledHexagon} src="/assets/hero/hex-filled.svg" alt="" />
-            {outlineHexagons.map((hexagon) => (
-              <img key={hexagon} src="/assets/hero/hex-outline.svg" alt="" />
+            {heroHexagons.map((hexagon, index) => (
+              <span className={styles.hexagon} key={hexagon}>
+                <img className={styles.hexagonOutline} src="/assets/hero/hex-outline.svg" alt="" />
+                <img
+                  className={`${styles.hexagonFill} ${index < activeHexagons ? styles.hexagonFillActive : ""}`}
+                  src="/assets/hero/hex-filled.svg"
+                  alt=""
+                />
+              </span>
             ))}
           </div>
           <p className={styles.visualCaption}>

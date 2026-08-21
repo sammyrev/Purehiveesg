@@ -421,14 +421,47 @@
   width: 501px;
 }
 
-.hexagons img {
+.hexagon {
+  position: relative;
+  display: block;
+  flex: 0 0 78px;
   width: 78px;
   height: 77px;
 }
 
-.hexagons .filledHexagon {
+.hexagon:first-child {
+  flex-basis: 100px;
   width: 100px;
   height: 99px;
+}
+
+.hexagon img {
+  position: absolute;
+  display: block;
+  object-fit: contain;
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.hexagonOutline {
+  top: 50%;
+  left: 50%;
+  width: 78px;
+  height: 77px;
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+.hexagonFill {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.hexagonFillActive {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .visualCaption {
@@ -444,6 +477,12 @@
   letter-spacing: -0.72px;
   line-height: normal;
   white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hexagon img {
+    transition: none;
+  }
 }
 
 .primaryAction:focus-visible,
@@ -3312,5 +3351,537 @@
   .waitlistSubmit img {
     width: 1.1111vw;
     height: 1.1111vw;
+  }
+}
+
+/* The pressure frame was authored for a very large 1440px canvas. On
+   everyday laptop viewports, keep the same three-column composition while
+   giving the copy, cards, and photography a little more breathing room. */
+@media (min-width: 1025px) and (max-width: 1600px) {
+  .pressureSection {
+    min-height: 1183.2px;
+  }
+
+  .pressureTitle {
+    top: 166.6px;
+    left: calc(50% - 489.6px);
+    font-size: 40.8px;
+    letter-spacing: -1.224px;
+    line-height: 38.25px;
+  }
+
+  .pressureDescription {
+    top: 184.45px;
+    left: calc(50% + 94.35px);
+    font-size: 20.4px;
+    letter-spacing: -0.612px;
+  }
+
+  .pressureTopGrid,
+  .pressureBottomGrid {
+    grid-template-columns: 309.4px 339.84px 309.4px;
+    gap: 29.75px;
+    width: 1018.14px;
+  }
+
+  .pressureTopGrid {
+    top: 346.35px;
+  }
+
+  .pressureBottomGrid {
+    top: 782px;
+  }
+
+  .pressureCard {
+    width: 309.4px;
+    height: 374.85px;
+    border-radius: 20.4px;
+  }
+
+  .pressureNumber {
+    top: 22.95px;
+    left: 27.2px;
+    font-size: 108.8px;
+    letter-spacing: -3.264px;
+  }
+
+  .pressureCardCopy {
+    top: 201.45px;
+    left: 27.2px;
+  }
+
+  .pressureTopGrid .pressureCardCopy {
+    top: 164.05px;
+  }
+
+  .pressureBottomGrid .pressureCard:last-child .pressureCardCopy {
+    top: 196.35px;
+    left: 28.9px;
+  }
+
+  .pressureCardCopy h3 {
+    font-size: 30.6px;
+    letter-spacing: -0.918px;
+  }
+
+  .pressureCardCopy p {
+    margin-top: 22.1px;
+    font-size: 17px;
+    letter-spacing: -0.51px;
+  }
+
+  .pressureTopGrid .pressureCardCopy p {
+    margin-top: 22.1px;
+  }
+
+  .pressureBottomGrid .pressureCard:last-child .pressureCardCopy p {
+    margin-top: 23.8px;
+  }
+
+  .pressurePhotoWrap {
+    width: 339.84px;
+    height: 399.55px;
+  }
+
+  .pressurePhotoFrame {
+    width: 309.4px;
+    height: 374.85px;
+    border-width: 2.55px;
+    border-radius: 13.6px;
+  }
+}
+
+/* Match the phase frame to the reduced pressure typography on standard
+   laptop widths. Decorative artwork and timeline controls scale with the
+   same center-origin proportion so the composition stays balanced. */
+@media (min-width: 1025px) and (max-width: 1600px) {
+  .phaseSection {
+    height: 1091.4px;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .phaseTorus {
+    opacity: 0.58;
+  }
+
+  .phaseTorusBase,
+  .phaseTorusSpec {
+    top: -668.1px;
+    left: calc(50% - 181.05px);
+    width: 793.05px;
+    height: 933.884px;
+  }
+
+  .phaseTorusColor {
+    top: -808.3925px;
+    left: calc(50% - 337.467px);
+    width: 1105.89px;
+    height: 1144.485px;
+    border-radius: 1515.656px;
+    mask-position: 156.42px 140.293px;
+    mask-size: 793.05px 933.885px;
+  }
+
+  .phaseSpecGlow {
+    top: 812.6px;
+    left: calc(50% - 268.6px);
+    width: 653.933px;
+    height: 622.2px;
+    opacity: 0.34;
+  }
+
+  .phaseTitle {
+    top: 148.75px;
+    left: calc(50% - 493.85px);
+    font-size: 40.8px;
+    letter-spacing: -1.224px;
+    line-height: 38.25px;
+  }
+
+  .phaseSubtitle {
+    top: 271.15px;
+    left: calc(50% - 486.2px);
+    font-size: 20.4px;
+    letter-spacing: -0.612px;
+  }
+
+  .phaseAction {
+    top: 321.3px;
+    left: calc(50% - 516.8px);
+    min-height: 50.06px;
+    padding: 10.2px 20.4px;
+    gap: 6.8px;
+    border-radius: 20.4px;
+    font-size: 20.4px;
+    letter-spacing: -0.612px;
+    line-height: 29.66px;
+  }
+
+  .phaseAction img {
+    width: 13.667px;
+    height: 13.667px;
+  }
+
+  .phaseLineOne {
+    top: 429.25px;
+    left: calc(50% - 517.225px);
+    width: 901.85px;
+    height: 313.265px;
+  }
+
+  .phaseLineTwo {
+    top: 452.2px;
+    left: calc(50% - 516.8px);
+    width: 901.85px;
+    height: 313.265px;
+  }
+
+  .phasePoint {
+    width: 56.1px;
+    height: 56.1px;
+    opacity: 0.78;
+  }
+
+  .phasePointOne {
+    top: 706.35px;
+    left: calc(50% - 423.3px);
+  }
+
+  .phasePointTwo {
+    top: 529.55px;
+    left: calc(50% - 80.75px);
+  }
+
+  .phasePointThree {
+    top: 406.3px;
+    left: calc(50% + 274.55px);
+  }
+
+  .phaseNumber {
+    font-size: 108.8px;
+    letter-spacing: -3.264px;
+  }
+
+  .phaseNumberOne {
+    top: 585.65px;
+    left: calc(50% - 446.1px);
+  }
+
+  .phaseNumberTwo {
+    top: 402.05px;
+    left: calc(50% - 120.7px);
+  }
+
+  .phaseNumberThree {
+    top: 286.45px;
+    left: calc(50% + 227.8px);
+  }
+
+  .phaseStepCopy h3 {
+    font-size: 30.6px;
+    letter-spacing: -0.918px;
+  }
+
+  .phaseStepCopy p {
+    margin-top: 22.1px;
+    font-size: 17px;
+    letter-spacing: -0.51px;
+  }
+
+  .phaseStepOne {
+    top: 787.1px;
+    left: calc(50% - 461.8px);
+  }
+
+  .phaseStepTwo {
+    top: 616.25px;
+    left: calc(50% - 120.7px);
+  }
+
+  .phaseStepThree {
+    top: 486.2px;
+    left: calc(50% + 231.05px);
+  }
+
+  .phaseFuture {
+    top: 763.3px;
+    left: calc(50% + 231.05px);
+    width: 272.85px;
+    height: 250.75px;
+    border-radius: 13.6px;
+  }
+
+  .phaseFutureHeading {
+    top: 23.8px;
+    left: 18.7px;
+    width: 227.8px;
+    height: 49.3px;
+    padding-left: 22.95px;
+    border-radius: 6.8px;
+    font-size: 27.2px;
+    letter-spacing: -0.816px;
+  }
+
+  .phaseFuture ul {
+    top: 94.35px;
+    left: 18.7px;
+    padding-left: 25.5px;
+    font-size: 17px;
+    letter-spacing: -0.51px;
+  }
+
+  .phaseFuture p {
+    top: 194.65px;
+    left: 32.3px;
+    font-size: 13.6px;
+    letter-spacing: -0.408px;
+  }
+}
+
+/* Match the audience section to the reduced pressure typography on standard
+   laptop widths while keeping the team image and CTA compact and centered. */
+@media (min-width: 1025px) and (max-width: 1600px) {
+  .audienceTitle {
+    font-size: 40.8px;
+    letter-spacing: -1.224px;
+    line-height: 40.8px;
+  }
+
+  .audienceFeature {
+    left: calc(50% - 489.6px);
+    width: 979.2px;
+    height: 568.65px;
+    border-radius: 20.4px;
+  }
+
+  .audienceAction {
+    min-height: 50.06px;
+    padding: 10.2px 20.4px;
+    gap: 6.8px;
+    border-radius: 20.4px;
+    font-size: 20.4px;
+    letter-spacing: -0.612px;
+    line-height: 29.66px;
+  }
+
+  .audienceAction img {
+    width: 13.667px;
+    height: 13.667px;
+  }
+}
+
+/* Keep the founding-partners section on the same reduced desktop scale as
+   the pressure and audience sections. */
+@media (min-width: 1025px) and (max-width: 1600px) {
+  .partnersTitle {
+    top: 157.25px;
+    left: 120.7px;
+    font-size: 40.8px;
+    letter-spacing: -1.224px;
+    line-height: 38.25px;
+  }
+
+  .partnersSubtitle {
+    top: 288.15px;
+    left: 120.7px;
+    font-size: 20.4px;
+    letter-spacing: -0.612px;
+  }
+
+  .partnersAction {
+    top: 357.85px;
+    left: 120.7px;
+    min-height: 50.06px;
+    padding: 10.2px 20.4px;
+    gap: 6.8px;
+    border-radius: 20.4px;
+    font-size: 20.4px;
+    letter-spacing: -0.612px;
+    line-height: 29.66px;
+  }
+
+  .partnersAction img {
+    width: 13.667px;
+    height: 13.667px;
+  }
+
+  .pricingTable {
+    top: 445.4px;
+    left: 120.7px;
+    width: 421.6px;
+  }
+
+  .pricingRow {
+    min-height: 68.85px;
+    font-size: 20.4px;
+    letter-spacing: -0.612px;
+    line-height: 51px;
+  }
+
+  .pricingRow > span {
+    padding-left: 8.5px;
+  }
+
+  .pricingRow strong {
+    min-width: 90.1px;
+    min-height: 28.9px;
+    padding: 0 20.4px;
+    border-radius: 15.3px;
+    font-size: 17px;
+    letter-spacing: -0.51px;
+    line-height: 20.4px;
+  }
+
+  .partnersPhotoFrame {
+    top: 157.25px;
+    left: 706.35px;
+    width: 387.6px;
+    height: 562.7px;
+    border-width: 2.55px;
+    border-radius: 20.4px;
+  }
+}
+
+/* Compact the waitlist section for standard laptop widths. The source frame
+   was designed on a much larger canvas, so the copy uses the page's reduced
+   type scale while the form is intentionally reduced more to keep the full
+   interaction comfortably visible without overwhelming the layout. */
+@media (min-width: 1025px) and (max-width: 1600px) {
+  .waitlistSection {
+    height: 1263.1px;
+    min-height: 0;
+  }
+
+  .waitlistTorus {
+    opacity: 0.55;
+  }
+
+  .waitlistTorusBase,
+  .waitlistTorusSpec {
+    top: -208.76px;
+    left: calc(75% + 10.2px);
+    width: 736.44px;
+    height: 771.12px;
+  }
+
+  .waitlistTorusColor {
+    top: -328.617px;
+    left: calc(58.33% + 30.677px);
+    width: 1052.94px;
+    height: 973.327px;
+  }
+
+  .waitlistTorusColor::before {
+    width: 1026.949px;
+    height: 945.017px;
+    border-radius: 1212.525px;
+    mask-position: 146.815px 119.855px;
+    mask-size: 757.69px 791.385px;
+  }
+
+  .waitlistCopy {
+    top: 180px;
+    left: calc(50% - 468px);
+  }
+
+  .waitlistCopy h2 {
+    font-size: 40.8px;
+    letter-spacing: -1.224px;
+    line-height: 40.8px;
+  }
+
+  .waitlistCopy > p {
+    margin-top: 28.9px;
+    font-size: 20.4px;
+    letter-spacing: -0.612px;
+    line-height: 20.4px;
+  }
+
+  .waitlistBenefits {
+    margin-top: 29.75px;
+  }
+
+  .waitlistBenefits li {
+    gap: 17.85px;
+    height: 41.65px;
+    font-size: 15.3px;
+    letter-spacing: -0.459px;
+    line-height: 17px;
+  }
+
+  .waitlistCheck {
+    flex-basis: 24.65px;
+    width: 24.65px;
+    height: 24.65px;
+  }
+
+  .waitlistCheck img {
+    width: 11.9px;
+    height: 11.9px;
+  }
+
+  .waitlistFormCard {
+    top: 130px;
+    left: calc(50% + 4px);
+    width: 466.5px;
+    height: 760px;
+    padding: 20px 22.5px 22px;
+    border-radius: 22.5px;
+  }
+
+  .waitlistFields {
+    gap: 19px;
+  }
+
+  .waitlistField {
+    gap: 5px;
+    font-size: 18px;
+    line-height: 21.75px;
+  }
+
+  .waitlistInputWrap {
+    height: 54px;
+    border-width: 1.11px;
+    border-radius: 8.88px;
+  }
+
+  .waitlistInputWrap > img {
+    flex-basis: 17.85px;
+    width: 17.85px;
+    height: 17.85px;
+    margin-left: 27px;
+  }
+
+  .waitlistInputWrap input,
+  .waitlistInputWrap select {
+    padding: 0 15px;
+    font-size: 16.5px;
+    letter-spacing: -0.495px;
+    line-height: 21px;
+  }
+
+  .waitlistSelectArrow {
+    flex-basis: 17.76px !important;
+    width: 17.76px !important;
+    height: 17.76px !important;
+    margin: 0 27px 0 0 !important;
+  }
+
+  .waitlistSubmit {
+    flex-basis: 44.25px;
+    height: 44.25px;
+    margin-top: 46px;
+    padding: 9px 15px;
+    border-radius: 18px;
+    gap: 6px;
+    font-size: 18px;
+    letter-spacing: -0.54px;
+    line-height: 26.25px;
+  }
+
+  .waitlistSubmit img {
+    width: 12px;
+    height: 12px;
   }
 }
