@@ -7,7 +7,6 @@
   position: relative;
   z-index: 10;
   height: 100px;
-  overflow: hidden;
   background: rgb(248 246 244 / 79%);
   backdrop-filter: blur(20px);
 }
@@ -87,6 +86,63 @@
   display: block;
   width: 11.457px;
   height: 11.457px;
+}
+
+.menuToggle {
+  display: none;
+  position: relative;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.menuToggleBar {
+  position: absolute;
+  left: 11px;
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: #0e1036;
+  transition: transform 180ms ease, opacity 180ms ease, top 180ms ease;
+}
+
+.menuToggleBar:nth-child(1) {
+  top: 15px;
+}
+
+.menuToggleBar:nth-child(2) {
+  top: 21px;
+}
+
+.menuToggleBar:nth-child(3) {
+  top: 27px;
+}
+
+.headerMenuOpen .menuToggleBar:nth-child(1) {
+  top: 21px;
+  transform: rotate(45deg);
+}
+
+.headerMenuOpen .menuToggleBar:nth-child(2) {
+  opacity: 0;
+}
+
+.headerMenuOpen .menuToggleBar:nth-child(3) {
+  top: 21px;
+  transform: rotate(-45deg);
+}
+
+.mobileMenu {
+  display: none;
 }
 
 .hero {
@@ -483,24 +539,34 @@
   .hexagon img {
     transition: none;
   }
+
+  .menuToggleBar {
+    transition: none;
+  }
 }
 
 .primaryAction:focus-visible,
-.secondaryAction:focus-visible {
+.secondaryAction:focus-visible,
+button.waitlistInputWrap:focus-visible,
+.waitlistDropdownOption:focus-visible {
   outline: 2px solid #407bff;
   outline-offset: 3px;
 }
 
 .menuItem:focus-visible,
 .createAccount:focus-visible,
-.logo:focus-visible {
+.logo:focus-visible,
+.menuToggle:focus-visible,
+.mobileMenuItem:focus-visible,
+.mobileCreateAccount:focus-visible {
   outline: 2px solid #407bff;
   outline-offset: 3px;
 }
 
 @media (min-width: 861px) {
   .hero {
-    height: calc(100svh - 100px);
+    /* Title top 42 + scaled visual (~745) + matching bottom inset */
+    height: 820px;
   }
 
   .topRightTorus {
@@ -550,6 +616,10 @@
 }
 
 @media (min-width: 861px) and (max-height: 800px) {
+  .hero {
+    height: 680px;
+  }
+
   .heroTitle {
     top: 30px;
     font-size: 54px;
@@ -596,31 +666,103 @@
   }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1024px) {
   .header {
     height: auto;
-    min-height: 121px;
+    min-height: 72px;
   }
 
   .navigation {
-    flex-wrap: wrap;
-    gap: 4px 28px;
     justify-content: space-between;
-    padding: 24px;
+    gap: 16px;
+    height: 72px;
+    padding: 14px 24px;
   }
 
-  .menu {
-    order: 3;
-    width: 100%;
+  .menu,
+  .createAccount {
+    display: none;
   }
 
-  .menuItem {
-    padding: 0 8px;
-    line-height: 36px;
+  .menuToggle {
+    display: inline-flex;
   }
 
+  .mobileMenu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: 20;
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px 24px 24px;
+    background: #f8f6f4;
+    border-bottom: 1px solid rgb(14 16 54 / 8%);
+    box-shadow: 0 16px 32px rgb(18 0 72 / 8%);
+  }
+
+  .headerMenuOpen {
+    background: #f8f6f4;
+    backdrop-filter: none;
+  }
+
+  .mobileMenuOpen {
+    display: flex;
+  }
+
+  .mobileMenuLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .mobileMenuItem {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 10px 4px;
+    color: #0e1036;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: -0.54px;
+    line-height: 28px;
+    text-decoration: none;
+  }
+
+  .mobileCreateAccount {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    gap: 8px;
+    min-height: 44px;
+    margin-top: 8px;
+    padding: 10px 20px;
+    border-radius: 24px;
+    background: linear-gradient(180deg, #ffcf99 24.576%, #997c5c 204.24%);
+    color: #775e43;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.48px;
+    line-height: 24px;
+    text-decoration: none;
+  }
+
+  .mobileCreateAccount img {
+    display: block;
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (max-width: 860px) {
   .hero {
-    height: 920px;
+    /* Copy + CTAs only; visual stage hidden below */
+    height: 540px;
   }
 
   .heroTitle {
@@ -649,14 +791,13 @@
   }
 
   .visualStage {
-    transform: scale(0.68);
-    transform-origin: top center;
+    display: none;
   }
 }
 
 @media (max-width: 520px) {
   .navigation {
-    padding: 20px;
+    padding: 12px 20px;
   }
 
   .logo {
@@ -664,13 +805,13 @@
     height: auto;
   }
 
-  .createAccount {
-    padding: 10px 16px;
-    font-size: 15px;
+  .mobileMenu {
+    padding-right: 20px;
+    padding-left: 20px;
   }
 
   .hero {
-    height: 760px;
+    height: 520px;
   }
 
   .heroTitle {
@@ -695,12 +836,6 @@
     padding: 7px 18px;
     font-size: 17px;
     line-height: 1.35;
-  }
-
-  .visualStage {
-    top: 96px;
-    transform: scale(0.4);
-    transform-origin: top center;
   }
 
   .torus {
@@ -1174,6 +1309,7 @@
 
 .phaseStepCopy h3 {
   margin: 0;
+  max-width: 14ch;
   font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 36px;
   font-weight: 500;
@@ -1184,6 +1320,7 @@
 
 .phaseStepCopy p {
   margin: 26px 0 0;
+  max-width: 22ch;
   color: #120048;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 20px;
@@ -1284,20 +1421,17 @@
   .phaseSection {
     height: auto;
     min-height: 0;
-    padding: 72px 20px;
+    padding: 64px 20px;
   }
 
   .phaseTorus {
-    opacity: 0.8;
-    transform: scale(0.62);
+    opacity: 0.45;
+    transform: scale(0.5);
     transform-origin: top right;
   }
 
   .phaseSpecGlow {
-    top: 820px;
-    left: 15%;
-    width: 70%;
-    height: auto;
+    display: none;
   }
 
   .phaseTitle,
@@ -1310,132 +1444,193 @@
 
   .phaseTitle {
     max-width: 650px;
-    margin: 0 auto;
-    font-size: clamp(42px, 8vw, 64px);
-    line-height: 0.95;
+    margin: 0;
+    font-size: clamp(36px, 8vw, 48px);
+    line-height: 1.05;
     white-space: normal;
   }
 
   .phaseSubtitle {
     display: block;
     max-width: 650px;
-    margin: 24px auto 0;
-    font-size: clamp(18px, 3vw, 24px);
+    margin: 20px 0 0;
+    font-size: clamp(18px, 3vw, 22px);
     white-space: normal;
   }
 
   .phaseAction {
     width: max-content;
-    margin: 28px auto 0;
+    max-width: 100%;
+    margin: 24px 0 0;
   }
 
   .phaseTimeline {
     position: relative;
     inset: auto;
-    width: min(100%, 650px);
-    height: 760px;
-    margin: 62px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    width: 100%;
+    height: auto;
+    margin: 48px 0 0;
+    pointer-events: auto;
   }
 
   .phaseLineOne,
-  .phaseLineTwo {
-    top: 170px;
-    left: 2%;
-    width: 96%;
-    height: auto;
-  }
-
-  .phaseLineTwo {
-    top: 184px;
-  }
-
-  .phasePoint {
-    width: 50px;
-    height: 50px;
-  }
-
-  .phasePointOne { top: 420px; left: 7%; }
-  .phasePointTwo { top: 260px; left: 46%; }
-  .phasePointThree { top: 145px; left: 86%; }
-
+  .phaseLineTwo,
+  .phasePoint,
   .phaseNumber {
-    font-size: clamp(78px, 14vw, 112px);
-    letter-spacing: -3px;
+    display: none;
   }
 
-  .phaseNumberOne { top: 300px; left: 4%; }
-  .phaseNumberTwo { top: 125px; left: 41%; }
-  .phaseNumberThree { top: 22px; left: 76%; }
+  .phaseStepCopy {
+    position: relative;
+    top: auto;
+    left: auto;
+  }
+
+  .phaseStepCopy::before {
+    display: block;
+    margin-bottom: 8px;
+    color: rgb(203 214 239 / 55%);
+    font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 40px;
+    font-weight: 500;
+    font-variation-settings: "opsz" 14, "wdth" 100;
+    letter-spacing: -1.2px;
+    line-height: 1;
+  }
+
+  .phaseStepOne::before {
+    content: "01";
+  }
+
+  .phaseStepTwo::before {
+    content: "02";
+  }
+
+  .phaseStepThree::before {
+    content: "03";
+  }
 
   .phaseStepCopy h3 {
-    font-size: clamp(26px, 4.8vw, 36px);
+    max-width: none;
+    font-size: clamp(26px, 6vw, 32px);
+    line-height: 1.15;
   }
 
   .phaseStepCopy p {
-    font-size: clamp(16px, 2.7vw, 20px);
+    max-width: none;
+    margin-top: 12px;
+    font-size: clamp(16px, 3.4vw, 18px);
+    line-height: 1.35;
   }
 
-  .phaseStepOne { top: 490px; left: 0; }
-  .phaseStepTwo { top: 312px; left: 40%; }
-  .phaseStepThree { top: 195px; left: 72%; }
+  .phaseStepOne p,
+  .phaseStepTwo p,
+  .phaseStepThree p {
+    margin-top: 12px;
+  }
 
   .phaseFuture {
     position: relative;
     top: auto;
     left: auto;
-    width: min(100%, 321px);
-    margin: 28px auto 0;
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    min-height: 0;
+    margin: 36px 0 0;
+    padding: 22px 20px 24px;
+    box-sizing: border-box;
+  }
+
+  .phaseFutureHeading {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    min-height: 48px;
+    margin: 0;
+    padding: 12px 18px;
+    font-size: clamp(22px, 5vw, 28px);
+    box-sizing: border-box;
+  }
+
+  .phaseFuture ul {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin: 18px 0 0;
+    padding-left: 22px;
+    font-size: clamp(16px, 3.6vw, 18px);
+  }
+
+  .phaseFuture p {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin: 16px 0 0;
+    font-size: 15px;
+    white-space: normal;
   }
 }
 
 @media (max-width: 560px) {
   .phaseSection {
-    min-height: 0;
-    padding: 64px 20px;
+    padding: 56px 20px;
   }
 
   .phaseTitle {
-    font-size: 42px;
+    font-size: 36px;
+  }
+
+  .phaseSubtitle {
+    margin-top: 16px;
+    font-size: 17px;
+  }
+
+  .phaseAction {
+    margin-top: 20px;
   }
 
   .phaseTimeline {
-    height: 1080px;
-    margin-top: 58px;
+    gap: 24px;
+    margin-top: 40px;
   }
 
-  .phaseLineOne,
-  .phaseLineTwo {
-    top: 210px;
-    left: -8%;
-    width: 116%;
+  .phaseStepCopy::before {
+    font-size: 34px;
   }
-
-  .phaseLineTwo { top: 226px; }
-
-  .phasePointOne { top: 532px; left: 8%; }
-  .phasePointTwo { top: 370px; left: 43%; }
-  .phasePointThree { top: 230px; left: 80%; }
-
-  .phaseNumberOne { top: 404px; left: 3%; }
-  .phaseNumberTwo { top: 235px; left: 34%; }
-  .phaseNumberThree { top: 94px; left: 68%; }
-
-  .phaseStepOne { top: 600px; left: 5%; }
-  .phaseStepTwo { top: 438px; left: 34%; }
-  .phaseStepThree { top: 296px; left: 63%; }
 
   .phaseStepCopy h3 {
-    font-size: 25px;
+    font-size: 24px;
   }
 
   .phaseStepCopy p {
     font-size: 15px;
   }
 
-  .phaseStepOne p,
-  .phaseStepTwo p,
-  .phaseStepThree p {
+  .phaseFuture {
+    margin-top: 32px;
+    padding: 18px 16px 20px;
+  }
+
+  .phaseFutureHeading {
+    min-height: 44px;
+    padding: 10px 14px;
+    font-size: 22px;
+  }
+
+  .phaseFuture ul {
     margin-top: 14px;
+    font-size: 16px;
+  }
+
+  .phaseFuture p {
+    margin-top: 14px;
+    font-size: 14px;
   }
 }
 
@@ -2249,6 +2444,7 @@
   background: #ffffff;
   box-shadow: 0 4px 12px rgb(64 123 255 / 10%);
   box-sizing: border-box;
+  overflow: visible;
 }
 
 .waitlistFields {
@@ -2288,8 +2484,7 @@
   object-fit: contain;
 }
 
-.waitlistInputWrap input,
-.waitlistInputWrap select {
+.waitlistInputWrap input {
   min-width: 0;
   height: 100%;
   flex: 1 1 auto;
@@ -2306,15 +2501,46 @@
   line-height: 28px;
 }
 
-.waitlistInputWrap input::placeholder,
-.waitlistInputWrap select:invalid {
+.waitlistInputWrap input::placeholder {
   color: #bfbdbd;
   opacity: 1;
 }
 
-.waitlistInputWrap select {
-  appearance: none;
+button.waitlistInputWrap {
+  width: 100%;
+  padding: 0;
+  background: #ffffff;
   cursor: pointer;
+  text-align: left;
+}
+
+.waitlistDropdown {
+  position: relative;
+  z-index: 4;
+}
+
+.waitlistDropdownValue,
+.waitlistDropdownPlaceholder {
+  display: block;
+  min-width: 0;
+  flex: 1 1 auto;
+  padding: 0 20px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: -0.66px;
+  line-height: 28px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.waitlistDropdownValue {
+  color: #3a3839;
+}
+
+.waitlistDropdownPlaceholder {
+  color: #bfbdbd;
 }
 
 .waitlistSelectArrow {
@@ -2322,6 +2548,64 @@
   width: 23.68px !important;
   height: 23.68px !important;
   margin: 0 36px 0 0 !important;
+  transition: transform 180ms ease;
+}
+
+.waitlistDropdownOpen .waitlistSelectArrow {
+  transform: rotate(180deg);
+}
+
+.waitlistDropdownList {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  left: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 260px;
+  margin: 0;
+  padding: 8px;
+  overflow-y: auto;
+  list-style: none;
+  border: 1.48px solid #d9d7d7;
+  border-radius: 11.84px;
+  background: #ffffff;
+  box-shadow: 0 12px 28px rgb(18 0 72 / 12%);
+  box-sizing: border-box;
+}
+
+.waitlistDropdownOption {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 44px;
+  margin: 0;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #3a3839;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: -0.6px;
+  line-height: 1.3;
+  text-align: left;
+  cursor: pointer;
+}
+
+.waitlistDropdownOption:hover,
+.waitlistDropdownOption:focus-visible {
+  background: #f3f6ff;
+  outline: none;
+}
+
+.waitlistDropdownOptionActive {
+  background: #eaf0ff;
+  color: #120048;
+  font-weight: 400;
 }
 
 .waitlistSubmit {
@@ -2455,13 +2739,26 @@
   }
 
   .waitlistInputWrap input,
-  .waitlistInputWrap select {
+  .waitlistDropdownValue,
+  .waitlistDropdownPlaceholder {
     padding: 0 12px;
     font-size: 18px;
   }
 
   .waitlistSelectArrow {
     margin-right: 20px !important;
+  }
+
+  .waitlistDropdownList {
+    max-height: 220px;
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+  .waitlistDropdownOption {
+    min-height: 40px;
+    padding: 8px 12px;
+    font-size: 17px;
   }
 
   .waitlistSubmit {
@@ -3322,7 +3619,8 @@
   }
 
   .waitlistInputWrap input,
-  .waitlistInputWrap select {
+  .waitlistDropdownValue,
+  .waitlistDropdownPlaceholder {
     padding: 0 1.3889vw;
     font-size: 1.5278vw;
     letter-spacing: -0.0458vw;
@@ -3334,6 +3632,22 @@
     width: 1.6444vw !important;
     height: 1.6444vw !important;
     margin: 0 2.5000vw 0 0 !important;
+  }
+
+  .waitlistDropdownList {
+    top: calc(100% + 0.5556vw);
+    max-height: 18vw;
+    padding: 0.5556vw;
+    border-width: 0.1028vw;
+    border-radius: 0.8222vw;
+  }
+
+  .waitlistDropdownOption {
+    min-height: 3.0556vw;
+    padding: 0.6944vw 1.1111vw;
+    border-radius: 0.5556vw;
+    font-size: 1.3889vw;
+    letter-spacing: -0.0417vw;
   }
 
   .waitlistSubmit {
@@ -3944,7 +4258,8 @@
   }
 
   .waitlistInputWrap input,
-  .waitlistInputWrap select {
+  .waitlistDropdownValue,
+  .waitlistDropdownPlaceholder {
     padding: 0 15px;
     font-size: 16.5px;
     letter-spacing: -0.495px;
@@ -3956,6 +4271,20 @@
     width: 17.76px !important;
     height: 17.76px !important;
     margin: 0 27px 0 0 !important;
+  }
+
+  .waitlistDropdownList {
+    max-height: 200px;
+    padding: 6px;
+    border-width: 1.11px;
+    border-radius: 8.88px;
+  }
+
+  .waitlistDropdownOption {
+    min-height: 40px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 15px;
   }
 
   .waitlistSubmit {

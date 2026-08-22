@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import styles from "./page.module.css";
 
 const navigationItems = [
@@ -14,9 +14,24 @@ const navigationItems = [
 const heroHexagons = [1, 2, 3, 4, 5];
 const hexagonStepMs = 850;
 
+const registrationTypes = [
+  "Telecommunication",
+  "Real Estate",
+  "Finance",
+  "Construction",
+  "Crypto",
+  "Sport",
+  "Agriculture",
+];
+
 export default function Home() {
   const [activeHexagons, setActiveHexagons] = useState(1);
   const [motionEnabled, setMotionEnabled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [registrationType, setRegistrationType] = useState("");
+  const [registrationOpen, setRegistrationOpen] = useState(false);
+  const registrationRef = useRef<HTMLDivElement>(null);
+  const registrationListId = useId();
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -38,11 +53,61 @@ export default function Home() {
     return () => window.clearInterval(interval);
   }, [motionEnabled]);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+
+    const mediaQuery = window.matchMedia("(min-width: 1025px)");
+    const onViewportChange = () => {
+      if (mediaQuery.matches) setMenuOpen(false);
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    mediaQuery.addEventListener("change", onViewportChange);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      mediaQuery.removeEventListener("change", onViewportChange);
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    if (!registrationOpen) return;
+
+    const onPointerDown = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as Node;
+      if (!registrationRef.current?.contains(target)) {
+        setRegistrationOpen(false);
+      }
+    };
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setRegistrationOpen(false);
+    };
+
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("touchstart", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("touchstart", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [registrationOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <main className={styles.home}>
-      <header className={styles.header}>
+      <header className={`${styles.header} ${menuOpen ? styles.headerMenuOpen : ""}`}>
         <nav className={styles.navigation} aria-label="Main navigation">
-          <Link className={styles.logo} href="/" aria-label="PureHive ESG home">
+          <Link className={styles.logo} href="/" aria-label="PureHive ESG home" onClick={closeMenu}>
             <img
               src="/assets/purehive-logo.svg"
               alt="PureHive ESG"
@@ -53,13 +118,13 @@ export default function Home() {
 
           <div className={styles.menu}>
             {navigationItems.map(({ label, href }) => (
-              <a className={styles.menuItem} href={href} key={label}>
+              <a className={styles.menuItem} href={href} key={label} onClick={closeMenu}>
                 {label}
               </a>
             ))}
           </div>
 
-          <a className={styles.createAccount} href="#create-account">
+          <a className={styles.createAccount} href="#create-account" onClick={closeMenu}>
             <img
               src="/assets/arrow-forward-circle.svg"
               alt=""
@@ -69,7 +134,44 @@ export default function Home() {
             />
             <span>Create account</span>
           </a>
+
+          <button
+            className={styles.menuToggle}
+            type="button"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span className={styles.menuToggleBar} />
+            <span className={styles.menuToggleBar} />
+            <span className={styles.menuToggleBar} />
+          </button>
         </nav>
+
+        <div
+          className={`${styles.mobileMenu} ${menuOpen ? styles.mobileMenuOpen : ""}`}
+          id="mobile-navigation"
+          hidden={!menuOpen}
+        >
+          <div className={styles.mobileMenuLinks}>
+            {navigationItems.map(({ label, href }) => (
+              <a className={styles.mobileMenuItem} href={href} key={label} onClick={closeMenu}>
+                {label}
+              </a>
+            ))}
+          </div>
+          <a className={styles.mobileCreateAccount} href="#create-account" onClick={closeMenu}>
+            <img
+              src="/assets/arrow-forward-circle.svg"
+              alt=""
+              aria-hidden="true"
+              width={12}
+              height={12}
+            />
+            <span>Create account</span>
+          </a>
+        </div>
       </header>
 
       <section className={styles.hero} aria-labelledby="hero-title">
@@ -253,16 +355,16 @@ export default function Home() {
           <span className={`${styles.phaseNumber} ${styles.phaseNumberThree}`}>03</span>
 
           <div className={`${styles.phaseStepCopy} ${styles.phaseStepOne}`}>
-            <h3>Log activity<br />as it happens</h3>
-            <p>Scan, tag, or check in on site,<br />fits into the existing shift.</p>
+            <h3>Log activity as it happens</h3>
+            <p>Scan, tag, or check in on site, fits into the existing shift.</p>
           </div>
           <div className={`${styles.phaseStepCopy} ${styles.phaseStepTwo}`}>
-            <h3>Evidence is<br />structured<br />automatically</h3>
-            <p>Each entry becomes a<br />timestamped, categorised<br />audit trail.</p>
+            <h3>Evidence is structured automatically</h3>
+            <p>Each entry becomes a timestamped, categorised audit trail.</p>
           </div>
           <div className={`${styles.phaseStepCopy} ${styles.phaseStepThree}`}>
-            <h3>Export when<br />you need it</h3>
-            <p>PDF or Excel, ready for tenders,<br />audits, or client requests.</p>
+            <h3>Export when you need it</h3>
+            <p>PDF or Excel, ready for tenders, audits, or client requests.</p>
           </div>
         </div>
 
@@ -410,23 +512,67 @@ export default function Home() {
               </div>
             </label>
 
-            <label className={styles.waitlistField}>
-              <span>Registration Type</span>
-              <div className={styles.waitlistInputWrap}>
-                <img src="/assets/waitlist/icon-briefcase.svg" alt="" />
-                <select name="registrationType" defaultValue="">
-                  <option value="" disabled>Select registration type</option>
-                  <option>Telecommunication</option>
-                  <option>Real Estate</option>
-                  <option>Finance</option>
-                  <option>Construction</option>
-                  <option>Crypto</option>
-                  <option>Sport</option>
-                  <option>Agriculture</option>
-                </select>
-                <img className={styles.waitlistSelectArrow} src="/assets/waitlist/icon-arrow-down.svg" alt="" />
+            <div className={styles.waitlistField}>
+              <span id="registration-type-label">Registration Type</span>
+              <div
+                className={`${styles.waitlistDropdown} ${registrationOpen ? styles.waitlistDropdownOpen : ""}`}
+                ref={registrationRef}
+              >
+                <input type="hidden" name="registrationType" value={registrationType} />
+                <button
+                  className={styles.waitlistInputWrap}
+                  type="button"
+                  aria-haspopup="listbox"
+                  aria-expanded={registrationOpen}
+                  aria-controls={registrationListId}
+                  aria-labelledby="registration-type-label"
+                  onClick={() => setRegistrationOpen((open) => !open)}
+                >
+                  <img src="/assets/waitlist/icon-briefcase.svg" alt="" />
+                  <span
+                    className={
+                      registrationType
+                        ? styles.waitlistDropdownValue
+                        : styles.waitlistDropdownPlaceholder
+                    }
+                  >
+                    {registrationType || "Select registration type"}
+                  </span>
+                  <img
+                    className={styles.waitlistSelectArrow}
+                    src="/assets/waitlist/icon-arrow-down.svg"
+                    alt=""
+                  />
+                </button>
+                {registrationOpen ? (
+                  <ul
+                    className={styles.waitlistDropdownList}
+                    id={registrationListId}
+                    role="listbox"
+                    aria-labelledby="registration-type-label"
+                  >
+                    {registrationTypes.map((type) => (
+                      <li key={type} role="presentation">
+                        <button
+                          className={`${styles.waitlistDropdownOption} ${
+                            registrationType === type ? styles.waitlistDropdownOptionActive : ""
+                          }`}
+                          type="button"
+                          role="option"
+                          aria-selected={registrationType === type}
+                          onClick={() => {
+                            setRegistrationType(type);
+                            setRegistrationOpen(false);
+                          }}
+                        >
+                          {type}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
               </div>
-            </label>
+            </div>
 
             <label className={styles.waitlistField}>
               <span>Email</span>
