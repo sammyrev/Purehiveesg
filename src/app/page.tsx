@@ -212,7 +212,7 @@ export default function Home() {
             ))}
           </div>
 
-          <a className={styles.createAccount} href="#create-account" onClick={closeMenu}>
+          <a className={styles.createAccount} href="#how-it-works" onClick={closeMenu}>
             <img
               src="/assets/arrow-forward-circle.svg"
               alt=""
@@ -220,7 +220,7 @@ export default function Home() {
               width={12}
               height={12}
             />
-            <span>Create account</span>
+            <span>See how it works</span>
           </a>
 
           <button
@@ -249,7 +249,7 @@ export default function Home() {
               </a>
             ))}
           </div>
-          <a className={styles.mobileCreateAccount} href="#create-account" onClick={closeMenu}>
+          <a className={styles.mobileCreateAccount} href="#how-it-works" onClick={closeMenu}>
             <img
               src="/assets/arrow-forward-circle.svg"
               alt=""
@@ -257,7 +257,7 @@ export default function Home() {
               width={12}
               height={12}
             />
-            <span>Create account</span>
+            <span>See how it works</span>
           </a>
         </div>
       </header>
@@ -291,9 +291,6 @@ export default function Home() {
             <a className={styles.primaryAction} href="#become-a-partner">
               <img src="/assets/hero/arrow-forward-circle.svg" alt="" aria-hidden="true" />
               <span>Become a Founding Partner</span>
-            </a>
-            <a className={styles.secondaryAction} href="#how-it-works">
-              See how it works
             </a>
           </div>
 
