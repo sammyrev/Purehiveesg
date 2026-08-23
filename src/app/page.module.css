@@ -29,8 +29,8 @@
 
 .logo {
   display: block;
-  width: 170.915px;
-  height: 31.971px;
+  width: 256px;
+  height: 48px;
 }
 
 .logo img {
@@ -535,6 +535,46 @@
   white-space: nowrap;
 }
 
+.heroMobileVisual {
+  display: none;
+}
+
+@keyframes heroLivePulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.25);
+    opacity: 0.65;
+  }
+}
+
+@keyframes heroLivePing {
+  0% {
+    transform: scale(1);
+    opacity: 0.45;
+  }
+
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes heroHexFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hexagon img {
     transition: none;
@@ -542,6 +582,10 @@
 
   .menuToggleBar {
     transition: none;
+  }
+
+  .heroMobileStage {
+    animation: none;
   }
 }
 
@@ -673,10 +717,17 @@ button.waitlistInputWrap:focus-visible,
   }
 
   .navigation {
+    position: relative;
+    z-index: 30;
     justify-content: space-between;
     gap: 16px;
     height: 72px;
     padding: 14px 24px;
+  }
+
+  .logo {
+    width: 200px;
+    height: 37px;
   }
 
   .menu,
@@ -689,21 +740,20 @@ button.waitlistInputWrap:focus-visible,
   }
 
   .mobileMenu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    left: 0;
+    position: fixed;
+    inset: 0;
     z-index: 20;
     display: none;
     flex-direction: column;
-    gap: 8px;
-    padding: 8px 24px 24px;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding: 96px 24px 48px;
     background: #f8f6f4;
-    border-bottom: 1px solid rgb(14 16 54 / 8%);
-    box-shadow: 0 16px 32px rgb(18 0 72 / 8%);
   }
 
   .headerMenuOpen {
+    z-index: 40;
     background: #f8f6f4;
     backdrop-filter: none;
   }
@@ -715,20 +765,23 @@ button.waitlistInputWrap:focus-visible,
   .mobileMenuLinks {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    align-items: center;
+    gap: 8px;
   }
 
   .mobileMenuItem {
     display: flex;
     align-items: center;
-    min-height: 48px;
-    padding: 10px 4px;
+    justify-content: center;
+    min-height: 56px;
+    padding: 8px 12px;
     color: #0e1036;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 18px;
-    font-weight: 400;
-    letter-spacing: -0.54px;
-    line-height: 28px;
+    font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1.2;
+    text-align: center;
     text-decoration: none;
   }
 
@@ -736,16 +789,16 @@ button.waitlistInputWrap:focus-visible,
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    align-self: flex-start;
+    align-self: center;
     gap: 8px;
-    min-height: 44px;
-    margin-top: 8px;
-    padding: 10px 20px;
+    min-height: 52px;
+    margin-top: 12px;
+    padding: 12px 24px;
     border-radius: 24px;
     background: linear-gradient(180deg, #ffcf99 24.576%, #997c5c 204.24%);
     color: #775e43;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
     letter-spacing: -0.48px;
     line-height: 24px;
@@ -761,33 +814,212 @@ button.waitlistInputWrap:focus-visible,
 
 @media (max-width: 860px) {
   .hero {
-    /* Copy + CTAs only; visual stage hidden below */
-    height: 540px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+    min-height: 700px;
+  }
+
+  .heroCopy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    padding: 72px 32px 56px;
   }
 
   .heroTitle {
-    top: 72px;
-    left: 50%;
-    width: min(92vw, 700px);
-    font-size: clamp(42px, 7.5vw, 62px);
-    line-height: 0.9;
+    position: static;
+    left: auto;
+    width: 100%;
+    max-width: 13em;
+    transform: none;
+    font-size: clamp(36px, 6.4vw, 52px);
+    letter-spacing: -0.04em;
+    line-height: 1.15;
     white-space: normal;
+    text-wrap: balance;
+  }
+
+  .heroTitle span {
+    display: inline;
   }
 
   .heroDescription {
-    top: 295px;
-    width: min(88vw, 620px);
-    font-size: clamp(18px, 2.8vw, 24px);
+    position: static;
+    left: auto;
+    width: min(100%, 38ch);
+    margin-top: 18px;
+    transform: none;
+    font-size: clamp(16px, 2.4vw, 20px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.5;
     white-space: normal;
+    text-wrap: pretty;
+  }
+
+  .heroDescriptionBreak {
+    display: none;
   }
 
   .heroActions {
-    top: 405px;
+    position: static;
+    left: auto;
+    width: min(100%, 420px);
+    margin-top: 28px;
+    flex-wrap: wrap;
+    justify-content: center;
+    transform: none;
   }
 
   .primaryAction,
   .secondaryAction {
-    font-size: 19px;
+    font-size: 18px;
+  }
+
+  .secondaryAction {
+    background: rgb(255 255 255 / 78%);
+    border-color: rgb(64 123 255 / 55%);
+  }
+
+  .leftTorus {
+    transform: translate(-12%, 22%) scale(0.48);
+    transform-origin: top left;
+  }
+
+  .heroMobileVisual {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 28px;
+  }
+
+  .heroMobileStage {
+    position: relative;
+    width: min(100%, 340px);
+    height: 220px;
+    animation: heroHexFloat 4.8s ease-in-out infinite;
+  }
+
+  .heroMobileFolder {
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-radius: 18px;
+  }
+
+  .heroMobileTab {
+    position: absolute;
+    top: -22px;
+    display: flex;
+    align-items: center;
+    height: 28px;
+    padding: 0 12px;
+    border-radius: 12px 12px 0 0;
+    font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .heroMobileFolderAudit {
+    top: 24px;
+    z-index: 1;
+    height: 196px;
+    background: #d3e3fb;
+  }
+
+  .heroMobileFolderAudit .heroMobileTab {
+    left: 42px;
+    background: #d3e3fb;
+    color: #6f8fc7;
+  }
+
+  .heroMobileFolderEvidence {
+    top: 40px;
+    z-index: 2;
+    height: 188px;
+    background: linear-gradient(180deg, #ffcf99 0%, #c9a57a 160%);
+  }
+
+  .heroMobileFolderEvidence .heroMobileTab {
+    left: 118px;
+    background: #ffcf99;
+    color: #b07d4f;
+  }
+
+  .heroMobileFolderLive {
+    top: 58px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 162px;
+    padding: 16px 14px 14px;
+    background: linear-gradient(180deg, #407bff 0%, #264a99 100%);
+    box-shadow: 0 18px 32px rgb(18 0 72 / 12%);
+  }
+
+  .heroMobileLiveTitle {
+    align-self: flex-start;
+    margin-left: 4px;
+    color: #dfe9ff;
+    font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+  }
+
+  .heroMobileHexRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 14px;
+  }
+
+  .heroMobileHex {
+    display: block;
+    width: 34px;
+    height: 39px;
+    overflow: visible;
+  }
+
+  .heroMobileHex:first-child {
+    width: 40px;
+    height: 46px;
+  }
+
+  .heroMobileHexShape {
+    fill: transparent;
+    stroke: #ffcf99;
+    stroke-opacity: 0.7;
+    stroke-width: 2;
+    transition: fill 220ms ease, stroke 220ms ease, stroke-opacity 220ms ease;
+  }
+
+  .heroMobileHexFilled .heroMobileHexShape {
+    fill: #ffcf99;
+    stroke: #fff;
+    stroke-opacity: 0.9;
+  }
+
+  .heroMobileCaption {
+    width: min(100%, 22em);
+    margin: 10px 0 0;
+    color: #dfe9ff;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.35;
+    text-align: center;
   }
 
   .visualStage {
@@ -801,45 +1033,82 @@ button.waitlistInputWrap:focus-visible,
   }
 
   .logo {
-    width: 137px;
+    width: 176px;
     height: auto;
   }
 
   .mobileMenu {
-    padding-right: 20px;
-    padding-left: 20px;
+    padding: 88px 20px 40px;
   }
 
-  .hero {
-    height: 520px;
+  .mobileMenuItem {
+    font-size: 28px;
+  }
+
+  .heroCopy {
+    padding: 64px 24px 48px;
   }
 
   .heroTitle {
-    top: 48px;
-    font-size: 40px;
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(32px, 8.4vw, 38px);
+    letter-spacing: -0.035em;
+    line-height: 1.16;
   }
 
   .heroDescription {
-    top: 244px;
-    font-size: 17px;
+    margin-top: 16px;
+    font-size: 16px;
+    line-height: 1.5;
   }
 
   .heroActions {
-    top: 348px;
+    width: 100%;
+    max-width: 340px;
+    margin-top: 28px;
     flex-direction: column;
     gap: 12px;
   }
 
   .primaryAction,
   .secondaryAction {
+    width: 100%;
     min-height: 48px;
-    padding: 7px 18px;
-    font-size: 17px;
-    line-height: 1.35;
+    padding: 12px 18px;
+    font-size: 16px;
+    line-height: 1.3;
   }
 
-  .torus {
-    transform: scale(0.72);
+  .heroMobileVisual {
+    margin-top: 24px;
+  }
+
+  .heroMobileStage {
+    height: 210px;
+  }
+
+  .heroMobileFolderLive {
+    height: 156px;
+    padding: 14px 12px 12px;
+  }
+
+  .heroMobileHex {
+    width: 30px;
+    height: 34px;
+  }
+
+  .heroMobileHex:first-child {
+    width: 36px;
+    height: 41px;
+  }
+
+  .heroMobileCaption {
+    font-size: 11px;
+  }
+
+  .torus.leftTorus {
+    transform: translate(-20%, 38%) scale(0.42);
     transform-origin: top left;
   }
 }
@@ -1088,17 +1357,36 @@ button.waitlistInputWrap:focus-visible,
   }
 
   .pressureIntro {
-    display: block;
-    max-width: 364px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: auto;
+    max-width: none;
+    width: 100%;
+  }
+
+  .pressureTitle,
+  .pressureDescription {
+    width: 100%;
+    max-width: 100%;
+    white-space: normal;
   }
 
   .pressureTitle {
-    font-size: clamp(34px, 10vw, 46px);
+    font-size: clamp(30px, 8.4vw, 40px);
+    letter-spacing: -0.04em;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  .pressureBreak {
+    display: none;
   }
 
   .pressureDescription {
-    margin-top: 24px;
-    font-size: 18px;
+    margin-top: 0;
+    font-size: 16px;
+    line-height: 1.45;
   }
 
   .pressureTopGrid,
@@ -2025,7 +2313,17 @@ button.waitlistInputWrap:focus-visible,
   }
 
   .audienceTitle {
-    font-size: 40px;
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(30px, 8.4vw, 40px);
+    letter-spacing: -0.04em;
+    line-height: 1.15;
+    white-space: normal;
+    text-wrap: balance;
+  }
+
+  .audienceTitle span {
+    display: inline;
   }
 
   .audienceFeature {
@@ -2437,7 +2735,7 @@ button.waitlistInputWrap:focus-visible,
   display: flex;
   flex-direction: column;
   width: 622px;
-  height: 930px;
+  height: auto;
   margin: 0 0 0 calc(41.67% + 74px);
   padding: 24px 30px 28px;
   border-radius: 30px;
@@ -2457,11 +2755,100 @@ button.waitlistInputWrap:focus-visible,
   display: flex;
   flex-direction: column;
   gap: 6px;
+  min-width: 0;
   color: #3a3839;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 24px;
   font-weight: 400;
   line-height: 29px;
+}
+
+.waitlistFieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.waitlistOptional {
+  color: #8a8888;
+  font-style: normal;
+  font-size: 0.72em;
+  font-weight: 400;
+}
+
+.waitlistChoiceField {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.waitlistChoiceField legend {
+  margin: 0 0 6px;
+  padding: 0;
+}
+
+.waitlistChoiceGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.waitlistChoice {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 14px 8px 12px;
+  border: 1.48px solid #d9d7d7;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #3a3839;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.32px;
+  line-height: 1.3;
+  cursor: pointer;
+}
+
+.waitlistChoice input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: #407bff;
+}
+
+.waitlistChoiceSelected {
+  border-color: #407bff;
+  background: #eaf0ff;
+}
+
+.waitlistTextarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 16px 20px;
+  border: 1.48px solid #d9d7d7;
+  border-radius: 11.84px;
+  background: #ffffff;
+  color: #3a3839;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: -0.4px;
+  line-height: 1.4;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.waitlistTextarea::placeholder {
+  color: #bfbdbd;
+  font-size: 15px;
+  letter-spacing: -0.2px;
+}
+
+.waitlistTextarea:focus {
+  outline: 2px solid #407bff;
+  outline-offset: 2px;
 }
 
 .waitlistInputWrap {
@@ -2503,6 +2890,8 @@ button.waitlistInputWrap:focus-visible,
 
 .waitlistInputWrap input::placeholder {
   color: #bfbdbd;
+  font-size: 16px;
+  letter-spacing: -0.2px;
   opacity: 1;
 }
 
@@ -2517,6 +2906,10 @@ button.waitlistInputWrap {
 .waitlistDropdown {
   position: relative;
   z-index: 4;
+}
+
+.waitlistDropdownOpen {
+  z-index: 6;
 }
 
 .waitlistDropdownValue,
@@ -2541,6 +2934,8 @@ button.waitlistInputWrap {
 
 .waitlistDropdownPlaceholder {
   color: #bfbdbd;
+  font-size: 16px;
+  letter-spacing: -0.2px;
 }
 
 .waitlistSelectArrow {
@@ -2695,18 +3090,19 @@ button.waitlistInputWrap {
 
   .waitlistCopy h2 {
     font-size: 40px;
-    line-height: 42px;
+    line-height: 1.15;
   }
 
   .waitlistCopy > p {
-    margin-top: 24px;
+    margin-top: 8px;
     font-size: 18px;
-    line-height: 21px;
+    line-height: 1.4;
     white-space: normal;
   }
 
   .waitlistBenefits {
-    margin-top: 26px;
+    margin-top: 16px;
+    gap: 4px;
   }
 
   .waitlistBenefits li {
@@ -2730,6 +3126,22 @@ button.waitlistInputWrap {
     line-height: 24px;
   }
 
+  .waitlistFieldRow {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .waitlistChoice {
+    min-height: 42px;
+    font-size: 15px;
+  }
+
+  .waitlistTextarea {
+    min-height: 110px;
+    padding: 14px 16px;
+    font-size: 16px;
+  }
+
   .waitlistInputWrap {
     height: 66px;
   }
@@ -2742,7 +3154,17 @@ button.waitlistInputWrap {
   .waitlistDropdownValue,
   .waitlistDropdownPlaceholder {
     padding: 0 12px;
+  }
+
+  .waitlistInputWrap input,
+  .waitlistDropdownValue {
     font-size: 18px;
+  }
+
+  .waitlistInputWrap input::placeholder,
+  .waitlistDropdownPlaceholder,
+  .waitlistTextarea::placeholder {
+    font-size: 14px;
   }
 
   .waitlistSelectArrow {
@@ -2780,15 +3202,16 @@ button.waitlistInputWrap {
 
 .footerLogo {
   display: block;
-  flex: 0 0 170.915px;
-  width: 170.915px;
-  height: 31.971px;
+  flex: 0 0 auto;
+  width: 171px;
+  height: auto;
 }
 
 .footerLogo img {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 171px;
+  height: auto;
+  object-fit: contain;
 }
 
 .footerNavigation {
@@ -2857,6 +3280,11 @@ button.waitlistInputWrap {
     flex-direction: column;
     gap: 14px;
     padding: 32px 20px;
+  }
+
+  .footerLogo,
+  .footerLogo img {
+    width: 148px;
   }
 
   .footerNavigation {
@@ -3622,9 +4050,19 @@ button.waitlistInputWrap {
   .waitlistDropdownValue,
   .waitlistDropdownPlaceholder {
     padding: 0 1.3889vw;
-    font-size: 1.5278vw;
     letter-spacing: -0.0458vw;
     line-height: 1.9444vw;
+  }
+
+  .waitlistInputWrap input,
+  .waitlistDropdownValue {
+    font-size: 1.5278vw;
+  }
+
+  .waitlistInputWrap input::placeholder,
+  .waitlistDropdownPlaceholder,
+  .waitlistTextarea::placeholder {
+    font-size: 1.18vw;
   }
 
   .waitlistSelectArrow {
@@ -4261,9 +4699,19 @@ button.waitlistInputWrap {
   .waitlistDropdownValue,
   .waitlistDropdownPlaceholder {
     padding: 0 15px;
-    font-size: 16.5px;
     letter-spacing: -0.495px;
     line-height: 21px;
+  }
+
+  .waitlistInputWrap input,
+  .waitlistDropdownValue {
+    font-size: 16.5px;
+  }
+
+  .waitlistInputWrap input::placeholder,
+  .waitlistDropdownPlaceholder,
+  .waitlistTextarea::placeholder {
+    font-size: 13px;
   }
 
   .waitlistSelectArrow {

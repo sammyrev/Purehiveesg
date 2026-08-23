@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import styles from "./page.module.css";
 
 const navigationItems = [
@@ -14,24 +14,44 @@ const navigationItems = [
 const heroHexagons = [1, 2, 3, 4, 5];
 const hexagonStepMs = 850;
 
-const registrationTypes = [
-  "Telecommunication",
-  "Real Estate",
-  "Finance",
-  "Construction",
-  "Crypto",
-  "Sport",
-  "Agriculture",
+const companySizeOptions = ["1–10", "11–50", "51–200", "201–500", "500+"];
+const regionOptions = ["United Kingdom", "Ireland", "Europe", "Rest of world"];
+const publicSectorOptions = [
+  "Yes",
+  "No",
+  "Not yet, but we plan to",
 ];
+const timeSpentOptions = [
+  "Under 2 hours a week",
+  "2–5 hours a week",
+  "5–10 hours a week",
+  "10+ hours a week",
+  "Mainly around tenders or audits",
+];
+const evidenceOptions = [
+  "Spreadsheets / Excel",
+  "Paper / printed files",
+  "WhatsApp / messaging",
+  "Shared drives / folders",
+  "Existing software",
+  "Other",
+];
+const interestOptions = ["Interview", "Pilot", "Product updates"];
+
+type WaitlistSelectId = "companySize" | "region" | "publicSector" | "timeSpent";
 
 export default function Home() {
   const [activeHexagons, setActiveHexagons] = useState(1);
   const [motionEnabled, setMotionEnabled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [registrationType, setRegistrationType] = useState("");
-  const [registrationOpen, setRegistrationOpen] = useState(false);
-  const registrationRef = useRef<HTMLDivElement>(null);
-  const registrationListId = useId();
+  const [companySize, setCompanySize] = useState("");
+  const [region, setRegion] = useState("");
+  const [publicSector, setPublicSector] = useState("");
+  const [timeSpent, setTimeSpent] = useState("");
+  const [evidenceMethods, setEvidenceMethods] = useState<string[]>([]);
+  const [interests, setInterests] = useState<string[]>([]);
+  const [openSelect, setOpenSelect] = useState<WaitlistSelectId | null>(null);
+  const selectListId = useId();
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -77,17 +97,17 @@ export default function Home() {
   }, [menuOpen]);
 
   useEffect(() => {
-    if (!registrationOpen) return;
+    if (!openSelect) return;
 
     const onPointerDown = (event: MouseEvent | TouchEvent) => {
-      const target = event.target as Node;
-      if (!registrationRef.current?.contains(target)) {
-        setRegistrationOpen(false);
+      const target = event.target as HTMLElement;
+      if (!target.closest(`[data-waitlist-select="${openSelect}"]`)) {
+        setOpenSelect(null);
       }
     };
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setRegistrationOpen(false);
+      if (event.key === "Escape") setOpenSelect(null);
     };
 
     document.addEventListener("mousedown", onPointerDown);
@@ -99,7 +119,75 @@ export default function Home() {
       document.removeEventListener("touchstart", onPointerDown);
       document.removeEventListener("keydown", onKeyDown);
     };
-  }, [registrationOpen]);
+  }, [openSelect]);
+
+  const toggleChoice = (value: string, current: string[], setCurrent: (next: string[]) => void) => {
+    setCurrent(current.includes(value) ? current.filter((item) => item !== value) : [...current, value]);
+  };
+
+  const renderSelect = (
+    id: WaitlistSelectId,
+    name: string,
+    label: string,
+    icon: string,
+    value: string,
+    placeholder: string,
+    options: string[],
+    onSelect: (next: string) => void,
+  ) => {
+    const isOpen = openSelect === id;
+    const labelId = `${id}-label`;
+    const listId = `${selectListId}-${id}`;
+
+    return (
+      <div className={styles.waitlistField}>
+        <span id={labelId}>{label}</span>
+        <div
+          className={`${styles.waitlistDropdown} ${isOpen ? styles.waitlistDropdownOpen : ""}`}
+          data-waitlist-select={id}
+        >
+          <input type="hidden" name={name} value={value} />
+          <button
+            className={styles.waitlistInputWrap}
+            type="button"
+            aria-haspopup="listbox"
+            aria-expanded={isOpen}
+            aria-controls={listId}
+            aria-labelledby={labelId}
+            onClick={() => setOpenSelect(isOpen ? null : id)}
+          >
+            <img src={icon} alt="" />
+            <span className={value ? styles.waitlistDropdownValue : styles.waitlistDropdownPlaceholder}>
+              {value || placeholder}
+            </span>
+            <img className={styles.waitlistSelectArrow} src="/assets/waitlist/icon-arrow-down.svg" alt="" />
+          </button>
+          {isOpen ? (
+            <ul className={styles.waitlistDropdownList} id={listId} role="listbox" aria-labelledby={labelId}>
+              {options.map((option) => (
+                <li key={option} role="presentation">
+                  <button
+                    className={`${styles.waitlistDropdownOption} ${
+                      value === option ? styles.waitlistDropdownOptionActive : ""
+                    }`}
+                    type="button"
+                    role="option"
+                    aria-selected={value === option}
+                    onClick={() => {
+                      onSelect(option);
+                      setOpenSelect(null);
+                    }}
+                  >
+                    {option}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
+      </div>
+    );
+  };
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -111,8 +199,8 @@ export default function Home() {
             <img
               src="/assets/purehive-logo.svg"
               alt="PureHive ESG"
-              width={171}
-              height={32}
+              width={256}
+              height={48}
             />
           </Link>
 
@@ -188,15 +276,15 @@ export default function Home() {
 
         <div className={styles.heroCopy}>
           <h1 className={styles.heroTitle} id="hero-title">
-            <span>Turn everyday service</span>
+            <span>Turn everyday service </span>
             <span>
-              delivery into <em>structured,</em>
+              delivery into <em>structured,</em>{" "}
             </span>
             <span className={styles.gradientText}>audit-ready evidence</span>
           </h1>
           <p className={styles.heroDescription}>
-            Structured ESG and compliance evidence for cleaning SMEs
-            <br />
+            Structured ESG and compliance evidence for cleaning SMEs{" "}
+            <br className={styles.heroDescriptionBreak} />
             captured as the work happens, not reconstructed at audit time.
           </p>
           <div className={styles.heroActions}>
@@ -207,6 +295,37 @@ export default function Home() {
             <a className={styles.secondaryAction} href="#how-it-works">
               See how it works
             </a>
+          </div>
+
+          <div className={styles.heroMobileVisual} aria-hidden="true">
+            <div className={styles.heroMobileStage}>
+              <div className={`${styles.heroMobileFolder} ${styles.heroMobileFolderAudit}`}>
+                <span className={styles.heroMobileTab}>Audit trail</span>
+              </div>
+              <div className={`${styles.heroMobileFolder} ${styles.heroMobileFolderEvidence}`}>
+                <span className={styles.heroMobileTab}>Evidence captured</span>
+              </div>
+              <div className={`${styles.heroMobileFolder} ${styles.heroMobileFolderLive}`}>
+                <span className={styles.heroMobileLiveTitle}>Live capture</span>
+                <div className={styles.heroMobileHexRow}>
+                  {heroHexagons.map((hexagon, index) => (
+                    <svg
+                      className={`${styles.heroMobileHex} ${index < activeHexagons ? styles.heroMobileHexFilled : ""}`}
+                      viewBox="0 0 72 82"
+                      key={hexagon}
+                    >
+                      <polygon
+                        className={styles.heroMobileHexShape}
+                        points="36 3 69 21.5 69 60.5 36 79 3 60.5 3 21.5"
+                      />
+                    </svg>
+                  ))}
+                </div>
+                <p className={styles.heroMobileCaption}>
+                  Every scan becomes a structured, timestamped cell
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -264,13 +383,13 @@ export default function Home() {
       <section className={styles.pressureSection} id="problem" aria-labelledby="pressure-title">
         <div className={styles.pressureIntro}>
           <h2 className={styles.pressureTitle} id="pressure-title">
-            Cleaning SMEs are
-            <br />
+            Cleaning SMEs are{" "}
+            <br className={styles.pressureBreak} />
             <span>under new pressure</span>
           </h2>
           <p className={styles.pressureDescription}>
-            Procurement expectations have changed faster
-            <br />
+            Procurement expectations have changed faster{" "}
+            <br className={styles.pressureBreak} />
             than the tools most teams use to keep up.
           </p>
         </div>
@@ -392,7 +511,7 @@ export default function Home() {
         </div>
 
         <h2 className={styles.audienceTitle} id="audience-title">
-          <span>Built for cleaning leaders,</span>
+          <span>Built for cleaning leaders, </span>
           <span>not compliance departments</span>
         </h2>
         <img
@@ -494,114 +613,165 @@ export default function Home() {
           </ul>
         </div>
 
-        <form className={styles.waitlistFormCard}>
+        <form
+          className={styles.waitlistFormCard}
+          onSubmit={(event) => {
+            event.preventDefault();
+          }}
+        >
           <div className={styles.waitlistFields}>
-            <label className={styles.waitlistField}>
-              <span>Full Name</span>
-              <div className={styles.waitlistInputWrap}>
-                <img src="/assets/waitlist/icon-personalcard.svg" alt="" />
-                <input type="text" name="fullName" placeholder="Enter company name" />
-              </div>
-            </label>
+            <div className={styles.waitlistFieldRow}>
+              <label className={styles.waitlistField}>
+                <span>Name</span>
+                <div className={styles.waitlistInputWrap}>
+                  <img src="/assets/waitlist/icon-personalcard.svg" alt="" />
+                  <input type="text" name="name" placeholder="Your name" required />
+                </div>
+              </label>
 
-            <label className={styles.waitlistField}>
-              <span>Business Name</span>
-              <div className={styles.waitlistInputWrap}>
-                <img src="/assets/waitlist/icon-building.svg" alt="" />
-                <input type="text" name="businessName" placeholder="Enter company name" />
-              </div>
-            </label>
+              <label className={styles.waitlistField}>
+                <span>Company</span>
+                <div className={styles.waitlistInputWrap}>
+                  <img src="/assets/waitlist/icon-building.svg" alt="" />
+                  <input type="text" name="company" placeholder="Company name" required />
+                </div>
+              </label>
+            </div>
 
-            <div className={styles.waitlistField}>
-              <span id="registration-type-label">Registration Type</span>
-              <div
-                className={`${styles.waitlistDropdown} ${registrationOpen ? styles.waitlistDropdownOpen : ""}`}
-                ref={registrationRef}
-              >
-                <input type="hidden" name="registrationType" value={registrationType} />
-                <button
-                  className={styles.waitlistInputWrap}
-                  type="button"
-                  aria-haspopup="listbox"
-                  aria-expanded={registrationOpen}
-                  aria-controls={registrationListId}
-                  aria-labelledby="registration-type-label"
-                  onClick={() => setRegistrationOpen((open) => !open)}
-                >
-                  <img src="/assets/waitlist/icon-briefcase.svg" alt="" />
-                  <span
-                    className={
-                      registrationType
-                        ? styles.waitlistDropdownValue
-                        : styles.waitlistDropdownPlaceholder
-                    }
-                  >
-                    {registrationType || "Select registration type"}
-                  </span>
-                  <img
-                    className={styles.waitlistSelectArrow}
-                    src="/assets/waitlist/icon-arrow-down.svg"
-                    alt=""
-                  />
-                </button>
-                {registrationOpen ? (
-                  <ul
-                    className={styles.waitlistDropdownList}
-                    id={registrationListId}
-                    role="listbox"
-                    aria-labelledby="registration-type-label"
-                  >
-                    {registrationTypes.map((type) => (
-                      <li key={type} role="presentation">
-                        <button
-                          className={`${styles.waitlistDropdownOption} ${
-                            registrationType === type ? styles.waitlistDropdownOptionActive : ""
-                          }`}
-                          type="button"
-                          role="option"
-                          aria-selected={registrationType === type}
-                          onClick={() => {
-                            setRegistrationType(type);
-                            setRegistrationOpen(false);
-                          }}
-                        >
-                          {type}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-              </div>
+            <div className={styles.waitlistFieldRow}>
+              <label className={styles.waitlistField}>
+                <span>Work email</span>
+                <div className={styles.waitlistInputWrap}>
+                  <img src="/assets/waitlist/icon-sms.svg" alt="" />
+                  <input type="email" name="email" placeholder="name@company.com" required />
+                </div>
+              </label>
+
+              <label className={styles.waitlistField}>
+                <span>
+                  Phone <em className={styles.waitlistOptional}>optional</em>
+                </span>
+                <div className={styles.waitlistInputWrap}>
+                  <img src="/assets/waitlist/icon-mobile.svg" alt="" />
+                  <input type="tel" name="phone" placeholder="Phone number" />
+                </div>
+              </label>
             </div>
 
             <label className={styles.waitlistField}>
-              <span>Email</span>
+              <span>Job title</span>
               <div className={styles.waitlistInputWrap}>
-                <img src="/assets/waitlist/icon-sms.svg" alt="" />
-                <input type="email" name="email" placeholder="Enter your email" />
+                <img src="/assets/waitlist/icon-briefcase.svg" alt="" />
+                <input type="text" name="jobTitle" placeholder="e.g. Managing Director" required />
               </div>
             </label>
 
-            <label className={styles.waitlistField}>
-              <span>Address</span>
-              <div className={styles.waitlistInputWrap}>
-                <img src="/assets/waitlist/icon-location.svg" alt="" />
-                <input type="text" name="address" placeholder="Enter your address" />
-              </div>
-            </label>
+            <div className={styles.waitlistFieldRow}>
+              {renderSelect(
+                "companySize",
+                "companySize",
+                "Company size",
+                "/assets/waitlist/icon-building.svg",
+                companySize,
+                "Select company size",
+                companySizeOptions,
+                setCompanySize,
+              )}
+              {renderSelect(
+                "region",
+                "region",
+                "Region",
+                "/assets/waitlist/icon-location.svg",
+                region,
+                "Select region",
+                regionOptions,
+                setRegion,
+              )}
+            </div>
+
+            {renderSelect(
+              "publicSector",
+              "publicSector",
+              "Do you bid for NHS, council or public-sector contracts?",
+              "/assets/waitlist/icon-briefcase.svg",
+              publicSector,
+              "Select an option",
+              publicSectorOptions,
+              setPublicSector,
+            )}
 
             <label className={styles.waitlistField}>
-              <span>Phone Number</span>
-              <div className={styles.waitlistInputWrap}>
-                <img src="/assets/waitlist/icon-mobile.svg" alt="" />
-                <input type="tel" name="phone" placeholder="Enter your phone number" />
-              </div>
+              <span>Biggest compliance, ESG or tender challenge</span>
+              <textarea
+                className={styles.waitlistTextarea}
+                name="challenge"
+                placeholder="What is the hardest part of gathering or presenting evidence today?"
+                rows={4}
+                required
+              />
             </label>
+
+            <fieldset className={`${styles.waitlistField} ${styles.waitlistChoiceField}`}>
+              <legend>How do you currently manage evidence?</legend>
+              <div className={styles.waitlistChoiceGroup}>
+                {evidenceOptions.map((option) => (
+                  <label
+                    className={`${styles.waitlistChoice} ${
+                      evidenceMethods.includes(option) ? styles.waitlistChoiceSelected : ""
+                    }`}
+                    key={option}
+                  >
+                    <input
+                      type="checkbox"
+                      name="evidence"
+                      value={option}
+                      checked={evidenceMethods.includes(option)}
+                      onChange={() => toggleChoice(option, evidenceMethods, setEvidenceMethods)}
+                    />
+                    <span>{option}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            {renderSelect(
+              "timeSpent",
+              "timeSpent",
+              "Time spent preparing evidence",
+              "/assets/waitlist/icon-briefcase.svg",
+              timeSpent,
+              "Select time spent",
+              timeSpentOptions,
+              setTimeSpent,
+            )}
+
+            <fieldset className={`${styles.waitlistField} ${styles.waitlistChoiceField}`}>
+              <legend>I’m interested in</legend>
+              <div className={styles.waitlistChoiceGroup}>
+                {interestOptions.map((option) => (
+                  <label
+                    className={`${styles.waitlistChoice} ${
+                      interests.includes(option) ? styles.waitlistChoiceSelected : ""
+                    }`}
+                    key={option}
+                  >
+                    <input
+                      type="checkbox"
+                      name="interest"
+                      value={option}
+                      checked={interests.includes(option)}
+                      onChange={() => toggleChoice(option, interests, setInterests)}
+                    />
+                    <span>{option}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
           </div>
 
           <button className={styles.waitlistSubmit} type="submit">
             <img src="/assets/waitlist/waitlist-arrow.svg" alt="" aria-hidden="true" />
-            <span>Register as a Partner</span>
+            <span>Join the waitlist</span>
           </button>
         </form>
       </section>
