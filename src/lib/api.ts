@@ -1,4 +1,4 @@
-export const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
+export const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "https://purehives-backend.onrender.com";
 
 export const adminTokenStorageKey = "purehive-admin-token";
 
