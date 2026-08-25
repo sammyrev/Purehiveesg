@@ -2,7 +2,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useState, type CSSProperties, type FormEvent } from "react";
+import { apiUrl } from "@/lib/api";
 import styles from "./page.module.css";
 
 const navigationItems = [
@@ -39,6 +40,16 @@ const evidenceOptions = [
 const interestOptions = ["Interview", "Pilot", "Product updates"];
 
 type WaitlistSelectId = "companySize" | "region" | "publicSector" | "timeSpent";
+type WaitlistSubmitStatus = "idle" | "submitting" | "success" | "error";
+
+function reveal(delayMs = 0) {
+  return {
+    "data-reveal": true,
+    ...(delayMs
+      ? { style: { "--reveal-delay": `${delayMs}ms` } as CSSProperties }
+      : {}),
+  };
+}
 
 export default function Home() {
   const [activeHexagons, setActiveHexagons] = useState(1);
@@ -51,6 +62,8 @@ export default function Home() {
   const [evidenceMethods, setEvidenceMethods] = useState<string[]>([]);
   const [interests, setInterests] = useState<string[]>([]);
   const [openSelect, setOpenSelect] = useState<WaitlistSelectId | null>(null);
+  const [submitStatus, setSubmitStatus] = useState<WaitlistSubmitStatus>("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
   const selectListId = useId();
 
   useEffect(() => {
@@ -72,6 +85,44 @@ export default function Home() {
 
     return () => window.clearInterval(interval);
   }, [motionEnabled]);
+
+  useEffect(() => {
+    const nodes = Array.from(document.querySelectorAll("[data-reveal]"));
+    const timeouts: number[] = [];
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const markVisible = (node: Element) => {
+      node.classList.add("is-visible");
+      const finish = (event?: Event) => {
+        if (event && event.target !== node) return;
+        node.removeAttribute("data-reveal");
+      };
+      node.addEventListener("transitionend", finish);
+      timeouts.push(window.setTimeout(() => finish(), 1200));
+    };
+
+    if (reduceMotion) {
+      nodes.forEach(markVisible);
+      return () => timeouts.forEach((timeout) => window.clearTimeout(timeout));
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          markVisible(entry.target);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" },
+    );
+
+    nodes.forEach((node) => observer.observe(node));
+    return () => {
+      observer.disconnect();
+      timeouts.forEach((timeout) => window.clearTimeout(timeout));
+    };
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -123,6 +174,69 @@ export default function Home() {
 
   const toggleChoice = (value: string, current: string[], setCurrent: (next: string[]) => void) => {
     setCurrent(current.includes(value) ? current.filter((item) => item !== value) : [...current, value]);
+  };
+
+  const handleWaitlistSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!companySize || !region || !publicSector || !timeSpent) {
+      setSubmitStatus("error");
+      setSubmitMessage("Please complete all required fields.");
+      return;
+    }
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      name: String(formData.get("name") ?? "").trim(),
+      company: String(formData.get("company") ?? "").trim(),
+      email: String(formData.get("email") ?? "").trim(),
+      phone: String(formData.get("phone") ?? "").trim(),
+      jobTitle: String(formData.get("jobTitle") ?? "").trim(),
+      companySize,
+      region,
+      publicSector,
+      challenge: String(formData.get("challenge") ?? "").trim(),
+      evidenceMethods,
+      timeSpent,
+      interests,
+    };
+
+    try {
+      setSubmitStatus("submitting");
+      setSubmitMessage("");
+
+      const response = await fetch(`${apiUrl}/api/waitlist`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = (await response.json()) as { message?: string };
+
+      if (!response.ok) {
+        throw new Error(data.message || "Could not join the waitlist.");
+      }
+
+      form.reset();
+      setCompanySize("");
+      setRegion("");
+      setPublicSector("");
+      setTimeSpent("");
+      setEvidenceMethods([]);
+      setInterests([]);
+      setSubmitStatus("success");
+      setSubmitMessage(data.message || "You're on the waitlist.");
+    } catch (error) {
+      setSubmitStatus("error");
+      setSubmitMessage(
+        error instanceof TypeError
+          ? "Could not reach the waitlist service. Please try again."
+          : error instanceof Error
+            ? error.message
+            : "Could not join the waitlist.",
+      );
+    }
   };
 
   const renderSelect = (
@@ -275,19 +389,19 @@ export default function Home() {
         </div>
 
         <div className={styles.heroCopy}>
-          <h1 className={styles.heroTitle} id="hero-title">
+          <h1 className={styles.heroTitle} id="hero-title" {...reveal(40)}>
             <span>Turn everyday service </span>
             <span>
               delivery into <em>structured,</em>{" "}
             </span>
             <span className={styles.gradientText}>audit-ready evidence</span>
           </h1>
-          <p className={styles.heroDescription}>
+          <p className={styles.heroDescription} {...reveal(140)}>
             Structured ESG and compliance evidence for cleaning SMEs{" "}
             <br className={styles.heroDescriptionBreak} />
             captured as the work happens, not reconstructed at audit time.
           </p>
-          <div className={styles.heroActions}>
+          <div className={styles.heroActions} {...reveal(220)}>
             <a className={styles.primaryAction} href="#become-a-partner">
               <img src="/assets/hero/arrow-forward-circle.svg" alt="" aria-hidden="true" />
               <span>Become a Founding Partner</span>
@@ -326,7 +440,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={styles.visualStage} aria-hidden="true">
+        <div className={styles.visualStage} aria-hidden="true" {...reveal(280)}>
           <img className={styles.leftConnector} src="/assets/hero/connector-left.png" alt="" />
           <img className={styles.rightConnector} src="/assets/hero/connector-right.png" alt="" />
 
@@ -378,7 +492,7 @@ export default function Home() {
       </section>
 
       <section className={styles.pressureSection} id="problem" aria-labelledby="pressure-title">
-        <div className={styles.pressureIntro}>
+        <div className={styles.pressureIntro} {...reveal()}>
           <h2 className={styles.pressureTitle} id="pressure-title">
             Cleaning SMEs are{" "}
             <br className={styles.pressureBreak} />
@@ -392,7 +506,7 @@ export default function Home() {
         </div>
 
         <div className={styles.pressureTopGrid}>
-          <article className={`${styles.pressureCard} ${styles.pressureCardBlue}`}>
+          <article className={`${styles.pressureCard} ${styles.pressureCardBlue}`} {...reveal(40)}>
             <span className={styles.pressureNumber}>01</span>
             <div className={styles.pressureCardCopy}>
               <h3>Tenders are<br />changing</h3>
@@ -400,13 +514,13 @@ export default function Home() {
             </div>
           </article>
 
-          <div className={styles.pressurePhotoWrap}>
+          <div className={styles.pressurePhotoWrap} {...reveal(120)}>
             <div className={styles.pressurePhotoFrame}>
               <img src="/assets/pressure/pressure-workers.png" alt="Cleaner holding a clipboard" />
             </div>
           </div>
 
-          <article className={`${styles.pressureCard} ${styles.pressureCardPeach}`}>
+          <article className={`${styles.pressureCard} ${styles.pressureCardPeach}`} {...reveal(200)}>
             <span className={styles.pressureNumber}>02</span>
             <div className={styles.pressureCardCopy}>
               <h3>Evidence is<br />demanded</h3>
@@ -416,13 +530,13 @@ export default function Home() {
         </div>
 
         <div className={styles.pressureBottomGrid}>
-          <div className={styles.pressurePhotoWrap}>
+          <div className={styles.pressurePhotoWrap} {...reveal(40)}>
             <div className={styles.pressurePhotoFrame}>
               <img src="/assets/pressure/pressure-woman.png" alt="Cleaning team reviewing a tablet" />
             </div>
           </div>
 
-          <article className={`${styles.pressureCard} ${styles.pressureCardBlue}`}>
+          <article className={`${styles.pressureCard} ${styles.pressureCardBlue}`} {...reveal(120)}>
             <span className={styles.pressureNumber}>03</span>
             <div className={styles.pressureCardCopy}>
               <h3>Manual chaos</h3>
@@ -430,7 +544,7 @@ export default function Home() {
             </div>
           </article>
 
-          <article className={`${styles.pressureCard} ${styles.pressureCardBlue}`}>
+          <article className={`${styles.pressureCard} ${styles.pressureCardBlue}`} {...reveal(200)}>
             <span className={styles.pressureNumber}>04</span>
             <div className={styles.pressureCardCopy}>
               <h3>Audit risk</h3>
@@ -448,17 +562,17 @@ export default function Home() {
         </div>
         <img className={styles.phaseSpecGlow} src="/assets/phases/phase-spec-glow.png" alt="" aria-hidden="true" />
 
-        <h2 className={styles.phaseTitle} id="phase-title">
+        <h2 className={styles.phaseTitle} id="phase-title" {...reveal()}>
           <span>Phase 1: built to be</span>
           <span>simple, not clever</span>
         </h2>
-        <p className={styles.phaseSubtitle}>No hardware to install, no new habits to learn.</p>
-        <a className={`${styles.primaryAction} ${styles.phaseAction}`} href="#become-a-partner">
+        <p className={styles.phaseSubtitle} {...reveal(80)}>No hardware to install, no new habits to learn.</p>
+        <a className={`${styles.primaryAction} ${styles.phaseAction}`} href="#become-a-partner" {...reveal(140)}>
           <img src="/assets/hero/arrow-forward-circle.svg" alt="" aria-hidden="true" />
           <span>Become a Founding Partner</span>
         </a>
 
-        <div className={styles.phaseTimeline} aria-label="PureHive process phases">
+        <div className={styles.phaseTimeline} aria-label="PureHive process phases" {...reveal(180)}>
           <img className={`${styles.phaseLine} ${styles.phaseLineOne}`} src="/assets/phases/phase-line-one.svg" alt="" />
           <img className={`${styles.phaseLine} ${styles.phaseLineTwo}`} src="/assets/phases/phase-line-two.svg" alt="" />
 
@@ -484,7 +598,7 @@ export default function Home() {
           </div>
         </div>
 
-        <aside className={styles.phaseFuture} aria-label="Future phases">
+        <aside className={styles.phaseFuture} aria-label="Future phases" {...reveal(260)}>
           <div className={styles.phaseFutureHeading}>Future phases</div>
           <ul>
             <li>Optional IoT integration,</li>
@@ -507,7 +621,7 @@ export default function Home() {
           <img className={styles.audienceTorusSpec} src="/assets/audience/audience-spec.png" alt="" />
         </div>
 
-        <h2 className={styles.audienceTitle} id="audience-title">
+        <h2 className={styles.audienceTitle} id="audience-title" {...reveal()}>
           <span>Built for cleaning leaders, </span>
           <span>not compliance departments</span>
         </h2>
@@ -515,13 +629,14 @@ export default function Home() {
           className={styles.audienceFeature}
           src="/assets/audience/audience-feature.png"
           alt="A cleaning team standing together in a bright workplace"
+          {...reveal(80)}
         />
-        <a className={`${styles.primaryAction} ${styles.audienceAction}`} href="#become-a-partner">
+        <a className={`${styles.primaryAction} ${styles.audienceAction}`} href="#become-a-partner" {...reveal(140)}>
           <img src="/assets/hero/arrow-forward-circle.svg" alt="" aria-hidden="true" />
           <span>Become a Founding Partner</span>
         </a>
 
-        <div className={styles.audienceBand}>
+        <div className={styles.audienceBand} {...reveal(200)}>
           <div className={styles.designedForCard}>
             <h3>Designed for</h3>
             <div className={styles.designedForColumns}>
@@ -553,20 +668,20 @@ export default function Home() {
         <img className={`${styles.partnersSpec} ${styles.partnersSpecLeft}`} src="/assets/partners/partners-spec.png" alt="" aria-hidden="true" />
         <img className={`${styles.partnersSpec} ${styles.partnersSpecRight}`} src="/assets/partners/partners-spec.png" alt="" aria-hidden="true" />
 
-        <h2 className={styles.partnersTitle} id="partners-title">
+        <h2 className={styles.partnersTitle} id="partners-title" {...reveal()}>
           <span>Help shape it, <em>before</em></span>
           <span>everyone else uses it</span>
         </h2>
-        <p className={styles.partnersSubtitle}>
+        <p className={styles.partnersSubtitle} {...reveal(80)}>
           We&apos;re piloting Purehiveesg with a small group of founding partners<br />
           direct input, priority onboarding, no pressure to buy.
         </p>
-        <a className={`${styles.primaryAction} ${styles.partnersAction}`} href="#become-a-partner">
+        <a className={`${styles.primaryAction} ${styles.partnersAction}`} href="#become-a-partner" {...reveal(140)}>
           <img src="/assets/hero/arrow-forward-circle.svg" alt="" aria-hidden="true" />
           <span>Become a Founding Partner</span>
         </a>
 
-        <div className={styles.pricingTable}>
+        <div className={styles.pricingTable} {...reveal(180)}>
           <div className={styles.pricingRow}>
             <span>Pilot pricing</span>
             <strong className={styles.pricingTbc}>TBC</strong>
@@ -585,7 +700,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={styles.partnersPhotoFrame}>
+        <div className={styles.partnersPhotoFrame} {...reveal(240)}>
           <img src="/assets/partners/partners-team.png" alt="Three cleaning professionals in blue workwear" />
         </div>
       </section>
@@ -597,7 +712,7 @@ export default function Home() {
           <img className={styles.waitlistTorusSpec} src="/assets/waitlist/waitlist-spec.png" alt="" />
         </div>
 
-        <div className={styles.waitlistCopy}>
+        <div className={styles.waitlistCopy} {...reveal()}>
           <h2 id="waitlist-title">Join the waitlist</h2>
           <p>
             Two minutes. No payment, no commitment,<br />
@@ -610,12 +725,7 @@ export default function Home() {
           </ul>
         </div>
 
-        <form
-          className={styles.waitlistFormCard}
-          onSubmit={(event) => {
-            event.preventDefault();
-          }}
-        >
+        <form className={styles.waitlistFormCard} onSubmit={handleWaitlistSubmit} {...reveal(120)}>
           <div className={styles.waitlistFields}>
             <div className={styles.waitlistFieldRow}>
               <label className={styles.waitlistField}>
@@ -766,14 +876,26 @@ export default function Home() {
             </fieldset>
           </div>
 
-          <button className={styles.waitlistSubmit} type="submit">
+          {submitMessage ? (
+            <p
+              className={`${styles.waitlistStatus} ${
+                submitStatus === "error" ? styles.waitlistStatusError : styles.waitlistStatusSuccess
+              }`}
+              role="status"
+              aria-live="polite"
+            >
+              {submitMessage}
+            </p>
+          ) : null}
+
+          <button className={styles.waitlistSubmit} type="submit" disabled={submitStatus === "submitting"}>
             <img src="/assets/waitlist/waitlist-arrow.svg" alt="" aria-hidden="true" />
-            <span>Join the waitlist</span>
+            <span>{submitStatus === "submitting" ? "Joining..." : "Join the waitlist"}</span>
           </button>
         </form>
       </section>
 
-      <footer className={styles.footer}>
+      <footer className={styles.footer} {...reveal()}>
         <Link className={styles.footerLogo} href="/" aria-label="PureHive ESG home">
           <img src="/assets/footer-logo.svg" alt="PureHive ESG" width="171" height="32" />
         </Link>

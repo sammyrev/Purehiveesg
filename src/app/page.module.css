@@ -223,6 +223,7 @@
   left: calc(54.167% - 36.5px);
   width: max-content;
   margin: 0;
+  overflow: visible;
   transform: translateX(-50%);
   color: #120048;
   font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -230,13 +231,18 @@
   font-weight: 500;
   font-variation-settings: "opsz" 14, "wdth" 100;
   letter-spacing: -2.1px;
-  line-height: 61px;
+  line-height: 1.24;
   text-align: center;
   white-space: nowrap;
 }
 
 .heroTitle span {
   display: block;
+  overflow: visible;
+}
+
+.heroTitle span:last-child {
+  padding-bottom: 0.08em;
 }
 
 .heroTitle em,
@@ -250,7 +256,7 @@
 
 .heroDescription {
   position: absolute;
-  top: 331px;
+  top: 378px;
   left: 50%;
   margin: 0;
   transform: translateX(-50%);
@@ -266,7 +272,7 @@
 
 .heroActions {
   position: absolute;
-  top: 434px;
+  top: 481px;
   left: calc(50% - 0.4px);
   display: flex;
   align-items: center;
@@ -578,6 +584,20 @@
   .heroMobileStage {
     animation: none;
   }
+
+  .pressureCard,
+  .pressurePhotoFrame {
+    transition: none;
+  }
+
+  .pressureCard:hover,
+  .pressurePhotoWrap:hover .pressurePhotoFrame {
+    transform: none;
+  }
+
+  .pressureTopGrid .pressurePhotoWrap:hover .pressurePhotoFrame {
+    transform: rotate(4.83deg);
+  }
 }
 
 .primaryAction:focus-visible,
@@ -614,17 +634,16 @@ button.waitlistInputWrap:focus-visible,
     top: 42px;
     font-size: 60px;
     letter-spacing: -1.8px;
-    line-height: 53px;
   }
 
   .heroDescription {
-    top: 230px;
+    top: 278px;
     font-size: 19px;
     letter-spacing: -0.57px;
   }
 
   .heroActions {
-    top: 300px;
+    top: 348px;
     gap: 20px;
   }
 
@@ -657,17 +676,16 @@ button.waitlistInputWrap:focus-visible,
     top: 30px;
     font-size: 54px;
     letter-spacing: -1.62px;
-    line-height: 48px;
   }
 
   .heroDescription {
-    top: 200px;
+    top: 248px;
     font-size: 18px;
     letter-spacing: -0.54px;
   }
 
   .heroActions {
-    top: 270px;
+    top: 318px;
     gap: 16px;
   }
 
@@ -825,7 +843,7 @@ button.waitlistInputWrap:focus-visible,
     transform: none;
     font-size: clamp(36px, 6.4vw, 52px);
     letter-spacing: -0.04em;
-    line-height: 1.15;
+    line-height: 1.24;
     white-space: normal;
     text-wrap: balance;
   }
@@ -1036,7 +1054,7 @@ button.waitlistInputWrap:focus-visible,
     max-width: 100%;
     font-size: clamp(32px, 8.4vw, 38px);
     letter-spacing: -0.035em;
-    line-height: 1.16;
+    line-height: 1.24;
   }
 
   .heroDescription {
@@ -1178,6 +1196,11 @@ button.waitlistInputWrap:focus-visible,
   overflow: hidden;
   border: 1px solid #ffffff;
   border-radius: 24px;
+  transition: transform 240ms ease;
+}
+
+.pressureCard:hover {
+  transform: translateY(-12px);
 }
 
 .pressureCardBlue {
@@ -1265,10 +1288,19 @@ button.waitlistInputWrap:focus-visible,
   border: 3px solid #ffffff;
   border-radius: 16px;
   background: #407bff;
+  transition: transform 240ms ease;
+}
+
+.pressurePhotoWrap:hover .pressurePhotoFrame {
+  transform: translateY(-12px);
 }
 
 .pressureTopGrid .pressurePhotoFrame {
   transform: rotate(4.83deg);
+}
+
+.pressureTopGrid .pressurePhotoWrap:hover .pressurePhotoFrame {
+  transform: translateY(-12px) rotate(4.83deg);
 }
 
 .pressureBottomGrid .pressurePhotoWrap {
@@ -1402,6 +1434,7 @@ button.waitlistInputWrap:focus-visible,
 }
 
 .phaseSection {
+  --phase-copy-left: calc(50% - 581px);
   position: relative;
   height: 1178px;
   overflow: hidden;
@@ -1461,7 +1494,10 @@ button.waitlistInputWrap:focus-visible,
   position: absolute;
   z-index: 3;
   top: 80px;
-  left: calc(50% - 581px);
+  left: var(--phase-copy-left);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   margin: 0;
   color: #ffffff;
   font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1470,6 +1506,7 @@ button.waitlistInputWrap:focus-visible,
   font-variation-settings: "opsz" 14, "wdth" 100;
   letter-spacing: -1.92px;
   line-height: 60px;
+  text-align: left;
   white-space: nowrap;
 }
 
@@ -1481,7 +1518,7 @@ button.waitlistInputWrap:focus-visible,
   position: absolute;
   z-index: 3;
   top: 224px;
-  left: calc(50% - 572px);
+  left: var(--phase-copy-left);
   margin: 0;
   color: #120048;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1489,6 +1526,7 @@ button.waitlistInputWrap:focus-visible,
   font-weight: 300;
   letter-spacing: -0.72px;
   line-height: normal;
+  text-align: left;
   white-space: nowrap;
 }
 
@@ -1496,7 +1534,7 @@ button.waitlistInputWrap:focus-visible,
   position: absolute;
   z-index: 3;
   top: 283px;
-  left: 148px;
+  left: var(--phase-copy-left);
 }
 
 .phaseTimeline {
@@ -2992,6 +3030,22 @@ button.waitlistInputWrap {
   font-weight: 400;
 }
 
+.waitlistStatus {
+  margin: 20px 0 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.waitlistStatusError {
+  color: #b42318;
+}
+
+.waitlistStatusSuccess {
+  color: #067647;
+}
+
 .waitlistSubmit {
   display: flex;
   flex: 0 0 59px;
@@ -3012,6 +3066,11 @@ button.waitlistInputWrap {
   letter-spacing: -0.72px;
   line-height: 35px;
   cursor: pointer;
+}
+
+.waitlistSubmit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }
 
 .waitlistSubmit img {
@@ -3415,6 +3474,7 @@ button.waitlistInputWrap {
    future-phases card keep their proportions without overwhelming the screen. */
 @media (min-width: 861px) and (max-width: 1024px) {
   .phaseSection {
+    --phase-copy-left: calc(50% - 40.3472vw);
     height: 82.7vw;
     min-height: 0;
     padding: 0;
@@ -3447,7 +3507,6 @@ button.waitlistInputWrap {
 
   .phaseTitle {
     top: 6vw;
-    left: calc(50% - 40.3472vw);
     font-size: 4.4444vw;
     letter-spacing: -0.1333vw;
     line-height: 4.1667vw;
@@ -3455,14 +3514,12 @@ button.waitlistInputWrap {
 
   .phaseSubtitle {
     top: 16vw;
-    left: calc(50% - 39.7222vw);
     font-size: 1.6667vw;
     letter-spacing: -0.05vw;
   }
 
   .phaseAction {
     top: 20.0972vw;
-    left: 10.2778vw;
     min-height: 4.0900vw;
     padding: 0.8333vw 1.6667vw;
     gap: 0.5556vw;
@@ -4197,6 +4254,7 @@ button.waitlistInputWrap {
    same center-origin proportion so the composition stays balanced. */
 @media (min-width: 1025px) and (max-width: 1600px) {
   .phaseSection {
+    --phase-copy-left: calc(50% - 493.85px);
     height: 1001px;
     min-height: 0;
     padding: 0;
@@ -4234,7 +4292,6 @@ button.waitlistInputWrap {
 
   .phaseTitle {
     top: 68px;
-    left: calc(50% - 493.85px);
     font-size: 40.8px;
     letter-spacing: -1.224px;
     line-height: 38.25px;
@@ -4242,14 +4299,12 @@ button.waitlistInputWrap {
 
   .phaseSubtitle {
     top: 190.4px;
-    left: calc(50% - 486.2px);
     font-size: 20.4px;
     letter-spacing: -0.612px;
   }
 
   .phaseAction {
     top: 240.55px;
-    left: calc(50% - 516.8px);
     min-height: 50.06px;
     padding: 10.2px 20.4px;
     gap: 6.8px;
