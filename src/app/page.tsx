@@ -402,7 +402,7 @@ export default function Home() {
             captured as the work happens, not reconstructed at audit time.
           </p>
           <div className={styles.heroActions} {...reveal(220)}>
-            <a className={styles.primaryAction} href="#become-a-partner">
+            <a className={styles.primaryAction} href="#create-account">
               <img src="/assets/hero/arrow-forward-circle.svg" alt="" aria-hidden="true" />
               <span>Become a Founding Partner</span>
             </a>
@@ -567,7 +567,7 @@ export default function Home() {
           <span>simple, not clever</span>
         </h2>
         <p className={styles.phaseSubtitle} {...reveal(80)}>No hardware to install, no new habits to learn.</p>
-        <a className={`${styles.primaryAction} ${styles.phaseAction}`} href="#become-a-partner" {...reveal(140)}>
+        <a className={`${styles.primaryAction} ${styles.phaseAction}`} href="#create-account" {...reveal(140)}>
           <img src="/assets/hero/arrow-forward-circle.svg" alt="" aria-hidden="true" />
           <span>Become a Founding Partner</span>
         </a>
@@ -631,7 +631,7 @@ export default function Home() {
           alt="A cleaning team standing together in a bright workplace"
           {...reveal(80)}
         />
-        <a className={`${styles.primaryAction} ${styles.audienceAction}`} href="#become-a-partner" {...reveal(140)}>
+        <a className={`${styles.primaryAction} ${styles.audienceAction}`} href="#create-account" {...reveal(140)}>
           <img src="/assets/hero/arrow-forward-circle.svg" alt="" aria-hidden="true" />
           <span>Become a Founding Partner</span>
         </a>
@@ -676,7 +676,7 @@ export default function Home() {
           We&apos;re piloting Purehiveesg with a small group of founding partners<br />
           direct input, priority onboarding, no pressure to buy.
         </p>
-        <a className={`${styles.primaryAction} ${styles.partnersAction}`} href="#become-a-partner" {...reveal(140)}>
+        <a className={`${styles.primaryAction} ${styles.partnersAction}`} href="#create-account" {...reveal(140)}>
           <img src="/assets/hero/arrow-forward-circle.svg" alt="" aria-hidden="true" />
           <span>Become a Founding Partner</span>
         </a>
