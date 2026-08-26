@@ -13,6 +13,7 @@ import {
 import styles from "./page.module.css";
 
 type DashboardStatus = "loading" | "ready" | "error" | "unauthorized";
+type AdminSection = "overview" | "waitlist" | "reports";
 
 const weekMs = 7 * 24 * 60 * 60 * 1000;
 const pageSize = 8;
@@ -111,6 +112,7 @@ export default function AdminPage() {
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [signingIn, setSigningIn] = useState(false);
+  const [activeSection, setActiveSection] = useState<AdminSection>("overview");
   const [weekAgo] = useState(() => Date.now() - weekMs);
   const tokenRef = useRef("");
 
@@ -376,19 +378,34 @@ export default function AdminPage() {
 
         <nav className={styles.navigation} aria-label="Admin navigation">
           <span className={styles.navSectionLabel}>Workspace</span>
-          <span className={`${styles.navItem} ${styles.navItemActive}`} aria-current="page">
+          <a
+            aria-current={activeSection === "overview" ? "page" : undefined}
+            className={`${styles.navItem} ${activeSection === "overview" ? styles.navItemActive : ""}`}
+            href="#overview"
+            onClick={() => setActiveSection("overview")}
+          >
             <span className={styles.navIcon} aria-hidden="true">⌘</span>
             Overview
-          </span>
-          <span className={styles.navItem}>
+          </a>
+          <a
+            aria-current={activeSection === "waitlist" ? "page" : undefined}
+            className={`${styles.navItem} ${activeSection === "waitlist" ? styles.navItemActive : ""}`}
+            href="#submissions"
+            onClick={() => setActiveSection("waitlist")}
+          >
             <span className={styles.navIcon} aria-hidden="true">◌</span>
             Waitlist
             <span className={styles.navCount}>{stats.total}</span>
-          </span>
-          <span className={styles.navItem}>
+          </a>
+          <a
+            aria-current={activeSection === "reports" ? "page" : undefined}
+            className={`${styles.navItem} ${activeSection === "reports" ? styles.navItemActive : ""}`}
+            href="#reports"
+            onClick={() => setActiveSection("reports")}
+          >
             <span className={styles.navIcon} aria-hidden="true">↗</span>
             Reports
-          </span>
+          </a>
         </nav>
 
         <div className={styles.sidebarFooter}>
@@ -419,7 +436,7 @@ export default function AdminPage() {
           </div>
         </header>
 
-        <section className={styles.intro} aria-labelledby="dashboard-title">
+        <section className={styles.intro} aria-labelledby="dashboard-title" id="overview">
           <div>
             <p className={styles.eyebrow}>Audience intelligence</p>
             <h1 id="dashboard-title">Welcome to your<br />waitlist.</h1>
@@ -432,7 +449,7 @@ export default function AdminPage() {
           </div>
         </section>
 
-        <section className={styles.stats} aria-label="Waitlist totals">
+        <section className={styles.stats} aria-label="Waitlist totals" id="reports">
           <article className={`${styles.statCard} ${styles.primaryStat}`}>
             <div className={styles.statTopline}>
               <p>Total audience</p>
@@ -467,7 +484,7 @@ export default function AdminPage() {
           </article>
         </section>
 
-        <section className={styles.submissionsSection} aria-labelledby="submissions-title">
+        <section className={styles.submissionsSection} aria-labelledby="submissions-title" id="submissions">
           <div className={styles.sectionHeading}>
             <div>
               <p className={styles.eyebrow}>Live submissions</p>

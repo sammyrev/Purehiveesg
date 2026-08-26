@@ -72,6 +72,18 @@
   color: #5e5a70;
   font-size: 14px;
   font-weight: 500;
+  text-decoration: none;
+  transition: background 140ms ease, color 140ms ease;
+}
+
+.navItem:hover {
+  background: #f5f3fa;
+  color: #302087;
+}
+
+.navItem:focus-visible {
+  outline: 3px solid rgb(96 77 212 / 28%);
+  outline-offset: 2px;
 }
 
 .navItemActive {
