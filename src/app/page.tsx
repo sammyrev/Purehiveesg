@@ -875,7 +875,7 @@ export default function Home() {
 
             <button className={styles.waitlistSubmit} type="submit" disabled={submitStatus === "submitting"}>
               <img src="/assets/waitlist/waitlist-arrow.svg" alt="" aria-hidden="true" />
-              <span>{submitStatus === "submitting" ? "Submitting..." : "Submit Founding Partner Application"}</span>
+              <span>{submitStatus === "submitting" ? "Submitting..." : "Submit Application"}</span>
             </button>
             <p className={styles.waitlistApplicationNote}>There is no cost to apply.</p>
           </form>
