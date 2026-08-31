@@ -130,7 +130,7 @@ export default function Home() {
       observer.disconnect();
       timeouts.forEach((timeout) => window.clearTimeout(timeout));
     };
-  }, []);
+  }, [applicationStep]);
 
   useEffect(() => {
     if (!menuOpen) return;
