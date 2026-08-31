@@ -227,11 +227,11 @@
   transform: translateX(-50%);
   color: #120048;
   font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 70px;
+  font-size: 84px;
   font-weight: 500;
   font-variation-settings: "opsz" 14, "wdth" 100;
-  letter-spacing: -2.1px;
-  line-height: 1.24;
+  letter-spacing: -2.52px;
+  line-height: 0.98;
   text-align: center;
   white-space: nowrap;
 }
@@ -258,6 +258,7 @@
   position: absolute;
   top: 378px;
   left: 50%;
+  width: min(900px, calc(100% - 48px));
   margin: 0;
   transform: translateX(-50%);
   color: #120048;
@@ -265,9 +266,16 @@
   font-size: 24px;
   font-weight: 300;
   letter-spacing: -0.72px;
-  line-height: normal;
+  line-height: 1.15;
   text-align: center;
-  white-space: nowrap;
+}
+
+.heroDescription span {
+  display: block;
+}
+
+.heroDescription span + span {
+  margin-top: 0.45em;
 }
 
 .heroActions {
@@ -304,6 +312,42 @@
   display: block;
   width: 16.079px;
   height: 16.079px;
+}
+
+.secondaryAction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 58.894px;
+  padding: 12px 24px;
+  border: 1.5px solid #407bff;
+  border-radius: 24px;
+  background: rgb(255 255 255 / 68%);
+  color: #264a99;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.72px;
+  line-height: 34.894px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.heroApplicationNote {
+  position: absolute;
+  top: 558px;
+  left: 50%;
+  width: min(calc(100% - 48px), 520px);
+  margin: 0;
+  transform: translateX(-50%);
+  color: #264a99;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.32px;
+  line-height: 1.35;
+  text-align: center;
 }
 
 .visualStage {
@@ -601,6 +645,7 @@
 }
 
 .primaryAction:focus-visible,
+.secondaryAction:focus-visible,
 button.waitlistInputWrap:focus-visible,
 .waitlistDropdownOption:focus-visible {
   outline: 2px solid #407bff;
@@ -632,18 +677,19 @@ button.waitlistInputWrap:focus-visible,
 
   .heroTitle {
     top: 42px;
-    font-size: 60px;
-    letter-spacing: -1.8px;
+    font-size: 78px;
+    letter-spacing: -2.34px;
+    line-height: 0.98;
   }
 
   .heroDescription {
-    top: 278px;
+    top: 210px;
     font-size: 19px;
     letter-spacing: -0.57px;
   }
 
   .heroActions {
-    top: 348px;
+    top: 328px;
     gap: 20px;
   }
 
@@ -660,8 +706,21 @@ button.waitlistInputWrap:focus-visible,
     height: 14px;
   }
 
+  .secondaryAction {
+    min-height: 53px;
+    padding: 10px 21px;
+    font-size: 20px;
+    letter-spacing: -0.6px;
+    line-height: 29px;
+  }
+
+  .heroApplicationNote {
+    top: 406px;
+    font-size: 14px;
+  }
+
   .visualStage {
-    top: 100px;
+    top: 130px;
     transform: scale(0.54);
     transform-origin: top center;
   }
@@ -674,18 +733,19 @@ button.waitlistInputWrap:focus-visible,
 
   .heroTitle {
     top: 30px;
-    font-size: 54px;
-    letter-spacing: -1.62px;
+    font-size: 68px;
+    letter-spacing: -2.04px;
+    line-height: 0.98;
   }
 
   .heroDescription {
-    top: 248px;
+    top: 188px;
     font-size: 18px;
     letter-spacing: -0.54px;
   }
 
   .heroActions {
-    top: 318px;
+    top: 280px;
     gap: 16px;
   }
 
@@ -702,8 +762,21 @@ button.waitlistInputWrap:focus-visible,
     height: 13px;
   }
 
+  .secondaryAction {
+    min-height: 48px;
+    padding: 9px 18px;
+    font-size: 18px;
+    letter-spacing: -0.54px;
+    line-height: 27px;
+  }
+
+  .heroApplicationNote {
+    top: 346px;
+    font-size: 13px;
+  }
+
   .visualStage {
-    top: 95px;
+    top: 130px;
     transform: scale(0.43);
   }
 }
@@ -713,6 +786,22 @@ button.waitlistInputWrap:focus-visible,
     gap: clamp(32px, 14vw, 180px);
     padding-right: 48px;
     padding-left: 48px;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1600px) {
+  .navigation {
+    position: relative;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 24px 32px;
+    box-sizing: border-box;
+  }
+
+  .menu {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
@@ -843,7 +932,7 @@ button.waitlistInputWrap:focus-visible,
     transform: none;
     font-size: clamp(36px, 6.4vw, 52px);
     letter-spacing: -0.04em;
-    line-height: 1.24;
+    line-height: 1.02;
     white-space: normal;
     text-wrap: balance;
   }
@@ -861,9 +950,13 @@ button.waitlistInputWrap:focus-visible,
     font-size: clamp(16px, 2.4vw, 20px);
     font-weight: 400;
     letter-spacing: -0.02em;
-    line-height: 1.5;
+    line-height: 1.28;
     white-space: normal;
     text-wrap: pretty;
+  }
+
+  .heroDescription span + span {
+    margin-top: 0.75em;
   }
 
   .heroDescriptionBreak {
@@ -878,6 +971,21 @@ button.waitlistInputWrap:focus-visible,
     flex-wrap: wrap;
     justify-content: center;
     transform: none;
+  }
+
+  .secondaryAction {
+    min-height: 48px;
+    padding: 12px 20px;
+    font-size: 18px;
+    line-height: 1.3;
+  }
+
+  .heroApplicationNote {
+    position: static;
+    width: min(100%, 420px);
+    margin: 14px 0 0;
+    transform: none;
+    font-size: 14px;
   }
 
   .primaryAction {
@@ -1054,13 +1162,13 @@ button.waitlistInputWrap:focus-visible,
     max-width: 100%;
     font-size: clamp(32px, 8.4vw, 38px);
     letter-spacing: -0.035em;
-    line-height: 1.24;
+    line-height: 1.02;
   }
 
   .heroDescription {
     margin-top: 16px;
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.28;
   }
 
   .heroActions {
@@ -1085,6 +1193,11 @@ button.waitlistInputWrap:focus-visible,
     max-width: 100%;
     min-height: 50px;
     padding: 12px 24px;
+  }
+
+  .heroActions .secondaryAction {
+    width: auto;
+    max-width: 100%;
   }
 
   .heroMobileVisual {
@@ -1125,7 +1238,7 @@ button.waitlistInputWrap:focus-visible,
    flow naturally on narrower screens. */
 .pressureSection {
   position: relative;
-  min-height: 1354px;
+  min-height: 1540px;
   overflow: hidden;
   background: linear-gradient(180deg, #ffffff 27.155%, #d0deff 126.17%);
   color: #120048;
@@ -1153,21 +1266,40 @@ button.waitlistInputWrap:focus-visible,
 }
 
 .pressureTitle span {
+  display: block;
   color: #407bff;
+}
+
+.pressureTitle span:first-child {
+  color: #120048;
 }
 
 .pressureDescription {
   position: absolute;
-  top: 101px;
-  left: calc(79.166667% - 309px);
-  width: max-content;
+  top: 80px;
+  left: calc(58.333333% + 36px);
+  width: min(470px, calc(41.666667% - 72px));
   margin: 0;
   color: #120048;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 24px;
+  font-size: 17px;
   font-weight: 300;
-  letter-spacing: -0.72px;
-  line-height: normal;
+  letter-spacing: -0.42px;
+  line-height: 1.32;
+}
+
+.pressureDescription span,
+.pressureDescription strong {
+  display: block;
+}
+
+.pressureDescription span + span,
+.pressureDescription strong {
+  margin-top: 10px;
+}
+
+.pressureDescription strong {
+  font-weight: 500;
 }
 
 .pressureTopGrid,
@@ -1182,11 +1314,11 @@ button.waitlistInputWrap:focus-visible,
 }
 
 .pressureTopGrid {
-  top: 291.47px;
+  top: 520px;
 }
 
 .pressureBottomGrid {
-  top: 804px;
+  top: 1030px;
 }
 
 .pressureCard {
@@ -1247,6 +1379,7 @@ button.waitlistInputWrap:focus-visible,
 
 .pressureCardCopy p {
   margin: 26px 0 0;
+  max-width: 15.5ch;
   font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 20px;
   font-weight: 300;
@@ -1259,7 +1392,10 @@ button.waitlistInputWrap:focus-visible,
 }
 
 .pressureTopGrid .pressureCardCopy p {
-  margin-top: 26px;
+  margin-top: 18px;
+  max-width: 18ch;
+  font-size: 17px;
+  line-height: 1.15;
 }
 
 .pressureBottomGrid .pressureCard:last-child .pressureCardCopy {
@@ -1431,6 +1567,20 @@ button.waitlistInputWrap:focus-visible,
     width: 100%;
     height: min(441px, 118vw);
   }
+
+  .pressureBottomGrid .pressureCardCopy,
+  .pressureBottomGrid .pressureCard:last-child .pressureCardCopy {
+    top: 200px;
+    left: 32px;
+  }
+
+  .pressureBottomGrid .pressureCardCopy p,
+  .pressureBottomGrid .pressureCard:last-child .pressureCardCopy p {
+    max-width: 18ch;
+    margin-top: 14px;
+    font-size: 18px;
+    line-height: 1.12;
+  }
 }
 
 .phaseSection {
@@ -1519,21 +1669,22 @@ button.waitlistInputWrap:focus-visible,
   z-index: 3;
   top: 224px;
   left: var(--phase-copy-left);
+  width: 580px;
   margin: 0;
   color: #120048;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 24px;
   font-weight: 300;
   letter-spacing: -0.72px;
-  line-height: normal;
+  line-height: 1.25;
   text-align: left;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .phaseAction {
   position: absolute;
   z-index: 3;
-  top: 283px;
+  top: 310px;
   left: var(--phase-copy-left);
 }
 
@@ -1634,14 +1785,14 @@ button.waitlistInputWrap:focus-visible,
 }
 
 .phaseStepCopy p {
-  margin: 26px 0 0;
-  max-width: 22ch;
+  margin: 18px 0 0;
+  max-width: 23ch;
   color: #120048;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 300;
   letter-spacing: -0.6px;
-  line-height: 1.1;
+  line-height: 1.25;
 }
 
 .phaseStepOne {
@@ -1650,7 +1801,7 @@ button.waitlistInputWrap:focus-visible,
 }
 
 .phaseStepOne p {
-  margin-top: 26px;
+  margin-top: 18px;
 }
 
 .phaseStepTwo {
@@ -1659,7 +1810,7 @@ button.waitlistInputWrap:focus-visible,
 }
 
 .phaseStepTwo p {
-  margin-top: 26px;
+  margin-top: 18px;
 }
 
 .phaseStepThree {
@@ -1668,7 +1819,7 @@ button.waitlistInputWrap:focus-visible,
 }
 
 .phaseStepThree p {
-  margin-top: 26px;
+  margin-top: 18px;
 }
 
 .phaseFuture {
@@ -1691,16 +1842,16 @@ button.waitlistInputWrap:focus-visible,
   align-items: center;
   width: 268px;
   height: 58px;
-  padding-left: 27px;
+  padding-left: 22px;
   border-radius: 8px;
   background: #ffcf99;
   color: #120048;
   font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 500;
   font-variation-settings: "opsz" 14, "wdth" 100;
-  letter-spacing: -0.96px;
-  line-height: 1.21;
+  letter-spacing: -0.78px;
+  line-height: 1.1;
   white-space: nowrap;
 }
 
@@ -1720,16 +1871,17 @@ button.waitlistInputWrap:focus-visible,
 
 .phaseFuture p {
   position: absolute;
-  top: 229px;
+  top: 231px;
   left: 38px;
+  width: 245px;
   margin: 0;
   color: #986326;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 300;
   letter-spacing: -0.48px;
-  line-height: 1.21;
-  white-space: nowrap;
+  line-height: 1.25;
+  white-space: normal;
 }
 
 @media (max-width: 860px) {
@@ -1767,6 +1919,7 @@ button.waitlistInputWrap:focus-visible,
 
   .phaseSubtitle {
     display: block;
+    width: 100%;
     max-width: 650px;
     margin: 20px 0 0;
     font-size: clamp(18px, 3vw, 22px);
@@ -2421,29 +2574,30 @@ button.waitlistInputWrap:focus-visible,
 .partnersSubtitle {
   position: absolute;
   z-index: 2;
-  top: 234px;
+  top: 226px;
   left: calc(50% - 578px);
+  width: 620px;
   margin: 0;
   color: #ffffff;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 300;
   letter-spacing: -0.72px;
-  line-height: normal;
-  white-space: nowrap;
+  line-height: 1.3;
+  white-space: normal;
 }
 
 .partnersAction {
   position: absolute;
   z-index: 2;
-  top: 316px;
+  top: 360px;
   left: calc(50% - 578px);
 }
 
 .pricingTable {
   position: absolute;
   z-index: 2;
-  top: 419px;
+  top: 462px;
   left: calc(50% - 578px);
   display: flex;
   flex-direction: column;
@@ -2559,6 +2713,7 @@ button.waitlistInputWrap:focus-visible,
   }
 
   .partnersSubtitle {
+    width: 100%;
     max-width: 760px;
     margin: 28px auto 0;
     font-size: clamp(18px, 3vw, 24px);
@@ -2693,6 +2848,7 @@ button.waitlistInputWrap:focus-visible,
   z-index: 2;
   top: 248px;
   left: 144px;
+  width: 500px;
 }
 
 .waitlistCopy h2 {
@@ -2710,10 +2866,10 @@ button.waitlistInputWrap:focus-visible,
   margin: 34px 0 0;
   color: #120048;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 300;
   letter-spacing: -0.72px;
-  line-height: 24px;
+  line-height: 1.3;
 }
 
 .waitlistBenefits {
@@ -2729,14 +2885,14 @@ button.waitlistInputWrap:focus-visible,
   display: flex;
   align-items: center;
   gap: 21px;
-  height: 49px;
+  min-height: 49px;
   color: #0e1036;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 18px;
   font-weight: 400;
   letter-spacing: -0.54px;
   line-height: 20px;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .waitlistCheck {
@@ -2770,6 +2926,52 @@ button.waitlistInputWrap:focus-visible,
   box-shadow: 0 4px 12px rgb(64 123 255 / 10%);
   box-sizing: border-box;
   overflow: visible;
+}
+
+.waitlistFormTitle,
+.waitlistAcknowledgement h3 {
+  margin: 0;
+  color: #120048;
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.96px;
+  line-height: 1.08;
+}
+
+.waitlistFormIntro,
+.waitlistAcknowledgement > p:not(.waitlistApplicationNote) {
+  margin: 12px 0 0;
+  color: #3a3839;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: -0.42px;
+  line-height: 1.4;
+}
+
+.waitlistFormIntro {
+  margin-bottom: 24px;
+}
+
+.waitlistAcknowledgement {
+  justify-content: center;
+  min-height: 318px;
+}
+
+.waitlistAcknowledgement .waitlistSubmit {
+  margin-top: 28px;
+}
+
+.waitlistApplicationNote {
+  margin: 16px 0 0;
+  color: #264a99;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.32px;
+  line-height: 1.35;
+  text-align: center;
 }
 
 .waitlistFields {
@@ -3068,6 +3270,10 @@ button.waitlistInputWrap {
   cursor: pointer;
 }
 
+.waitlistSubmit span {
+  text-align: center;
+}
+
 .waitlistSubmit:disabled {
   opacity: 0.65;
   cursor: not-allowed;
@@ -3110,6 +3316,7 @@ button.waitlistInputWrap {
   }
 
   .waitlistCopy > p {
+    width: 100%;
     font-size: clamp(18px, 3vw, 24px);
   }
 
@@ -3118,6 +3325,10 @@ button.waitlistInputWrap {
     height: auto;
     min-height: 0;
     margin: 64px auto 0;
+  }
+
+  .waitlistAcknowledgement {
+    min-height: 0;
   }
 }
 
@@ -3163,6 +3374,16 @@ button.waitlistInputWrap {
     margin-top: 44px;
     padding: 20px 20px 22px;
     border-radius: 24px;
+  }
+
+  .waitlistFormTitle,
+  .waitlistAcknowledgement h3 {
+    font-size: 28px;
+  }
+
+  .waitlistFormIntro,
+  .waitlistAcknowledgement > p:not(.waitlistApplicationNote) {
+    font-size: 16px;
   }
 
   .waitlistFields {
@@ -3232,8 +3453,16 @@ button.waitlistInputWrap {
   }
 
   .waitlistSubmit {
+    flex-basis: auto;
+    min-height: 59px;
+    height: auto;
     margin-top: 28px;
     font-size: 20px;
+    line-height: 1.25;
+  }
+
+  .waitlistApplicationNote {
+    font-size: 14px;
   }
 }
 
@@ -3354,120 +3583,9 @@ button.waitlistInputWrap {
   }
 }
 
-/* Keep the pressure layout in its three-column composition on laptop widths,
-   scaling the Figma desktop coordinates down with the viewport. */
-@media (min-width: 681px) and (max-width: 1024px) {
-  .pressureSection {
-    min-height: 94.4vw;
-    padding: 0;
-  }
-
-  .pressureIntro {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    display: block;
-    height: 0;
-  }
-
-  .pressureTitle,
-  .pressureDescription {
-    position: absolute;
-    width: max-content;
-  }
-
-  .pressureTitle {
-    top: 6vw;
-    left: 10.2vw;
-    font-size: 3.33vw;
-    letter-spacing: -0.1vw;
-    line-height: 3.12vw;
-  }
-
-  .pressureDescription {
-    top: 7vw;
-    left: 57.8vw;
-    font-size: 1.67vw;
-    letter-spacing: -0.05vw;
-    line-height: 1.25;
-  }
-
-  .pressureTopGrid,
-  .pressureBottomGrid {
-    position: absolute;
-    top: 21.2vw;
-    display: grid;
-    grid-template-columns: 25.1vw 27.8vw 25.1vw;
-    gap: 2.4vw;
-    width: 82.8vw;
-    margin: 0;
-    transform: translateX(-50%);
-  }
-
-  .pressureBottomGrid {
-    top: 55.8vw;
-  }
-
-  .pressureCard {
-    width: 25.1vw;
-    height: 30.5vw;
-    border-radius: 1.7vw;
-  }
-
-  .pressureNumber {
-    top: 2.7vw;
-    left: 3.2vw;
-    font-size: 8.8vw;
-    letter-spacing: -0.26vw;
-  }
-
-  .pressureCardCopy {
-    top: 16.4vw;
-    left: 3.2vw;
-  }
-
-  .pressureTopGrid .pressureCardCopy {
-    top: 13.8vw;
-  }
-
-  .pressureBottomGrid .pressureCard:last-child .pressureCardCopy {
-    top: 16.9vw;
-    left: 3.4vw;
-  }
-
-  .pressureCardCopy h3 {
-    font-size: 2.5vw;
-    letter-spacing: -0.075vw;
-  }
-
-  .pressureCardCopy p {
-    margin-top: 1.8vw;
-    font-size: 1.4vw;
-    letter-spacing: -0.04vw;
-  }
-
-  .pressureTopGrid .pressureCardCopy p {
-    margin-top: 1.8vw;
-  }
-
-  .pressureBottomGrid .pressureCard:last-child .pressureCardCopy p {
-    margin-top: 1.9vw;
-  }
-
-  .pressurePhotoWrap {
-    width: 27.8vw;
-    height: 32.6vw;
-  }
-
-  .pressurePhotoFrame {
-    width: 25.1vw;
-    height: 30.5vw;
-    border-width: 0.2vw;
-    border-radius: 1.1vw;
-  }
-}
+/* The regular tablet flow above is intentionally retained here. It keeps the
+   longer Founding Partner evidence narrative legible rather than compressing
+   it into the original three-column art-directed frame. */
 
 /* The phase artwork is exported at a 1440px-wide Figma frame. Scale the
    complete composition on laptop widths so the timeline, copy, controls and
@@ -3864,300 +3982,17 @@ button.waitlistInputWrap {
   }
 }
 
-/* Scale the founding-partners frame from its 1440px Figma coordinates on
-   laptops, including the pricing rows and team image. */
-@media (min-width: 861px) and (max-width: 1024px) {
-  .partnersSection {
-    height: 58vw;
-    min-height: 0;
-    padding: 0;
-  }
+/* The regular tablet flow above is retained for Founding Partner content so
+   the longer programme explanation stays readable at this breakpoint. */
 
-  .partnersSpec {
-    width: 53.4259vw;
-    height: 50.8333vw;
-  }
-
-  .partnersSpecLeft {
-    top: 40vw;
-    left: -7.4306vw;
-  }
-
-  .partnersSpecRight {
-    top: -14.6528vw;
-    left: 81.3889vw;
-  }
-
-  .partnersTitle {
-    position: absolute;
-    top: 6vw;
-    left: calc(50% - 39.757vw);
-    max-width: none;
-    margin: 0;
-    font-size: 4.4444vw;
-    letter-spacing: -0.1333vw;
-    line-height: 4.1667vw;
-    white-space: nowrap;
-  }
-
-  .partnersSubtitle {
-    position: absolute;
-    top: 16.7vw;
-    left: calc(50% - 39.757vw);
-    max-width: none;
-    margin: 0;
-    font-size: 1.6667vw;
-    letter-spacing: -0.0500vw;
-    line-height: normal;
-    white-space: nowrap;
-  }
-
-  .partnersAction {
-    position: absolute;
-    top: 22.4vw;
-    left: calc(50% - 39.757vw);
-    width: max-content;
-    margin: 0;
-    min-height: 4.0900vw;
-    padding: 0.8333vw 1.6667vw;
-    gap: 0.5556vw;
-    border-radius: 1.6667vw;
-    font-size: 1.6667vw;
-    letter-spacing: -0.0500vw;
-    line-height: 2.4232vw;
-  }
-
-  .partnersAction img {
-    width: 1.1166vw;
-    height: 1.1166vw;
-  }
-
-  .pricingTable {
-    position: absolute;
-    top: 29.5vw;
-    left: calc(50% - 39.757vw);
-    width: 34.4444vw;
-    margin: 0;
-  }
-
-  .pricingRow {
-    min-height: 3.9vw;
-    font-size: 1.6667vw;
-    letter-spacing: -0.0500vw;
-    line-height: 2.8vw;
-  }
-
-  .pricingRow > span {
-    padding-left: 0.6944vw;
-  }
-
-  .pricingRow strong {
-    min-width: 7.3611vw;
-    min-height: 2.3611vw;
-    padding: 0 1.6667vw;
-    border-radius: 1.2500vw;
-    font-size: 1.3889vw;
-    letter-spacing: -0.0417vw;
-    line-height: 1.6667vw;
-  }
-
-  .partnersPhotoFrame {
-    position: absolute;
-    top: 6vw;
-    left: calc(50% + 7.99vw);
-    width: 31.6667vw;
-    height: 45.9722vw;
-    margin: 0;
-    border-width: 0.2083vw;
-    border-radius: 1.6667vw;
-  }
-}
-
-/* Scale the waitlist frame from the 1440px Figma canvas for standard laptops.
-   The desktop layout stays two-column while every control scales with the
-   viewport so the form remains comfortably within the section. */
-@media (min-width: 861px) and (max-width: 1024px) {
-  .waitlistSection {
-    height: auto;
-    min-height: 0;
-    padding: 15.1389vw 0;
-  }
-
-  .waitlistTorus {
-    opacity: 0.28;
-    transform: scale(0.58);
-    transform-origin: top right;
-  }
-
-  .waitlistTorusBase,
-  .waitlistTorusSpec {
-    top: -21.3194vw;
-    left: calc(75% + 0.8333vw);
-    width: 75.2083vw;
-    height: 78.7500vw;
-  }
-
-  .waitlistTorusColor {
-    top: -33.5597vw;
-    left: calc(58.33% + 2.5063vw);
-    width: 107.5306vw;
-    height: 99.4003vw;
-  }
-
-  .waitlistTorusColor::before {
-    width: 104.8763vw;
-    height: 96.5090vw;
-    border-radius: 123.8281vw;
-    mask-position: 14.9934vw 12.2390vw;
-    mask-size: 77.3785vw 80.8195vw;
-  }
-
-  .waitlistCopy {
-    position: absolute;
-    top: 17.2222vw;
-    left: 10vw;
-    width: auto;
-    margin: 0;
-  }
-
-  .waitlistCopy h2 {
-    font-size: 3.3333vw;
-    letter-spacing: -0.1000vw;
-    line-height: 3.3333vw;
-  }
-
-  .waitlistCopy > p {
-    margin-top: 2.3611vw;
-    font-size: 1.6667vw;
-    letter-spacing: -0.0500vw;
-    line-height: 1.6667vw;
-  }
-
-  .waitlistBenefits {
-    gap: 0;
-    margin-top: 2.4306vw;
-  }
-
-  .waitlistBenefits li {
-    gap: 1.4583vw;
-    height: 3.4028vw;
-    font-size: 1.2500vw;
-    letter-spacing: -0.0375vw;
-    line-height: 1.3889vw;
-  }
-
-  .waitlistCheck {
-    flex-basis: 2.0139vw;
-    width: 2.0139vw;
-    height: 2.0139vw;
-  }
-
-  .waitlistCheck img {
-    width: 0.9722vw;
-    height: 0.9722vw;
-  }
-
-  .waitlistFormCard {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: 43.1944vw;
-    height: auto;
-    min-height: 0;
-    margin: 0 0 0 calc(41.67% + 5.1389vw);
-    padding: 1.8vw 2.0833vw 2vw;
-    border-radius: 2.0833vw;
-  }
-
-  .waitlistFields {
-    gap: 1.4vw;
-  }
-
-  .waitlistField {
-    gap: 0.4vw;
-    font-size: 1.6667vw;
-    line-height: 2.0139vw;
-  }
-
-  .waitlistInputWrap {
-    height: 5.3472vw;
-    border-width: 0.1028vw;
-    border-radius: 0.8222vw;
-  }
-
-  .waitlistInputWrap > img {
-    flex-basis: 1.6528vw;
-    width: 1.6528vw;
-    height: 1.6528vw;
-    margin-left: 2.5000vw;
-  }
-
-  .waitlistInputWrap input,
-  .waitlistDropdownValue,
-  .waitlistDropdownPlaceholder {
-    padding: 0 1.3889vw;
-    letter-spacing: -0.0458vw;
-    line-height: 1.9444vw;
-  }
-
-  .waitlistInputWrap input,
-  .waitlistDropdownValue {
-    font-size: 1.5278vw;
-  }
-
-  .waitlistInputWrap input::placeholder,
-  .waitlistDropdownPlaceholder,
-  .waitlistTextarea::placeholder {
-    font-size: 1.18vw;
-  }
-
-  .waitlistSelectArrow {
-    flex-basis: 1.6444vw !important;
-    width: 1.6444vw !important;
-    height: 1.6444vw !important;
-    margin: 0 2.5000vw 0 0 !important;
-  }
-
-  .waitlistDropdownList {
-    top: calc(100% + 0.5556vw);
-    max-height: 18vw;
-    padding: 0.5556vw;
-    border-width: 0.1028vw;
-    border-radius: 0.8222vw;
-  }
-
-  .waitlistDropdownOption {
-    min-height: 3.0556vw;
-    padding: 0.6944vw 1.1111vw;
-    border-radius: 0.5556vw;
-    font-size: 1.3889vw;
-    letter-spacing: -0.0417vw;
-  }
-
-  .waitlistSubmit {
-    flex-basis: 4.0972vw;
-    height: 4.0972vw;
-    margin-top: 2.5vw;
-    padding: 0.8333vw 1.3889vw;
-    border-radius: 1.6667vw;
-    gap: 0.5556vw;
-    font-size: 1.6667vw;
-    letter-spacing: -0.0500vw;
-    line-height: 2.4306vw;
-  }
-
-  .waitlistSubmit img {
-    width: 1.1111vw;
-    height: 1.1111vw;
-  }
-}
+/* The standard responsive application form remains in flow up to 1024px. */
 
 /* The pressure frame was authored for a very large 1440px canvas. On
    everyday laptop viewports, keep the same three-column composition while
    giving the copy, cards, and photography a little more breathing room. */
 @media (min-width: 1025px) and (max-width: 1600px) {
   .pressureSection {
-    min-height: 1148px;
+    min-height: 1325px;
   }
 
   .pressureTitle {
@@ -4169,10 +4004,12 @@ button.waitlistInputWrap {
   }
 
   .pressureDescription {
-    top: 85.85px;
+    top: 68px;
     left: calc(50% + 94.35px);
-    font-size: 20.4px;
-    letter-spacing: -0.612px;
+    width: 450px;
+    font-size: 17px;
+    letter-spacing: -0.42px;
+    line-height: 1.32;
   }
 
   .pressureTopGrid,
@@ -4183,11 +4020,11 @@ button.waitlistInputWrap {
   }
 
   .pressureTopGrid {
-    top: 247.75px;
+    top: 400px;
   }
 
   .pressureBottomGrid {
-    top: 683.4px;
+    top: 845px;
   }
 
   .pressureCard {
@@ -4204,16 +4041,16 @@ button.waitlistInputWrap {
   }
 
   .pressureCardCopy {
-    top: 201.45px;
+    top: 168px;
     left: 27.2px;
   }
 
   .pressureTopGrid .pressureCardCopy {
-    top: 164.05px;
+    top: 145px;
   }
 
   .pressureBottomGrid .pressureCard:last-child .pressureCardCopy {
-    top: 196.35px;
+    top: 168px;
     left: 28.9px;
   }
 
@@ -4223,17 +4060,21 @@ button.waitlistInputWrap {
   }
 
   .pressureCardCopy p {
-    margin-top: 22.1px;
-    font-size: 17px;
+    margin-top: 16px;
+    max-width: 19ch;
+    font-size: 15px;
     letter-spacing: -0.51px;
+    line-height: 1.2;
   }
 
   .pressureTopGrid .pressureCardCopy p {
-    margin-top: 22.1px;
+    margin-top: 14px;
+    max-width: 18ch;
+    font-size: 15px;
   }
 
   .pressureBottomGrid .pressureCard:last-child .pressureCardCopy p {
-    margin-top: 23.8px;
+    margin-top: 16px;
   }
 
   .pressurePhotoWrap {
@@ -4413,10 +4254,10 @@ button.waitlistInputWrap {
     left: 18.7px;
     width: 227.8px;
     height: 49.3px;
-    padding-left: 22.95px;
+    padding-left: 16px;
     border-radius: 6.8px;
-    font-size: 27.2px;
-    letter-spacing: -0.816px;
+    font-size: 23px;
+    letter-spacing: -0.69px;
   }
 
   .phaseFuture ul {
@@ -4552,7 +4393,7 @@ button.waitlistInputWrap {
    the pressure and audience sections. */
 @media (min-width: 1025px) and (max-width: 1600px) {
   .partnersSection {
-    height: 699px;
+    height: 720px;
   }
 
   .partnersTitle {
@@ -4564,14 +4405,16 @@ button.waitlistInputWrap {
   }
 
   .partnersSubtitle {
-    top: 198.9px;
+    top: 190px;
     left: calc(50% - 486.625px);
-    font-size: 20.4px;
-    letter-spacing: -0.612px;
+    width: 520px;
+    font-size: 17px;
+    letter-spacing: -0.42px;
+    line-height: 1.35;
   }
 
   .partnersAction {
-    top: 268.6px;
+    top: 315px;
     left: calc(50% - 486.625px);
     min-height: 50.06px;
     padding: 10.2px 20.4px;
@@ -4588,7 +4431,7 @@ button.waitlistInputWrap {
   }
 
   .pricingTable {
-    top: 356.15px;
+    top: 405px;
     left: calc(50% - 486.625px);
     width: 421.6px;
   }
@@ -4665,33 +4508,35 @@ button.waitlistInputWrap {
   }
 
   .waitlistCopy {
-    top: 180px;
+    top: 135px;
     left: calc(50% - 468px);
+    width: 410px;
   }
 
   .waitlistCopy h2 {
-    font-size: 40.8px;
-    letter-spacing: -1.224px;
-    line-height: 40.8px;
+    font-size: 34px;
+    letter-spacing: -0.9px;
+    line-height: 36px;
   }
 
   .waitlistCopy > p {
-    margin-top: 28.9px;
-    font-size: 20.4px;
-    letter-spacing: -0.612px;
-    line-height: 20.4px;
+    margin-top: 18px;
+    font-size: 16px;
+    letter-spacing: -0.42px;
+    line-height: 1.35;
   }
 
   .waitlistBenefits {
-    margin-top: 29.75px;
+    margin-top: 20px;
   }
 
   .waitlistBenefits li {
-    gap: 17.85px;
-    height: 41.65px;
-    font-size: 15.3px;
-    letter-spacing: -0.459px;
-    line-height: 17px;
+    gap: 12px;
+    min-height: 34px;
+    height: auto;
+    font-size: 15px;
+    letter-spacing: -0.35px;
+    line-height: 1.25;
   }
 
   .waitlistCheck {

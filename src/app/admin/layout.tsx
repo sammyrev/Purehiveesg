@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
   title: "Admin · PureHive ESG",
-  description: "Waitlist submissions dashboard.",
+  description: "Founding Partner applications dashboard.",
   robots: {
     index: false,
     follow: false,

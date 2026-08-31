@@ -141,10 +141,10 @@ export default function AdminPage() {
         setStatus("error");
         setErrorMessage(
           error instanceof TypeError
-            ? "Could not reach the waitlist service. Please try again."
+            ? "Could not reach the applications service. Please try again."
             : error instanceof Error
               ? error.message
-              : "Could not load waitlist submissions.",
+              : "Could not load Founding Partner applications.",
         );
       }
     },
@@ -213,7 +213,7 @@ export default function AdminPage() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = "purehive-waitlist.csv";
+    link.download = "purehive-founding-partner-applications.csv";
     link.click();
     URL.revokeObjectURL(url);
   };
@@ -250,7 +250,7 @@ export default function AdminPage() {
       return (
         <tr>
           <td className={styles.emptyCell} colSpan={6}>
-            {submissions.length === 0 ? "No waitlist submissions yet." : "No submissions match this search."}
+            {submissions.length === 0 ? "No Founding Partner applications yet." : "No applications match this search."}
           </td>
         </tr>
       );
@@ -333,7 +333,7 @@ export default function AdminPage() {
           </Link>
           <span className={styles.secureLabel}>Secure workspace</span>
           <h1>Welcome back.</h1>
-          <p>Sign in to review and manage your incoming waitlist submissions.</p>
+          <p>Sign in to review and manage incoming Founding Partner applications.</p>
           <label className={styles.field}>
             <span>Username</span>
             <input
@@ -394,7 +394,7 @@ export default function AdminPage() {
             onClick={() => setActiveSection("waitlist")}
           >
             <span className={styles.navIcon} aria-hidden="true">◌</span>
-            Waitlist
+            Applications
             <span className={styles.navCount}>{stats.total}</span>
           </a>
           <a
@@ -439,7 +439,7 @@ export default function AdminPage() {
         <section className={styles.intro} aria-labelledby="dashboard-title" id="overview">
           <div>
             <p className={styles.eyebrow}>Audience intelligence</p>
-            <h1 id="dashboard-title">Welcome to your<br />waitlist.</h1>
+            <h1 id="dashboard-title">Your Founding Partner<br />applications.</h1>
             <p className={styles.introCopy}>A focused view of the people and organisations interested in building better evidence with PureHive.</p>
           </div>
           <div className={styles.introAccent} aria-hidden="true">
@@ -449,7 +449,7 @@ export default function AdminPage() {
           </div>
         </section>
 
-        <section className={styles.stats} aria-label="Waitlist totals" id="reports">
+        <section className={styles.stats} aria-label="Founding Partner application totals" id="reports">
           <article className={`${styles.statCard} ${styles.primaryStat}`}>
             <div className={styles.statTopline}>
               <p>Total audience</p>
@@ -530,7 +530,7 @@ export default function AdminPage() {
                   <span>Click a row to see the full profile</span>
                 </div>
                 <table className={styles.table}>
-                  <caption className={styles.srOnly}>Waitlist submissions</caption>
+                  <caption className={styles.srOnly}>Founding Partner applications</caption>
                   <thead>
                     <tr>
                       <th>Contact</th>

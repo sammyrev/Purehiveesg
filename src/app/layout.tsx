@@ -35,7 +35,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "PureHive ESG — Turn everyday service delivery into structured, audit-ready evidence",
+        alt: "PureHive ESG — Prove the work. Protect the contract.",
         type: "image/png",
       },
     ],

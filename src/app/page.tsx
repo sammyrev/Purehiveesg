@@ -15,7 +15,7 @@ const navigationItems = [
 const heroHexagons = [1, 2, 3, 4, 5];
 const hexagonStepMs = 850;
 
-const companySizeOptions = ["1–10", "11–50", "51–200", "201–500", "500+"];
+const companySizeOptions = ["1–10", "11–50", "51–250", "250+"];
 const regionOptions = ["United Kingdom", "Ireland", "Europe", "Rest of world"];
 const publicSectorOptions = [
   "Yes",
@@ -40,7 +40,13 @@ const evidenceOptions = [
 const interestOptions = ["Interview", "Pilot", "Product updates"];
 
 type WaitlistSelectId = "companySize" | "region" | "publicSector" | "timeSpent";
-type WaitlistSubmitStatus = "idle" | "submitting" | "success" | "error";
+type WaitlistSubmitStatus = "idle" | "submitting" | "error";
+type ApplicationStep = "initial" | "followUpPrompt" | "research" | "complete";
+
+type ApplicationResponse = {
+  message?: string;
+  data?: { id?: string };
+};
 
 function reveal(delayMs = 0) {
   return {
@@ -64,6 +70,8 @@ export default function Home() {
   const [openSelect, setOpenSelect] = useState<WaitlistSelectId | null>(null);
   const [submitStatus, setSubmitStatus] = useState<WaitlistSubmitStatus>("idle");
   const [submitMessage, setSubmitMessage] = useState("");
+  const [applicationStep, setApplicationStep] = useState<ApplicationStep>("initial");
+  const [applicationId, setApplicationId] = useState("");
   const selectListId = useId();
 
   useEffect(() => {
@@ -176,12 +184,12 @@ export default function Home() {
     setCurrent(current.includes(value) ? current.filter((item) => item !== value) : [...current, value]);
   };
 
-  const handleWaitlistSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleInitialApplicationSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!companySize || !region || !publicSector || !timeSpent) {
+    if (!companySize) {
       setSubmitStatus("error");
-      setSubmitMessage("Please complete all required fields.");
+      setSubmitMessage("Please select your company size.");
       return;
     }
 
@@ -191,15 +199,7 @@ export default function Home() {
       name: String(formData.get("name") ?? "").trim(),
       company: String(formData.get("company") ?? "").trim(),
       email: String(formData.get("email") ?? "").trim(),
-      phone: String(formData.get("phone") ?? "").trim(),
-      jobTitle: String(formData.get("jobTitle") ?? "").trim(),
       companySize,
-      region,
-      publicSector,
-      challenge: String(formData.get("challenge") ?? "").trim(),
-      evidenceMethods,
-      timeSpent,
-      interests,
     };
 
     try {
@@ -212,29 +212,95 @@ export default function Home() {
         body: JSON.stringify(payload),
       });
 
-      const data = (await response.json()) as { message?: string };
+      const data = (await response.json()) as ApplicationResponse;
 
       if (!response.ok) {
-        throw new Error(data.message || "Could not join the waitlist.");
+        throw new Error(data.message || "Could not submit your application.");
+      }
+
+      if (!data.data?.id) {
+        throw new Error("Your application was saved, but we could not continue to the next step.");
       }
 
       form.reset();
       setCompanySize("");
+      setApplicationId(data.data.id);
+      setApplicationStep("followUpPrompt");
+      setSubmitStatus("idle");
+      setSubmitMessage("");
+    } catch (error) {
+      setSubmitStatus("error");
+      setSubmitMessage(
+        error instanceof TypeError
+          ? "Could not reach the application service. Please try again."
+          : error instanceof Error
+            ? error.message
+            : "Could not submit your application.",
+      );
+    }
+  };
+
+  const handleResearchSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!applicationId) {
+      setSubmitStatus("error");
+      setSubmitMessage("Your application reference is missing. Please submit the first step again.");
+      return;
+    }
+
+    if (!region || !publicSector || !timeSpent) {
+      setSubmitStatus("error");
+      setSubmitMessage("Please complete all required fields.");
+      return;
+    }
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      phone: String(formData.get("phone") ?? "").trim(),
+      jobTitle: String(formData.get("jobTitle") ?? "").trim(),
+      region,
+      publicSector,
+      challenge: String(formData.get("challenge") ?? "").trim(),
+      evidenceMethods,
+      timeSpent,
+      interests,
+    };
+
+    try {
+      setSubmitStatus("submitting");
+      setSubmitMessage("");
+
+      const response = await fetch(`${apiUrl}/api/waitlist/${applicationId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = (await response.json()) as ApplicationResponse;
+
+      if (!response.ok) {
+        throw new Error(data.message || "Could not save your additional answers.");
+      }
+
+      form.reset();
       setRegion("");
       setPublicSector("");
       setTimeSpent("");
       setEvidenceMethods([]);
       setInterests([]);
-      setSubmitStatus("success");
-      setSubmitMessage(data.message || "You're on the waitlist.");
+      setSubmitStatus("idle");
+      setSubmitMessage("");
+      setApplicationStep("complete");
     } catch (error) {
       setSubmitStatus("error");
       setSubmitMessage(
         error instanceof TypeError
-          ? "Could not reach the waitlist service. Please try again."
+          ? "Could not reach the application service. Please try again."
           : error instanceof Error
             ? error.message
-            : "Could not join the waitlist.",
+            : "Could not save your additional answers.",
       );
     }
   };
@@ -326,7 +392,7 @@ export default function Home() {
             ))}
           </div>
 
-          <a className={styles.createAccount} href="#how-it-works" onClick={closeMenu}>
+          <a className={styles.createAccount} href="#apply" onClick={closeMenu}>
             <img
               src="/assets/arrow-forward-circle.svg"
               alt=""
@@ -334,7 +400,7 @@ export default function Home() {
               width={12}
               height={12}
             />
-            <span>See how it works</span>
+            <span>Become a Founding Partner</span>
           </a>
 
           <button
@@ -363,7 +429,7 @@ export default function Home() {
               </a>
             ))}
           </div>
-          <a className={styles.mobileCreateAccount} href="#how-it-works" onClick={closeMenu}>
+          <a className={styles.mobileCreateAccount} href="#apply" onClick={closeMenu}>
             <img
               src="/assets/arrow-forward-circle.svg"
               alt=""
@@ -371,7 +437,7 @@ export default function Home() {
               width={12}
               height={12}
             />
-            <span>See how it works</span>
+            <span>Become a Founding Partner</span>
           </a>
         </div>
       </header>
@@ -390,23 +456,31 @@ export default function Home() {
 
         <div className={styles.heroCopy}>
           <h1 className={styles.heroTitle} id="hero-title" {...reveal(40)}>
-            <span>Turn everyday service </span>
-            <span>
-              delivery into <em>structured,</em>{" "}
-            </span>
-            <span className={styles.gradientText}>audit-ready evidence</span>
+            <span>Prove the work. </span>
+            <span><em>Protect the contract.</em></span>
           </h1>
           <p className={styles.heroDescription} {...reveal(140)}>
-            Structured ESG and compliance evidence for cleaning SMEs{" "}
-            <br className={styles.heroDescriptionBreak} />
-            captured as the work happens, not reconstructed at audit time.
+            <span>
+              PureHive is building a simpler way for commercial cleaning and facilities-service businesses to
+              capture, organise and retrieve operational evidence for client reporting, compliance, audits and
+              procurement.
+            </span>
+            <span>
+              We&apos;re inviting a small group of UK businesses to help shape the platform as Founding Partners.
+            </span>
           </p>
           <div className={styles.heroActions} {...reveal(220)}>
-            <a className={styles.primaryAction} href="#create-account">
+            <a className={styles.primaryAction} href="#apply">
               <img src="/assets/hero/arrow-forward-circle.svg" alt="" aria-hidden="true" />
               <span>Become a Founding Partner</span>
             </a>
+            <a className={styles.secondaryAction} href="#how-it-works">
+              <span>See What We&apos;re Building</span>
+            </a>
           </div>
+          <p className={styles.heroApplicationNote} {...reveal(260)}>
+            Early-stage programme. There is no cost to apply.
+          </p>
 
           <div className={styles.heroMobileVisual} aria-hidden="true">
             <div className={styles.heroMobileStage}>
@@ -414,10 +488,10 @@ export default function Home() {
                 <span className={styles.heroMobileTab}>Audit trail</span>
               </div>
               <div className={`${styles.heroMobileFolder} ${styles.heroMobileFolderEvidence}`}>
-                <span className={styles.heroMobileTab}>Evidence captured</span>
+                <span className={styles.heroMobileTab}>Evidence capture</span>
               </div>
               <div className={`${styles.heroMobileFolder} ${styles.heroMobileFolderLive}`}>
-                <span className={styles.heroMobileLiveTitle}>Live capture</span>
+                <span className={styles.heroMobileLiveTitle}>Proposed capture</span>
                 <div className={styles.heroMobileHexRow}>
                   {heroHexagons.map((hexagon, index) => (
                     <svg
@@ -433,7 +507,7 @@ export default function Home() {
                   ))}
                 </div>
                 <p className={styles.heroMobileCaption}>
-                  Every scan becomes a structured, timestamped cell
+                  We&apos;re designing structured, timestamped records
                 </p>
               </div>
             </div>
@@ -460,15 +534,15 @@ export default function Home() {
           </div>
           <div className={`${styles.visualCard} ${styles.evidenceCard}`}>
             <img src="/assets/hero/card-evidence.svg" alt="" />
-            <span>Evidence captured</span>
+            <span>Evidence capture</span>
           </div>
           <div className={`${styles.visualCard} ${styles.liveCard}`}>
             <img src="/assets/hero/card-live.svg" alt="" />
             <div className={styles.liveCardContent}>
-              <span className={styles.liveLabel}>Live capture</span>
+              <span className={styles.liveLabel}>Proposed capture</span>
               <span className={styles.activeStatus}>
                 <img src="/assets/hero/check-circle.svg" alt="" />
-                Active
+                In design
               </span>
             </div>
           </div>
@@ -486,7 +560,7 @@ export default function Home() {
             ))}
           </div>
           <p className={styles.visualCaption}>
-            Every scan becomes a structured, timestamped cell
+            We&apos;re designing structured, timestamped records
           </p>
         </div>
       </section>
@@ -494,14 +568,23 @@ export default function Home() {
       <section className={styles.pressureSection} id="problem" aria-labelledby="pressure-title">
         <div className={styles.pressureIntro} {...reveal()}>
           <h2 className={styles.pressureTitle} id="pressure-title">
-            Cleaning SMEs are{" "}
-            <br className={styles.pressureBreak} />
-            <span>under new pressure</span>
+            <span>Your team did the work.</span>
+            <span>Can you prove it?</span>
           </h2>
           <p className={styles.pressureDescription}>
-            Procurement expectations have changed faster{" "}
-            <br className={styles.pressureBreak} />
-            than the tools most teams use to keep up.
+            <span>
+              Commercial cleaning businesses generate evidence every day — cleaning records, photographs,
+              inspections, attendance information, corrective actions and compliance records.
+            </span>
+            <span>
+              But that evidence can become scattered across paper forms, WhatsApp, spreadsheets, emails and
+              different systems.
+            </span>
+            <span>
+              When a client, auditor or procurement team asks for proof, businesses can spend valuable time
+              finding, organising and rebuilding evidence.
+            </span>
+            <strong>We believe there is a better way.</strong>
           </p>
         </div>
 
@@ -509,8 +592,11 @@ export default function Home() {
           <article className={`${styles.pressureCard} ${styles.pressureCardBlue}`} {...reveal(40)}>
             <span className={styles.pressureNumber}>01</span>
             <div className={styles.pressureCardCopy}>
-              <h3>Tenders are<br />changing</h3>
-              <p>Social value and ESG are now<br />scored alongside price.</p>
+              <h3>Evidence matters</h3>
+              <p>
+                Procurement and contract management increasingly demand demonstrable evidence of supplier
+                performance, compliance and wider outcomes.
+              </p>
             </div>
           </article>
 
@@ -523,8 +609,8 @@ export default function Home() {
           <article className={`${styles.pressureCard} ${styles.pressureCardPeach}`} {...reveal(200)}>
             <span className={styles.pressureNumber}>02</span>
             <div className={styles.pressureCardCopy}>
-              <h3>Evidence is<br />demanded</h3>
-              <p>Required throughout delivery,<br />not just at bid stage.</p>
+              <h3>Proof is needed</h3>
+              <p>For client reporting, audits, contract reviews and compliance.</p>
             </div>
           </article>
         </div>
@@ -539,16 +625,16 @@ export default function Home() {
           <article className={`${styles.pressureCard} ${styles.pressureCardBlue}`} {...reveal(120)}>
             <span className={styles.pressureNumber}>03</span>
             <div className={styles.pressureCardCopy}>
-              <h3>Manual chaos</h3>
-              <p>Spreadsheets, folders, and<br />WhatsApp photos don&apos;t hold up.</p>
+              <h3>Evidence is scattered</h3>
+              <p>Paper forms, WhatsApp, spreadsheets, emails and systems all hold part of the story.</p>
             </div>
           </article>
 
           <article className={`${styles.pressureCard} ${styles.pressureCardBlue}`} {...reveal(200)}>
             <span className={styles.pressureNumber}>04</span>
             <div className={styles.pressureCardCopy}>
-              <h3>Audit risk</h3>
-              <p>Reviews and inspections create<br />scramble and exposure.</p>
+              <h3>Time gets lost</h3>
+              <p>Finding, organising and rebuilding evidence takes people away from the work.</p>
             </div>
           </article>
         </div>
@@ -563,16 +649,18 @@ export default function Home() {
         <img className={styles.phaseSpecGlow} src="/assets/phases/phase-spec-glow.png" alt="" aria-hidden="true" />
 
         <h2 className={styles.phaseTitle} id="phase-title" {...reveal()}>
-          <span>Phase 1: built to be</span>
-          <span>simple, not clever</span>
+          <span>Phase 1: Built to be</span>
+          <span>simple, not clever.</span>
         </h2>
-        <p className={styles.phaseSubtitle} {...reveal(80)}>No hardware to install, no new habits to learn.</p>
-        <a className={`${styles.primaryAction} ${styles.phaseAction}`} href="#create-account" {...reveal(140)}>
+        <p className={styles.phaseSubtitle} {...reveal(80)}>
+          We&apos;re building a simple journey: Capture → Organise → Report.
+        </p>
+        <a className={`${styles.primaryAction} ${styles.phaseAction}`} href="#apply" {...reveal(140)}>
           <img src="/assets/hero/arrow-forward-circle.svg" alt="" aria-hidden="true" />
           <span>Become a Founding Partner</span>
         </a>
 
-        <div className={styles.phaseTimeline} aria-label="PureHive process phases" {...reveal(180)}>
+        <div className={styles.phaseTimeline} aria-label="Proposed PureHive product journey: Capture, Organise, Report" {...reveal(180)}>
           <img className={`${styles.phaseLine} ${styles.phaseLineOne}`} src="/assets/phases/phase-line-one.svg" alt="" />
           <img className={`${styles.phaseLine} ${styles.phaseLineTwo}`} src="/assets/phases/phase-line-two.svg" alt="" />
 
@@ -585,27 +673,36 @@ export default function Home() {
           <span className={`${styles.phaseNumber} ${styles.phaseNumberThree}`}>03</span>
 
           <div className={`${styles.phaseStepCopy} ${styles.phaseStepOne}`}>
-            <h3>Log activity as it happens</h3>
-            <p>Scan, tag, or check in on site, fits into the existing shift.</p>
+            <h3>CAPTURE</h3>
+            <p>
+              We&apos;re building a way to capture operational evidence as work happens: QR/NFC check-ins,
+              photographs, checklists, inspections and corrective actions.
+            </p>
           </div>
           <div className={`${styles.phaseStepCopy} ${styles.phaseStepTwo}`}>
-            <h3>Evidence is structured automatically</h3>
-            <p>Each entry becomes a timestamped, categorised audit trail.</p>
+            <h3>ORGANISE</h3>
+            <p>
+              The proposed platform will structure evidence around sites, tasks, contracts, client requirements
+              and compliance records.
+            </p>
           </div>
           <div className={`${styles.phaseStepCopy} ${styles.phaseStepThree}`}>
-            <h3>Export when you need it</h3>
-            <p>PDF or Excel, ready for tenders, audits, or client requests.</p>
+            <h3>REPORT</h3>
+            <p>
+              The proposed platform will make relevant evidence easier to retrieve for client reporting, audits,
+              contract reviews, compliance, procurement and ESG/social-value reporting.
+            </p>
           </div>
         </div>
 
         <aside className={styles.phaseFuture} aria-label="Future phases" {...reveal(260)}>
-          <div className={styles.phaseFutureHeading}>Future phases</div>
+          <div className={styles.phaseFutureHeading}>Future possibilities</div>
           <ul>
             <li>Optional IoT integration,</li>
             <li>AI-assisted ESG analysis,</li>
             <li>and enhanced verification</li>
           </ul>
-          <p>These might be added as the pilot<br />validates what&apos;s needed.</p>
+          <p>Subject to Founding Partner validation.</p>
         </aside>
       </section>
 
@@ -631,7 +728,7 @@ export default function Home() {
           alt="A cleaning team standing together in a bright workplace"
           {...reveal(80)}
         />
-        <a className={`${styles.primaryAction} ${styles.audienceAction}`} href="#create-account" {...reveal(140)}>
+        <a className={`${styles.primaryAction} ${styles.audienceAction}`} href="#apply" {...reveal(140)}>
           <img src="/assets/hero/arrow-forward-circle.svg" alt="" aria-hidden="true" />
           <span>Become a Founding Partner</span>
         </a>
@@ -673,22 +770,23 @@ export default function Home() {
           <span>everyone else uses it</span>
         </h2>
         <p className={styles.partnersSubtitle} {...reveal(80)}>
-          We&apos;re piloting Purehiveesg with a small group of founding partners<br />
-          direct input, priority onboarding, no pressure to buy.
+          We&apos;re not building PureHive in isolation. We&apos;re inviting a small number of UK cleaning and
+          facilities-service businesses to help us understand real evidence challenges, review proposed
+          workflows and shape the platform before wider release.
         </p>
-        <a className={`${styles.primaryAction} ${styles.partnersAction}`} href="#create-account" {...reveal(140)}>
+        <a className={`${styles.primaryAction} ${styles.partnersAction}`} href="#apply" {...reveal(140)}>
           <img src="/assets/hero/arrow-forward-circle.svg" alt="" aria-hidden="true" />
           <span>Become a Founding Partner</span>
         </a>
 
         <div className={styles.pricingTable} {...reveal(180)}>
           <div className={styles.pricingRow}>
-            <span>Pilot pricing</span>
-            <strong className={styles.pricingTbc}>TBC</strong>
+            <span>Cost to apply</span>
+            <strong className={styles.pricingNone}>None</strong>
           </div>
           <div className={styles.pricingRow}>
-            <span>Payment to register</span>
-            <strong className={styles.pricingNone}>None</strong>
+            <span>Programme pricing</span>
+            <strong className={styles.pricingTbc}>TBC</strong>
           </div>
           <div className={styles.pricingRow}>
             <span>Access</span>
@@ -705,7 +803,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={styles.waitlistSection} id="create-account" aria-labelledby="waitlist-title">
+      <section className={styles.waitlistSection} id="apply" aria-labelledby="waitlist-title">
         <div className={styles.waitlistTorus} aria-hidden="true">
           <img className={styles.waitlistTorusBase} src="/assets/waitlist/waitlist-base.png" alt="" />
           <div className={styles.waitlistTorusColor} />
@@ -713,186 +811,235 @@ export default function Home() {
         </div>
 
         <div className={styles.waitlistCopy} {...reveal()}>
-          <h2 id="waitlist-title">Join the waitlist</h2>
+          <h2 id="waitlist-title">Apply to Become a PureHive Founding Partner</h2>
           <p>
-            Two minutes. No payment, no commitment,<br />
-            just tell us where you are today.
+            Tell us a little about your business. We&apos;re looking for UK cleaning and facilities-service
+            businesses willing to share their operational evidence challenges and help shape PureHive before
+            wider release.
           </p>
           <ul className={styles.waitlistBenefits}>
-            <li><span className={styles.waitlistCheck}><img src="/assets/waitlist/waitlist-check.svg" alt="" /></span><span>Early access when we launch</span></li>
-            <li><span className={styles.waitlistCheck}><img src="/assets/waitlist/waitlist-check.svg" alt="" /></span><span>Direct input into what gets built</span></li>
-            <li><span className={styles.waitlistCheck}><img src="/assets/waitlist/waitlist-check.svg" alt="" /></span><span>Priority onboarding into the pilot</span></li>
+            <li><span className={styles.waitlistCheck}><img src="/assets/waitlist/waitlist-check.svg" alt="" /></span><span>Help validate the proposed platform</span></li>
+            <li><span className={styles.waitlistCheck}><img src="/assets/waitlist/waitlist-check.svg" alt="" /></span><span>Share practical evidence challenges</span></li>
+            <li><span className={styles.waitlistCheck}><img src="/assets/waitlist/waitlist-check.svg" alt="" /></span><span>Shape workflows before wider release</span></li>
           </ul>
         </div>
 
-        <form className={styles.waitlistFormCard} onSubmit={handleWaitlistSubmit} {...reveal(120)}>
-          <div className={styles.waitlistFields}>
-            <div className={styles.waitlistFieldRow}>
-              <label className={styles.waitlistField}>
-                <span>Name</span>
-                <div className={styles.waitlistInputWrap}>
-                  <img src="/assets/waitlist/icon-personalcard.svg" alt="" />
-                  <input type="text" name="name" placeholder="Your name" required />
-                </div>
-              </label>
+        {applicationStep === "initial" ? (
+          <form className={styles.waitlistFormCard} onSubmit={handleInitialApplicationSubmit} {...reveal(120)}>
+            <div className={styles.waitlistFields}>
+              <div className={styles.waitlistFieldRow}>
+                <label className={styles.waitlistField}>
+                  <span>Full Name</span>
+                  <div className={styles.waitlistInputWrap}>
+                    <img src="/assets/waitlist/icon-personalcard.svg" alt="" />
+                    <input type="text" name="name" placeholder="Your name" required />
+                  </div>
+                </label>
 
-              <label className={styles.waitlistField}>
-                <span>Company</span>
-                <div className={styles.waitlistInputWrap}>
-                  <img src="/assets/waitlist/icon-building.svg" alt="" />
-                  <input type="text" name="company" placeholder="Company name" required />
-                </div>
-              </label>
+                <label className={styles.waitlistField}>
+                  <span>Company Name</span>
+                  <div className={styles.waitlistInputWrap}>
+                    <img src="/assets/waitlist/icon-building.svg" alt="" />
+                    <input type="text" name="company" placeholder="Company name" required />
+                  </div>
+                </label>
+              </div>
+
+              <div className={styles.waitlistFieldRow}>
+                <label className={styles.waitlistField}>
+                  <span>Work Email</span>
+                  <div className={styles.waitlistInputWrap}>
+                    <img src="/assets/waitlist/icon-sms.svg" alt="" />
+                    <input type="email" name="email" placeholder="name@company.com" required />
+                  </div>
+                </label>
+
+                {renderSelect(
+                  "companySize",
+                  "companySize",
+                  "Company Size",
+                  "/assets/waitlist/icon-building.svg",
+                  companySize,
+                  "Select company size",
+                  companySizeOptions,
+                  setCompanySize,
+                )}
+              </div>
             </div>
 
-            <div className={styles.waitlistFieldRow}>
-              <label className={styles.waitlistField}>
-                <span>Work email</span>
-                <div className={styles.waitlistInputWrap}>
-                  <img src="/assets/waitlist/icon-sms.svg" alt="" />
-                  <input type="email" name="email" placeholder="name@company.com" required />
-                </div>
-              </label>
+            {submitMessage ? (
+              <p className={`${styles.waitlistStatus} ${styles.waitlistStatusError}`} role="status" aria-live="polite">
+                {submitMessage}
+              </p>
+            ) : null}
 
-              <label className={styles.waitlistField}>
-                <span>
-                  Phone <em className={styles.waitlistOptional}>optional</em>
-                </span>
-                <div className={styles.waitlistInputWrap}>
-                  <img src="/assets/waitlist/icon-mobile.svg" alt="" />
-                  <input type="tel" name="phone" placeholder="Phone number" />
-                </div>
-              </label>
-            </div>
+            <button className={styles.waitlistSubmit} type="submit" disabled={submitStatus === "submitting"}>
+              <img src="/assets/waitlist/waitlist-arrow.svg" alt="" aria-hidden="true" />
+              <span>{submitStatus === "submitting" ? "Submitting..." : "Submit Founding Partner Application"}</span>
+            </button>
+            <p className={styles.waitlistApplicationNote}>There is no cost to apply.</p>
+          </form>
+        ) : null}
 
-            <label className={styles.waitlistField}>
-              <span>Job title</span>
-              <div className={styles.waitlistInputWrap}>
-                <img src="/assets/waitlist/icon-briefcase.svg" alt="" />
-                <input type="text" name="jobTitle" placeholder="e.g. Managing Director" required />
-              </div>
-            </label>
-
-            <div className={styles.waitlistFieldRow}>
-              {renderSelect(
-                "companySize",
-                "companySize",
-                "Company size",
-                "/assets/waitlist/icon-building.svg",
-                companySize,
-                "Select company size",
-                companySizeOptions,
-                setCompanySize,
-              )}
-              {renderSelect(
-                "region",
-                "region",
-                "Region",
-                "/assets/waitlist/icon-location.svg",
-                region,
-                "Select region",
-                regionOptions,
-                setRegion,
-              )}
-            </div>
-
-            {renderSelect(
-              "publicSector",
-              "publicSector",
-              "Do you bid for NHS, council or public-sector contracts?",
-              "/assets/waitlist/icon-briefcase.svg",
-              publicSector,
-              "Select an option",
-              publicSectorOptions,
-              setPublicSector,
-            )}
-
-            <label className={styles.waitlistField}>
-              <span>Biggest compliance, ESG or tender challenge</span>
-              <textarea
-                className={styles.waitlistTextarea}
-                name="challenge"
-                placeholder="What is the hardest part of gathering or presenting evidence today?"
-                rows={4}
-                required
-              />
-            </label>
-
-            <fieldset className={`${styles.waitlistField} ${styles.waitlistChoiceField}`}>
-              <legend>How do you currently manage evidence?</legend>
-              <div className={styles.waitlistChoiceGroup}>
-                {evidenceOptions.map((option) => (
-                  <label
-                    className={`${styles.waitlistChoice} ${
-                      evidenceMethods.includes(option) ? styles.waitlistChoiceSelected : ""
-                    }`}
-                    key={option}
-                  >
-                    <input
-                      type="checkbox"
-                      name="evidence"
-                      value={option}
-                      checked={evidenceMethods.includes(option)}
-                      onChange={() => toggleChoice(option, evidenceMethods, setEvidenceMethods)}
-                    />
-                    <span>{option}</span>
-                  </label>
-                ))}
-              </div>
-            </fieldset>
-
-            {renderSelect(
-              "timeSpent",
-              "timeSpent",
-              "Time spent preparing evidence",
-              "/assets/waitlist/icon-briefcase.svg",
-              timeSpent,
-              "Select time spent",
-              timeSpentOptions,
-              setTimeSpent,
-            )}
-
-            <fieldset className={`${styles.waitlistField} ${styles.waitlistChoiceField}`}>
-              <legend>I’m interested in</legend>
-              <div className={styles.waitlistChoiceGroup}>
-                {interestOptions.map((option) => (
-                  <label
-                    className={`${styles.waitlistChoice} ${
-                      interests.includes(option) ? styles.waitlistChoiceSelected : ""
-                    }`}
-                    key={option}
-                  >
-                    <input
-                      type="checkbox"
-                      name="interest"
-                      value={option}
-                      checked={interests.includes(option)}
-                      onChange={() => toggleChoice(option, interests, setInterests)}
-                    />
-                    <span>{option}</span>
-                  </label>
-                ))}
-              </div>
-            </fieldset>
-          </div>
-
-          {submitMessage ? (
-            <p
-              className={`${styles.waitlistStatus} ${
-                submitStatus === "error" ? styles.waitlistStatusError : styles.waitlistStatusSuccess
-              }`}
-              role="status"
-              aria-live="polite"
+        {applicationStep === "followUpPrompt" ? (
+          <div className={`${styles.waitlistFormCard} ${styles.waitlistAcknowledgement}`} {...reveal(120)}>
+            <h3>Thank you for your interest in PureHive.</h3>
+            <p>We&apos;ve received your Founding Partner application.</p>
+            <p>Help us understand your current evidence challenges by answering a few additional questions.</p>
+            <button
+              className={styles.waitlistSubmit}
+              type="button"
+              onClick={() => {
+                setApplicationStep("research");
+                setSubmitStatus("idle");
+                setSubmitMessage("");
+              }}
             >
-              {submitMessage}
-            </p>
-          ) : null}
+              <img src="/assets/waitlist/waitlist-arrow.svg" alt="" aria-hidden="true" />
+              <span>Tell Us More — About 60 Seconds</span>
+            </button>
+            <p className={styles.waitlistApplicationNote}>There is no cost to apply.</p>
+          </div>
+        ) : null}
 
-          <button className={styles.waitlistSubmit} type="submit" disabled={submitStatus === "submitting"}>
-            <img src="/assets/waitlist/waitlist-arrow.svg" alt="" aria-hidden="true" />
-            <span>{submitStatus === "submitting" ? "Joining..." : "Join the waitlist"}</span>
-          </button>
-        </form>
+        {applicationStep === "research" ? (
+          <form className={styles.waitlistFormCard} onSubmit={handleResearchSubmit} {...reveal(120)}>
+            <h3 className={styles.waitlistFormTitle}>Tell us a little more</h3>
+            <p className={styles.waitlistFormIntro}>About 60 seconds — your answers will help shape PureHive.</p>
+            <div className={styles.waitlistFields}>
+              <div className={styles.waitlistFieldRow}>
+                <label className={styles.waitlistField}>
+                  <span>
+                    Phone <em className={styles.waitlistOptional}>optional</em>
+                  </span>
+                  <div className={styles.waitlistInputWrap}>
+                    <img src="/assets/waitlist/icon-mobile.svg" alt="" />
+                    <input type="tel" name="phone" placeholder="Phone number" />
+                  </div>
+                </label>
+
+                <label className={styles.waitlistField}>
+                  <span>Job Title</span>
+                  <div className={styles.waitlistInputWrap}>
+                    <img src="/assets/waitlist/icon-briefcase.svg" alt="" />
+                    <input type="text" name="jobTitle" placeholder="e.g. Managing Director" required />
+                  </div>
+                </label>
+              </div>
+
+              <div className={styles.waitlistFieldRow}>
+                {renderSelect(
+                  "region",
+                  "region",
+                  "Region",
+                  "/assets/waitlist/icon-location.svg",
+                  region,
+                  "Select region",
+                  regionOptions,
+                  setRegion,
+                )}
+                {renderSelect(
+                  "publicSector",
+                  "publicSector",
+                  "Do you bid for NHS, council or public-sector contracts?",
+                  "/assets/waitlist/icon-briefcase.svg",
+                  publicSector,
+                  "Select an option",
+                  publicSectorOptions,
+                  setPublicSector,
+                )}
+              </div>
+
+              <label className={styles.waitlistField}>
+                <span>Biggest compliance, ESG or tender challenge</span>
+                <textarea
+                  className={styles.waitlistTextarea}
+                  name="challenge"
+                  placeholder="What is the hardest part of gathering or presenting evidence today?"
+                  rows={4}
+                  required
+                />
+              </label>
+
+              <fieldset className={`${styles.waitlistField} ${styles.waitlistChoiceField}`}>
+                <legend>How do you currently manage evidence?</legend>
+                <div className={styles.waitlistChoiceGroup}>
+                  {evidenceOptions.map((option) => (
+                    <label
+                      className={`${styles.waitlistChoice} ${
+                        evidenceMethods.includes(option) ? styles.waitlistChoiceSelected : ""
+                      }`}
+                      key={option}
+                    >
+                      <input
+                        type="checkbox"
+                        name="evidence"
+                        value={option}
+                        checked={evidenceMethods.includes(option)}
+                        onChange={() => toggleChoice(option, evidenceMethods, setEvidenceMethods)}
+                      />
+                      <span>{option}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
+              {renderSelect(
+                "timeSpent",
+                "timeSpent",
+                "Time spent preparing evidence",
+                "/assets/waitlist/icon-briefcase.svg",
+                timeSpent,
+                "Select time spent",
+                timeSpentOptions,
+                setTimeSpent,
+              )}
+
+              <fieldset className={`${styles.waitlistField} ${styles.waitlistChoiceField}`}>
+                <legend>I’m interested in</legend>
+                <div className={styles.waitlistChoiceGroup}>
+                  {interestOptions.map((option) => (
+                    <label
+                      className={`${styles.waitlistChoice} ${
+                        interests.includes(option) ? styles.waitlistChoiceSelected : ""
+                      }`}
+                      key={option}
+                    >
+                      <input
+                        type="checkbox"
+                        name="interest"
+                        value={option}
+                        checked={interests.includes(option)}
+                        onChange={() => toggleChoice(option, interests, setInterests)}
+                      />
+                      <span>{option}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+            </div>
+
+            {submitMessage ? (
+              <p className={`${styles.waitlistStatus} ${styles.waitlistStatusError}`} role="status" aria-live="polite">
+                {submitMessage}
+              </p>
+            ) : null}
+
+            <button className={styles.waitlistSubmit} type="submit" disabled={submitStatus === "submitting"}>
+              <img src="/assets/waitlist/waitlist-arrow.svg" alt="" aria-hidden="true" />
+              <span>{submitStatus === "submitting" ? "Saving..." : "Save My Answers"}</span>
+            </button>
+          </form>
+        ) : null}
+
+        {applicationStep === "complete" ? (
+          <div className={`${styles.waitlistFormCard} ${styles.waitlistAcknowledgement}`} {...reveal(120)}>
+            <h3>Thank you for telling us more.</h3>
+            <p>We&apos;ve saved your additional answers.</p>
+            <p>They will help us understand real evidence challenges as we shape PureHive before wider release.</p>
+            <p className={styles.waitlistApplicationNote}>There is no cost to apply.</p>
+          </div>
+        ) : null}
       </section>
 
       <footer className={styles.footer} {...reveal()}>

@@ -75,7 +75,7 @@ export async function fetchWaitlistSubmissions(token: string): Promise<WaitlistS
   }
 
   if (!response.ok) {
-    throw new Error(payload.message || "Could not load waitlist submissions.");
+    throw new Error(payload.message || "Could not load Founding Partner applications.");
   }
 
   return payload.data ?? [];
