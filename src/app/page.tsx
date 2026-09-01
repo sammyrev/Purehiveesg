@@ -2,8 +2,15 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useState, type CSSProperties, type FormEvent } from "react";
+import { useEffect, useId, useRef, useState, type CSSProperties, type FormEvent } from "react";
 import { apiUrl } from "@/lib/api";
+import {
+  trackDetailsSubmission,
+  trackFormStart,
+  trackFoundingPartnerClick,
+  trackInitialSubmission,
+} from "@/lib/analytics";
+import { getStoredUtm } from "@/lib/utm";
 import styles from "./page.module.css";
 
 const navigationItems = [
@@ -72,6 +79,7 @@ export default function Home() {
   const [submitMessage, setSubmitMessage] = useState("");
   const [applicationStep, setApplicationStep] = useState<ApplicationStep>("initial");
   const [applicationId, setApplicationId] = useState("");
+  const formStartedRef = useRef(false);
   const selectListId = useId();
 
   useEffect(() => {
@@ -184,6 +192,17 @@ export default function Home() {
     setCurrent(current.includes(value) ? current.filter((item) => item !== value) : [...current, value]);
   };
 
+  const handleFormFocus = () => {
+    if (!formStartedRef.current) {
+      formStartedRef.current = true;
+      trackFormStart();
+    }
+  };
+
+  const handleCtaClick = (location: string) => {
+    trackFoundingPartnerClick(location);
+  };
+
   const handleInitialApplicationSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -200,6 +219,7 @@ export default function Home() {
       company: String(formData.get("company") ?? "").trim(),
       email: String(formData.get("email") ?? "").trim(),
       companySize,
+      ...getStoredUtm(),
     };
 
     try {
@@ -228,6 +248,7 @@ export default function Home() {
       setApplicationStep("followUpPrompt");
       setSubmitStatus("idle");
       setSubmitMessage("");
+      trackInitialSubmission();
     } catch (error) {
       setSubmitStatus("error");
       setSubmitMessage(
@@ -293,6 +314,7 @@ export default function Home() {
       setSubmitStatus("idle");
       setSubmitMessage("");
       setApplicationStep("complete");
+      trackDetailsSubmission();
     } catch (error) {
       setSubmitStatus("error");
       setSubmitMessage(
@@ -392,7 +414,14 @@ export default function Home() {
             ))}
           </div>
 
-          <a className={styles.createAccount} href="#apply" onClick={closeMenu}>
+          <a
+            className={styles.createAccount}
+            href="#apply"
+            onClick={() => {
+              closeMenu();
+              handleCtaClick("header");
+            }}
+          >
             <img
               src="/assets/arrow-forward-circle.svg"
               alt=""
@@ -429,7 +458,14 @@ export default function Home() {
               </a>
             ))}
           </div>
-          <a className={styles.mobileCreateAccount} href="#apply" onClick={closeMenu}>
+          <a
+            className={styles.mobileCreateAccount}
+            href="#apply"
+            onClick={() => {
+              closeMenu();
+              handleCtaClick("mobile_header");
+            }}
+          >
             <img
               src="/assets/arrow-forward-circle.svg"
               alt=""
@@ -470,7 +506,7 @@ export default function Home() {
             </span>
           </p>
           <div className={styles.heroActions} {...reveal(220)}>
-            <a className={styles.primaryAction} href="#apply">
+            <a className={styles.primaryAction} href="#apply" onClick={() => handleCtaClick("hero_primary")}>
               <img src="/assets/hero/arrow-forward-circle.svg" alt="" aria-hidden="true" />
               <span>Become a Founding Partner</span>
             </a>
@@ -655,7 +691,12 @@ export default function Home() {
         <p className={styles.phaseSubtitle} {...reveal(80)}>
           We&apos;re building a simple journey: Capture → Organise → Report.
         </p>
-        <a className={`${styles.primaryAction} ${styles.phaseAction}`} href="#apply" {...reveal(140)}>
+        <a
+          className={`${styles.primaryAction} ${styles.phaseAction}`}
+          href="#apply"
+          onClick={() => handleCtaClick("phase")}
+          {...reveal(140)}
+        >
           <img src="/assets/hero/arrow-forward-circle.svg" alt="" aria-hidden="true" />
           <span>Become a Founding Partner</span>
         </a>
@@ -728,7 +769,12 @@ export default function Home() {
           alt="A cleaning team standing together in a bright workplace"
           {...reveal(80)}
         />
-        <a className={`${styles.primaryAction} ${styles.audienceAction}`} href="#apply" {...reveal(140)}>
+        <a
+          className={`${styles.primaryAction} ${styles.audienceAction}`}
+          href="#apply"
+          onClick={() => handleCtaClick("audience")}
+          {...reveal(140)}
+        >
           <img src="/assets/hero/arrow-forward-circle.svg" alt="" aria-hidden="true" />
           <span>Become a Founding Partner</span>
         </a>
@@ -774,7 +820,12 @@ export default function Home() {
           facilities-service businesses to help us understand real evidence challenges, review proposed
           workflows and shape the platform before wider release.
         </p>
-        <a className={`${styles.primaryAction} ${styles.partnersAction}`} href="#apply" {...reveal(140)}>
+        <a
+          className={`${styles.primaryAction} ${styles.partnersAction}`}
+          href="#apply"
+          onClick={() => handleCtaClick("partners")}
+          {...reveal(140)}
+        >
           <img src="/assets/hero/arrow-forward-circle.svg" alt="" aria-hidden="true" />
           <span>Become a Founding Partner</span>
         </a>
@@ -825,7 +876,12 @@ export default function Home() {
         </div>
 
         {applicationStep === "initial" ? (
-          <form className={styles.waitlistFormCard} onSubmit={handleInitialApplicationSubmit} {...reveal(120)}>
+          <form
+            className={styles.waitlistFormCard}
+            onSubmit={handleInitialApplicationSubmit}
+            onFocus={handleFormFocus}
+            {...reveal(120)}
+          >
             <div className={styles.waitlistFields}>
               <div className={styles.waitlistFieldRow}>
                 <label className={styles.waitlistField}>
