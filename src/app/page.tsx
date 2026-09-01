@@ -609,7 +609,7 @@ export default function Home() {
           </h2>
           <p className={styles.pressureDescription}>
             <span>
-              Commercial cleaning businesses generate evidence every day — cleaning records, photographs,
+              Commercial cleaning businesses generate evidence every day, cleaning records, photographs,
               inspections, attendance information, corrective actions and compliance records.
             </span>
             <span>
@@ -786,7 +786,7 @@ export default function Home() {
               <div className={styles.audiencePillColumn}>
                 <div className={styles.audiencePill}><img src="/assets/audience/icon-buildings.svg" alt="" /><span>Commercial cleaning SMEs</span></div>
                 <div className={styles.audiencePill}><img src="/assets/audience/icon-hospital.svg" alt="" /><span>Healthcare cleaning providers</span></div>
-                <div className={styles.audiencePill}><img src="/assets/audience/icon-briefcase.svg" alt="" /><span>House &amp; Public-sector contractors</span></div>
+                <div className={styles.audiencePill}><img src="/assets/audience/icon-briefcase.svg" alt="" /><span>Housing &amp; Public-sector contractors</span></div>
               </div>
               <div className={styles.audiencePillColumn}>
                 <div className={styles.audiencePill}><img src="/assets/audience/icon-garage.svg" alt="" /><span>Facilities management SMEs</span></div>
@@ -1099,16 +1099,25 @@ export default function Home() {
       </section>
 
       <footer className={styles.footer} {...reveal()}>
-        <Link className={styles.footerLogo} href="/" aria-label="PureHive ESG home">
-          <img src="/assets/footer-logo.svg" alt="PureHive ESG" width="171" height="32" />
-        </Link>
-        <nav className={styles.footerNavigation} aria-label="Footer navigation">
-          <a href="#problem">Problem</a>
-          <a href="#how-it-works">How it works</a>
-          <a href="#programme">Programme</a>
-          <a href="#privacy-policy">Privacy Policy</a>
-        </nav>
-        <p className={styles.footerCopyright}>© 2026 PUREHIVE · EARLY-STAGE / PRE-PILOT</p>
+        <div className={styles.footerMain}>
+          <Link className={styles.footerLogo} href="/" aria-label="PureHive ESG home">
+            <img src="/assets/footer-logo.svg" alt="PureHive ESG" width="171" height="32" />
+          </Link>
+          <nav className={styles.footerNavigation} aria-label="Footer navigation">
+            <a href="#problem">Problem</a>
+            <a href="#how-it-works">How it works</a>
+            <a href="#programme">Programme</a>
+            <a href="#privacy-policy">Privacy Policy</a>
+          </nav>
+          <p className={styles.footerCopyright}>© 2026 PUREHIVE · EARLY-STAGE / PRE-PILOT</p>
+        </div>
+        <div className={styles.footerTrust}>
+          <p>PUREHIVEESG LTD — UK registered company</p>
+          <p>
+            Contact:{" "}
+            <a href="mailto:admin@purehiveesg.com">admin@purehiveesg.com</a>
+          </p>
+        </div>
       </footer>
     </main>
   );
