@@ -508,7 +508,7 @@ export default function Home() {
           <div className={styles.heroActions} {...reveal(220)}>
             <a className={styles.primaryAction} href="#apply" onClick={() => handleCtaClick("hero_primary")}>
               <img src="/assets/hero/arrow-forward-circle.svg" alt="" aria-hidden="true" />
-              <span>Become a Founding Partner</span>
+              <span>JOIN EARLY ACCESS</span>
             </a>
             <a className={styles.secondaryAction} href="#how-it-works">
               <span>See What We&apos;re Building</span>
@@ -827,7 +827,7 @@ export default function Home() {
           {...reveal(140)}
         >
           <img src="/assets/hero/arrow-forward-circle.svg" alt="" aria-hidden="true" />
-          <span>Become a Founding Partner</span>
+          <span>JOIN EARLY ACCESS</span>
         </a>
 
         <div className={styles.pricingTable} {...reveal(180)}>
